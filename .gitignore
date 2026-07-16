@@ -1,0 +1,50 @@
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editors / IDEs #
+##################
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*~
+
+# Claude Code #
+###############
+.claude/
+
+# Local backups / archive (not deployed) #
+##########################################
+_archive/
+_old/
+backup/
+backup-2/
+tmp/
+
+# Node / build tooling (for the future Eleventy + CMS build) #
+#############################################################
+node_modules/
+npm-debug.log*
+yarn-error.log*
+.cache/
+_site/
+.eleventy.cache/
+.netlify/
+
+# Environment / secrets #
+#########################
+.env
+.env.*
+!.env.example
+
+# Sass cache #
+##############
+.sass-cache

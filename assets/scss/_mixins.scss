@@ -1,0 +1,41 @@
+$xs: 480px;
+$sm: 768px;
+$md: 992px;
+$lg: 1200px;
+$xl: 1400px;
+
+$color__green: #57FAA1;
+$color__black: #03033B;
+$color__navy: #2003F5;
+$color__white: #FAFFFA;
+$color__pink: #FAD6E2;
+
+@mixin xs {
+	@media screen and (min-width: $xs) {
+		@content;
+	}
+}
+
+@mixin sm {
+	@media screen and (min-width: $sm) {
+		@content;
+	}
+}
+
+@mixin md {
+	@media screen and (min-width: $md) {
+		@content;
+	}
+}
+
+@mixin lg {
+	@media screen and (min-width: $lg) {
+		@content;
+	}
+}
+
+@mixin xl {
+	@media screen and (min-width: $xl) {
+		@content;
+	}
+}

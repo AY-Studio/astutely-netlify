@@ -1,0 +1,308 @@
+// =============================================================
+//  News — shared page chrome + article listing (index)
+//  Brand-consistent (uses _mixins variables) and WCAG 2.2 AA.
+//  Scoped to .news-body so the single-page homepage is untouched.
+// =============================================================
+
+// --- Base -------------------------------------------------------------------
+.news-body {
+  background-color: $color__white;
+  color: $color__black;
+  line-height: 1.6;
+}
+
+// Always-visible keyboard focus (WCAG 2.4.7 / 2.4.11)
+.news-body :focus-visible {
+  outline: 3px solid $color__navy;
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+// The brand cursor-follower is animation-driven; restore the native pointer
+// for anyone who prefers reduced motion (it is also disabled in JS for them).
+@media (prefers-reduced-motion: reduce) {
+  .news-body,
+  .news-body * {
+    cursor: auto;
+  }
+}
+
+// Skip link (WCAG 2.4.1)
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 11000;
+  margin: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  background-color: $color__navy;
+  color: $color__green;
+  font-weight: 700;
+  border-radius: 6px;
+  transform: translateY(-150%);
+  transition: transform 0.2s ease;
+}
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+// --- Site header / nav ------------------------------------------------------
+.site-header {
+  background-color: $color__white; // white bar on interior (non-homepage) pages
+  box-shadow: 0 1px 0 rgba($color__black, 0.12);
+
+  &__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding-top: 1.5rem; // optically heavier top to balance the logo + accent line
+    padding-bottom: 1.1rem;
+  }
+
+  &__brand {
+    display: inline-flex;
+    align-items: center;
+
+    svg {
+      width: 150px;
+      height: auto;
+      fill: $color__navy; // brand blue logo on the white bar
+    }
+  }
+
+  // On the white interior bar, non-active links are brand blue.
+  // Scoped to .site-header so the homepage .home-nav links (white on a
+  // dark blurred bar) are untouched.
+  .site-nav a {
+    color: $color__navy;
+
+    &:hover {
+      color: $color__black;
+    }
+
+    &[aria-current="page"] {
+      color: $color__black;
+      box-shadow: inset 0 -2px 0 $color__navy;
+    }
+  }
+
+  // Keep the CTA legible on white: hover fills navy instead of white.
+  .site-nav a.site-nav__cta {
+    color: $color__black;
+
+    &:hover,
+    &:focus-visible {
+      background-color: $color__navy;
+      color: $color__white;
+    }
+  }
+}
+
+.site-nav {
+  &__list {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  // Text links
+  a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px; // generous target size (WCAG 2.5.8)
+    padding: 0.5rem 0.25rem;
+    color: $color__white;
+    font-weight: 500;
+
+    &:hover {
+      color: $color__green;
+    }
+
+    &[aria-current="page"] {
+      color: $color__green;
+      box-shadow: inset 0 -2px 0 $color__green;
+    }
+  }
+
+  // CTA — element-qualified (.site-nav a.site-nav__cta) so it beats `.site-nav a`.
+  // Previously `.site-nav a` won on specificity, leaving the button with dark
+  // text on a dark fill: the legibility problem.
+  a.site-nav__cta {
+    padding: 0.6rem 1.3rem;
+    background-color: $color__green;
+    color: $color__black;
+    border-radius: 8px;
+    font-weight: 700;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    &:hover,
+    &:focus-visible {
+      background-color: $color__white;
+      color: $color__navy;
+      box-shadow: none;
+    }
+  }
+}
+
+// --- Listing hero -----------------------------------------------------------
+.news-hero {
+  padding: 3rem 0 1rem;
+
+  &__eyebrow {
+    margin-bottom: 0.5rem;
+    color: $color__navy;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  h1 {
+    margin-bottom: 1rem;
+    font-weight: 800;
+  }
+
+  &__lead {
+    max-width: 60ch;
+    font-size: 1.2rem;
+  }
+}
+
+// --- Tag / category pill (shared with the single template) ------------------
+.tag {
+  display: inline-block;
+  padding: 0.3rem 0.7rem;
+  background-color: $color__pink;
+  color: $color__black;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border-radius: 999px;
+}
+
+// --- Article cards / grid ---------------------------------------------------
+.news-grid {
+  padding: 1.5rem 0 3rem;
+}
+
+.news-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: #fff;
+  border: 1px solid rgba($color__black, 0.12);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover,
+  &:focus-within {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba($color__black, 0.15);
+  }
+
+  &__media img {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+  }
+
+  &__body {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    gap: 0.6rem;
+    padding: 1.25rem 1.25rem 1.5rem;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 700;
+
+    a {
+      color: $color__black;
+
+      &:hover {
+        color: $color__navy;
+      }
+    }
+  }
+
+  &__meta {
+    margin: 0;
+    color: rgba($color__black, 0.75); // remains > 4.5:1 on white
+    font-size: 0.85rem;
+  }
+
+  &__excerpt {
+    margin: 0;
+    color: $color__black;
+  }
+
+  &__readmore {
+    align-self: flex-start;
+    margin-top: auto;
+    color: $color__navy;
+    font-weight: 700;
+
+    &::after {
+      content: " \2192";
+    }
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// --- Pagination (WCAG 2.5.8 target size, aria-current styling) --------------
+.pagination-nav {
+  padding-bottom: 4rem;
+}
+.pagination-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.pagination-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0 0.85rem;
+  border: 1px solid rgba($color__black, 0.2);
+  border-radius: 8px;
+  color: $color__navy;
+  font-weight: 600;
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+
+  &:hover {
+    background-color: $color__navy;
+    color: $color__white;
+  }
+
+  &[aria-current="page"] {
+    background-color: $color__navy;
+    border-color: $color__navy;
+    color: $color__white;
+  }
+
+  &.is-disabled {
+    border-color: rgba($color__black, 0.12);
+    color: rgba($color__black, 0.4); // disabled control — exempt from contrast
+    pointer-events: none;
+  }
+}

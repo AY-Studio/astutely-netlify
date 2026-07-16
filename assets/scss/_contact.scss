@@ -1,0 +1,178 @@
+// =============================================================
+//  Contact page
+//  Brand-consistent (uses _mixins variables) and WCAG 2.2 AA.
+// =============================================================
+
+.contact-hero {
+  padding: 3rem 0 0.5rem;
+  text-align: center;
+
+  h1 {
+    margin-bottom: 1rem;
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    font-weight: 800;
+    line-height: 1.1;
+  }
+
+  &__lead {
+    max-width: 50ch;
+    margin: 0 auto;
+    font-size: 1.2rem;
+  }
+}
+
+.contact-form {
+  max-width: 640px;
+  margin: 2rem auto 0;
+
+  &__note {
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    color: rgba($color__black, 0.75);
+  }
+
+  .req {
+    color: $color__navy;
+    font-weight: 700;
+  }
+
+  .form-field {
+    margin-bottom: 1.25rem;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-weight: 600;
+  }
+
+  input,
+  textarea {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    font-size: 1rem;
+    font-family: inherit;
+    color: $color__black;
+    background-color: #fff;
+    border: 1px solid rgba($color__black, 0.35);
+    border-radius: 8px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+    &::placeholder {
+      color: rgba($color__black, 0.5);
+    }
+
+    &:focus {
+      border-color: $color__navy;
+      box-shadow: 0 0 0 3px rgba($color__navy, 0.2);
+    }
+  }
+
+  textarea {
+    min-height: 160px;
+    resize: vertical;
+  }
+
+  .button {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.85rem 2rem;
+    background-color: $color__navy;
+    color: $color__green;
+    border: 0;
+    border-radius: 8px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    i {
+      margin-left: 0.6rem;
+    }
+
+    &:hover,
+    &:focus-visible {
+      background-color: $color__black;
+      color: $color__green;
+    }
+  }
+}
+
+// Centered, grouped "contact" band (logo, details, social, tagline) that flows
+// into the dark legal footer below it.
+.contact-details {
+  margin-top: 5rem;
+  padding: 4rem 0;
+  background-color: $color__pink;
+  color: $color__black;
+  text-align: center;
+
+  &__inner {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  &__logo {
+    display: inline-block;
+    width: 200px;
+    max-width: 60%;
+    height: auto;
+    margin-bottom: 1.75rem;
+    fill: $color__black;
+  }
+
+  &__list {
+    margin: 0 0 1.75rem;
+    padding: 0;
+    list-style: none;
+    font-size: 1.15rem;
+    line-height: 1.8;
+
+    a {
+      color: $color__black;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.contact-social {
+  display: flex;
+  justify-content: center;
+  gap: 0.85rem;
+  margin: 0 0 2rem;
+  padding: 0;
+  list-style: none;
+
+  a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background-color: $color__black;
+    color: $color__green;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+
+    &:hover,
+    &:focus-visible {
+      background-color: $color__navy;
+      color: $color__white;
+    }
+  }
+}
+
+.contact-services {
+  margin: 0;
+  padding-top: 2rem;
+  border-top: 1px solid rgba($color__black, 0.2);
+  font-size: 1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: $color__black;
+}
