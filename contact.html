@@ -13,19 +13,22 @@
     <meta property="og:type" content="website"/>
 
     <!-- SEO:begin -->
-    <link rel="canonical" href="https://astutely.agency/contact.html"/>
+    <link rel="canonical" href="https://astutely.agency/contact"/>
     <meta name="robots" content="index, follow, max-image-preview:large"/>
     <meta name="author" content="Astutely"/>
     <meta name="theme-color" content="#060606"/>
-    <meta property="og:url" content="https://astutely.agency/contact.html"/>
+    <meta property="og:url" content="https://astutely.agency/contact"/>
     <meta property="og:locale" content="en_GB"/>
     <meta property="og:description" content="Start a project with Astutely Agency. Tell us what you have in mind and a member of the team will be in touch."/>
     <meta property="og:image" content="https://astutely.agency/assets/img/astutely-og.jpg"/>
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="630"/>
     <meta property="og:image:alt" content="Get in touch | Astutely Agency"/>
     <meta name="twitter:card" content="summary_large_image"/>
     <meta name="twitter:title" content="Get in touch | Astutely Agency"/>
     <meta name="twitter:description" content="Start a project with Astutely Agency. Tell us what you have in mind and a member of the team will be in touch."/>
     <meta name="twitter:image" content="https://astutely.agency/assets/img/astutely-og.jpg"/>
+    <meta name="twitter:image:alt" content="Get in touch | Astutely Agency"/>
     <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -84,8 +87,8 @@
     },
     {
       "@type": "ContactPage",
-      "@id": "https://astutely.agency/contact.html#webpage",
-      "url": "https://astutely.agency/contact.html",
+      "@id": "https://astutely.agency/contact#webpage",
+      "url": "https://astutely.agency/contact",
       "name": "Get in touch | Astutely Agency",
       "description": "Start a project with Astutely Agency. Tell us what you have in mind and a member of the team will be in touch.",
       "isPartOf": {
@@ -96,12 +99,12 @@
       },
       "inLanguage": "en-GB",
       "breadcrumb": {
-        "@id": "https://astutely.agency/contact.html#breadcrumb"
+        "@id": "https://astutely.agency/contact#breadcrumb"
       }
     },
     {
       "@type": "BreadcrumbList",
-      "@id": "https://astutely.agency/contact.html#breadcrumb",
+      "@id": "https://astutely.agency/contact#breadcrumb",
       "itemListElement": [
         {
           "@type": "ListItem",
@@ -113,7 +116,7 @@
           "@type": "ListItem",
           "position": 2,
           "name": "Get in touch",
-          "item": "https://astutely.agency/contact.html"
+          "item": "https://astutely.agency/contact"
         }
       ]
     }
@@ -122,13 +125,15 @@
     </script>
     <!-- SEO:end -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <link href="assets/css/style.css?v=20260716n" rel="stylesheet">
+    <link href="assets/css/style.css?v=20260716p" rel="stylesheet">
     <!-- Lenis smooth scroll (base styles) -->
     <style>
       html.lenis, html.lenis body { height: auto; }
       .lenis.lenis-smooth { scroll-behavior: auto !important; }
       .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
       .lenis.lenis-stopped { overflow: hidden; }
+      .c-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+      .c-form__success { margin: 1.6rem 0 0; padding: 1rem 1.2rem; border-radius: 10px; border: 1px solid rgba(var(--hv-rgb),0.4); background: rgba(var(--hv-rgb),0.06); color: var(--hv); font-weight: 600; }
     </style>
 
     <!-- ============================================================= -->
@@ -281,7 +286,9 @@
         <div class="container">
           <div class="c-grid">
 
-            <form class="c-form" action="#" method="post" aria-label="Contact form">
+            <form class="c-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" aria-label="Contact form">
+              <input type="hidden" name="form-name" value="contact">
+              <p class="c-hp" hidden aria-hidden="true"><label>Leave this field empty: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
               <p class="c-form__note">Fields marked <span class="req" aria-hidden="true">*</span> are required.</p>
               <div class="c-form__row">
                 <div class="c-field">
@@ -307,6 +314,7 @@
               </div>
               <button type="submit" class="button">Send message <svg viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true" style="vertical-align:-.125em"><path d="M2.3 21.4 22 12 2.3 2.6 2 10l14 2-14 2z"/></svg></button>
             </form>
+            <p class="c-form__success" role="status" hidden>Thanks — your message is on its way. A member of the team will be in touch shortly.</p>
 
             <aside class="c-aside">
               <h2>Other ways to reach us</h2>
@@ -366,6 +374,34 @@
         });
         function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
         requestAnimationFrame(raf);
+      })();
+    </script>
+    <script>
+      // Netlify Forms: submit via fetch so the visitor stays on the branded page and sees an
+      // inline confirmation instead of Netlify's default success screen. (Only actually delivers
+      // on the deployed Netlify site — locally the POST has no handler.)
+      (function () {
+        var form = document.querySelector('form.c-form');
+        if (!form) return;
+        var success = document.querySelector('.c-form__success');
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var btn = form.querySelector('button[type="submit"]');
+          var orig = btn ? btn.innerHTML : '';
+          if (btn) { btn.disabled = true; btn.innerHTML = 'Sending&hellip;'; }
+          fetch('/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(new FormData(form)).toString()
+          }).then(function (r) {
+            if (!r.ok) throw new Error('bad status');
+            form.hidden = true;
+            if (success) { success.hidden = false; success.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+          }).catch(function () {
+            if (btn) { btn.disabled = false; btn.innerHTML = orig; }
+            alert('Sorry, something went wrong sending your message. Please email hi@astutely.agency and we’ll get right back to you.');
+          });
+        });
       })();
     </script>
 </body>
