@@ -646,7 +646,7 @@ if (window.matchMedia('(max-width: 767px)').matches) {
       gsap.to(proxy, {
         y: toY,
         duration: reduce ? 0 : (0.45 + frac * 0.7),    // ~0.45s (nearly there) up to ~1.15s (full scene)
-        ease: 'sine.out',                              // moves off immediately, gentle glide into rest
+        ease: 'power2.inOut',                          // eased in and out of the glide
         overwrite: true,
         onUpdate: function () { setY(proxy.y); },
         onComplete: function () {
