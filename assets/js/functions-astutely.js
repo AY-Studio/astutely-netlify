@@ -620,9 +620,15 @@ if (window.matchMedia('(max-width: 767px)').matches) {
       gsap.set(els(i), { autoAlpha: 0, y: 22 });
     };
 
-    var sceneTop = function (i) { return Math.round(scenes[i].getBoundingClientRect().top + window.scrollY); };
+    // Move the scenes with a GPU-composited transform on #smooth-content (not document scroll) —
+    // this is what makes it feel like a real, buttery smooth-scroll instead of a repaint per frame.
+    var content = document.getElementById('smooth-content');
+    if (!content) return;
+    var sceneOffset = function (i) { return scenes[i].offsetTop; };   // position within #smooth-content
     var vh = function () { return window.innerHeight || document.documentElement.clientHeight; };
     var now = function () { return window.performance ? performance.now() : Date.now(); };
+    var pos = 0;                                        // current offset (like scrollTop, but composited)
+    var setY = function (p) { pos = p; content.style.transform = 'translate3d(0,' + (-p) + 'px,0)'; };
     var current = 0, animating = false, ready = false;
     var dragging = false, startFinger = 0, lastFinger = 0, lastT = 0, baseY = 0, vel = 0;
 
@@ -634,17 +640,17 @@ if (window.matchMedia('(max-width: 767px)').matches) {
       animating = true;
       var changed = (i !== current);
       if (changed) { if (i === 0) mHideNav(); else mShowNav(); }
-      var fromY = window.scrollY, toY = sceneTop(i);
+      var fromY = pos, toY = sceneOffset(i);
       var frac = Math.min(1, Math.abs(toY - fromY) / vh());
       var proxy = { y: fromY };
       gsap.to(proxy, {
         y: toY,
-        duration: reduce ? 0 : (0.4 + frac * 0.65),    // ~0.4s (nearly there) up to ~1.05s (full scene)
-        ease: 'power2.out',                            // moves off immediately, gentle glide into rest
+        duration: reduce ? 0 : (0.45 + frac * 0.7),    // ~0.45s (nearly there) up to ~1.15s (full scene)
+        ease: 'sine.out',                              // moves off immediately, gentle glide into rest
         overwrite: true,
-        onUpdate: function () { window.scrollTo(0, proxy.y); },
+        onUpdate: function () { setY(proxy.y); },
         onComplete: function () {
-          window.scrollTo(0, sceneTop(i));
+          setY(sceneOffset(i));
           animating = false;
           if (changed) { armReveal(current); current = i; playReveal(i); }
         }
@@ -657,18 +663,18 @@ if (window.matchMedia('(max-width: 767px)').matches) {
       if (!ready || animating || e.touches.length !== 1) { dragging = false; return; }
       dragging = true; vel = 0;
       startFinger = lastFinger = e.touches[0].clientY;
-      lastT = now(); baseY = sceneTop(current);
+      lastT = now(); baseY = pos;
     }, { passive: true });
     window.addEventListener('touchmove', function (e) {
       if (!ready) return;
       if (e.touches.length !== 1) { dragging = false; return; }   // let pinch-zoom through
-      e.preventDefault();                                          // block native scroll
+      e.preventDefault();                                          // no native scroll to fight
       if (!dragging || animating) return;
       var fy = e.touches[0].clientY, y = baseY + (startFinger - fy);
-      var minY = sceneTop(0), maxY = sceneTop(scenes.length - 1);
+      var minY = sceneOffset(0), maxY = sceneOffset(scenes.length - 1);
       if (y < minY) y = minY + (y - minY) * 0.35;                  // rubber-band at the ends
       else if (y > maxY) y = maxY + (y - maxY) * 0.35;
-      window.scrollTo(0, y);
+      setY(y);
       var t = now(), dt = t - lastT;
       if (dt > 0) vel = (lastFinger - fy) / dt;                    // px/ms; + = up
       lastFinger = fy; lastT = t;
@@ -689,13 +695,13 @@ if (window.matchMedia('(max-width: 767px)').matches) {
     });
 
     // start at the top; unlock sliding only once fully loaded (loader lifts on 'load')
-    var start = function () { current = 0; window.scrollTo(0, 0); ready = true; };
-    window.scrollTo(0, 0);
+    var start = function () { current = 0; setY(0); ready = true; };
+    setY(0);
     if (document.readyState === 'complete') start();
     else window.addEventListener('load', start);
-    window.addEventListener('pageshow', function () { current = 0; window.scrollTo(0, 0); });  // reset on bfcache restore
+    window.addEventListener('pageshow', function () { current = 0; setY(0); });   // reset on bfcache restore
     setTimeout(start, 4200);                            // fallback so it's never permanently locked
 
-    window.addEventListener('resize', function () { if (!animating) window.scrollTo(0, sceneTop(current)); });
+    window.addEventListener('resize', function () { if (!animating) setY(sceneOffset(current)); });
   })();
 }
