@@ -633,8 +633,8 @@ if (window.matchMedia('(max-width: 767px)').matches) {
       var proxy = { y: window.scrollY };
       gsap.to(proxy, {
         y: sceneTop(i),
-        duration: reduce ? 0 : 1.0,
-        ease: 'power2.inOut',
+        duration: reduce ? 0 : 0.9,
+        ease: 'power3.out',                            // slide feel: quick to respond, then a long smooth glide to rest
         overwrite: true,
         onUpdate: function () { window.scrollTo(0, proxy.y); },
         onComplete: function () {
