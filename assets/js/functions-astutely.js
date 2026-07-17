@@ -316,8 +316,8 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
   // considered rather than busy.
   const teamPhotos = gsap.utils.toArray(".team__member");
   const teamEndY = [-90, 70, -120, 80];             // final resting offset per photo
-  const teamStartX = [-26, 22, -18, 24];            // subtle lateral drift on entry
-  const teamStartDY = [34, 28, 40, 30];             // gentle rise into place (added to resting)
+  const teamStartX = [-26, 22, 30, 24];             // subtle lateral drift on entry (photo 3 comes from the right)
+  const teamStartDY = [34, 28, -34, 30];            // added to resting: +ve rises up into place; photo 3 (-ve) drifts down-left
   const teamDur = [1.45, 1.6, 1.5, 1.65];           // slightly different per photo → organic, not uniform
   gsap.set(teamPhotos, {
     autoAlpha: 0, scale: 0.965,
@@ -399,7 +399,7 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
   const contactTl = gsap.timeline({ paused: true });
   contactTl
     .to(contactTitle, { y: 0, autoAlpha: 1, duration: 0.5, ease: "power3.out" })
-    .to(contactLines, { y: 0, autoAlpha: 1, duration: 0.5, ease: "power2.out" }, "-=0.05")   // all lines together
+    .to(contactLines, { y: 0, autoAlpha: 1, stagger: 0.16, duration: 0.5, ease: "power2.out" }, "-=0.05") // each group (label + value) in turn
     .to(contactMap, { autoAlpha: 1, scale: 1, duration: 0.55, ease: "power2.out" }, ">-0.05"); // map last
   sceneReveals.set(document.querySelector(".footer--contact"), contactTl);
 

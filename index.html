@@ -57,7 +57,7 @@
       "image": "https://astutely.agency/assets/img/astutely-og.jpg",
       "description": "Astutely is a creative marketing agency in Holywood, Northern Ireland, delivering strategy, brand, digital and comms that help brands stand out and grow.",
       "email": "hi@astutely.agency",
-      "telephone": "+44 28 9181 0533",
+      "telephone": "+44 28 9013 1851",
       "vatID": "GB424848086",
       "address": {
         "@type": "PostalAddress",
@@ -107,7 +107,7 @@
     </script>
     <!-- SEO:end -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <link href="assets/css/style.css?v=20260718f" rel="stylesheet">
+    <link href="assets/css/style.css?v=20260718h" rel="stylesheet">
 
     <!-- ============================================================= -->
     <!--  index15 — based on v13 (scroll-timeline, constant grey #333333     -->
@@ -188,10 +188,10 @@
       /* loose 2x2 — larger photos pushed toward the corners with clear
          gaps both ways; top row high, bottom row low, so the title shows
          through the middle and only its top/bottom edges are clipped */
-      .team__member:nth-child(1) { top: 0;     left: 0;   width: 45%; }   /* upper left */
-      .team__member:nth-child(2) { top: 5%;    right: 0;  width: 42%; }   /* upper right, slight drop */
-      .team__member:nth-child(3) { bottom: 0;  left: 2%;  width: 42%; }   /* lower left */
-      .team__member:nth-child(4) { bottom: 5%; right: 0;  width: 46%; }   /* lower right, largest */
+      .team__member:nth-child(1) { top: 0;     left: 0;   width: 47.5%; }   /* upper left */
+      .team__member:nth-child(2) { top: 5%;    right: 0;  width: 44.5%; }   /* upper right, slight drop */
+      .team__member:nth-child(3) { bottom: 0;  left: 2%;  width: 44.5%; }   /* lower left */
+      .team__member:nth-child(4) { bottom: 5%; right: 0;  width: 48.5%; }   /* lower right, largest */
       @media (max-width: 600px) { .team__title { font-size: clamp(2.25rem, 15vw, 3.5rem); } }
 
       /* Work slider: auto-scrolling marquee of recent work */
@@ -235,7 +235,12 @@
       /* Contact: two columns — details left, greyscale map right */
       .footer-contact { display: grid; grid-template-columns: 1fr; gap: 2.5rem; text-align: left; }
       @media (min-width: 820px) { .footer-contact { grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; } }
-      .footer-map { border-radius: 16px; overflow: hidden; border: 1px solid rgba(var(--hv-rgb),0.16); background: #17171B; height: clamp(320px, 52vw, 480px); }
+      .footer-map { position: relative; border-radius: 16px; overflow: hidden; border: 1px solid rgba(var(--hv-rgb),0.16); background: #17171B; height: clamp(320px, 52vw, 480px); }
+      /* Our own gold pin at the map centre (the office), since the embedded map's default marker can't be recoloured. */
+      .footer-map__pin { position: absolute; left: 50%; top: 50%; width: 30px; transform: translate(-50%, -100%); pointer-events: none; z-index: 2; filter: drop-shadow(0 4px 7px rgba(0,0,0,0.55)); }
+      .footer-map__pin svg { display: block; width: 100%; height: auto; }
+      .footer-map__pin path { fill: var(--hv); }
+      .footer-map__pin circle { fill: #0d0d0d; }
       .footer-map iframe { width: 100%; height: 100%; border: 0; display: block; filter: grayscale(1) brightness(0.92) contrast(1.05); }
       .footer-info__title { margin: 0 0 1.6rem; color: var(--hv); font-weight: 600; font-size: clamp(1rem, 1.4vw, 1.15rem); letter-spacing: 0.14em; text-transform: uppercase; line-height: 1.1; }
       /* .theme-dark prefix needed to beat shared .footer p (margin:0) + .footer span (14px) */
@@ -250,6 +255,7 @@
       .footer-social { display: flex; justify-content: center; gap: 1.4rem; list-style: none; margin: 1.9rem 0 0; padding: 0; }
       .theme-dark .footer-social a { display: inline-flex; align-items: center; justify-content: center; width: 2.9rem; height: 2.9rem; border-radius: 50%; border: 1px solid rgba(var(--hv-rgb),0.35); color: var(--hv); font-size: 1.15rem; transition: color 0.25s, background-color 0.25s, border-color 0.25s; }
       .theme-dark .footer-social a:hover { color: #111111; background-color: var(--hv); border-color: var(--hv); text-decoration: none; }
+      .theme-dark .footer-social a svg { fill: currentColor; }   /* override a stale global .footer svg fill so the icon follows the link colour (gold → dark on hover) */
       /* Legal line at the foot of the scene */
       .theme-dark .footer-legal { margin: 2.4rem auto 0; max-width: 62ch; font-size: clamp(0.68rem, 1vw, 0.78rem); font-weight: 300; line-height: 1.55; letter-spacing: 0.01em; color: rgba(245,245,245,0.45); }
 
@@ -491,8 +497,8 @@
         <section class="team" data-color="#060606 #191919">
           <div class="team__titlewrap" aria-hidden="true">
             <div class="team__marquee">
-              <h2 class="team__title">Meet the team &bull; Meet the team &bull; Meet the team &bull; Meet the team &bull; Meet the team &bull; Meet the team &bull;</h2>
-              <h2 class="team__title" aria-hidden="true">Meet the team &bull; Meet the team &bull; Meet the team &bull; Meet the team &bull; Meet the team &bull; Meet the team &bull;</h2>
+              <h2 class="team__title">Meet the team &bull; Meet the team &bull; Meet the team &bull; Meet the team &bull; Meet the team &bull; Meet the team &bull;&nbsp;</h2>
+              <h2 class="team__title" aria-hidden="true">Meet the team &bull; Meet the team &bull; Meet the team &bull; Meet the team &bull; Meet the team &bull; Meet the team &bull;&nbsp;</h2>
             </div>
           </div>
           <div class="team__cluster">
@@ -509,7 +515,7 @@
               <figure class="work-card"><div class="work-card__media"><img src="assets/img/work/kbi.webp" alt="Kickboxing Ireland"></div><figcaption class="work-card__label">Kickboxing Ireland <span>&middot; Brand</span></figcaption></figure>
               <figure class="work-card"><div class="work-card__media"><img src="assets/img/work/sheeran.webp" alt="Sheeran Guitars"></div><figcaption class="work-card__label">Sheeran Guitars <span>&middot; Content</span></figcaption></figure>
               <figure class="work-card"><div class="work-card__media"><img src="assets/img/work/rkings.webp" alt="R Kings"></div><figcaption class="work-card__label">R Kings <span>&middot; Platform &amp; Brand</span></figcaption></figure>
-              <figure class="work-card"><div class="work-card__media"><img src="assets/img/work/glentoran.webp" alt="Glentoran FC"></div><figcaption class="work-card__label">Glentoran FC <span>&middot; Web &amp; Systems</span></figcaption></figure>
+              <figure class="work-card"><div class="work-card__media"><img src="assets/img/work/glentoran.webp" alt="Glentoran FC"></div><figcaption class="work-card__label">Glentoran FC <span>&middot; Comms, Design, Web &amp; Systems</span></figcaption></figure>
               <figure class="work-card"><div class="work-card__media"><img src="assets/img/work/aviary.webp" alt="The Aviary"></div><figcaption class="work-card__label">The Aviary <span>&middot; Brand &amp; Ecommerce</span></figcaption></figure>
               <figure class="work-card"><div class="work-card__media"><img src="assets/img/work/uniqueplants.webp" alt="Unique Plants"></div><figcaption class="work-card__label">Unique Plants <span>&middot; Web</span></figcaption></figure>
               <figure class="work-card"><div class="work-card__media"><img src="assets/img/work/camborne.webp" alt="Camborne Town Council"></div><figcaption class="work-card__label">Camborne Town Council <span>&middot; Web</span></figcaption></figure>
@@ -548,11 +554,12 @@
               <div class="footer-info">
                 <h2 class="footer-info__title">Get in touch</h2>
                 <p class="footer-line"><span class="footer-line__label">Drop us an email:</span><a href="mailto:hi@astutely.agency">hi@astutely.agency</a></p>
-                <p class="footer-line"><span class="footer-line__label">Give us a call:</span><a href="tel:+4402891810533">+44 028 91 810533</a> or <a target="_blank" rel="noopener" href="https://calendly.com/astutely/book-a-call">Book a call &#8599;</a></p>
+                <p class="footer-line"><span class="footer-line__label">Give us a call:</span><a href="tel:+442890131851">+44 028 9013 1851</a> or <a target="_blank" rel="noopener" href="https://calendly.com/astutely/book-a-call">Book a call &#8599;</a></p>
                 <p class="footer-line"><span class="footer-line__label">Call in, the kettle's on:</span><a target="_blank" href="https://www.google.com/maps/place/144+High+St,+Holywood+BT18+9HS/@54.6373818,-5.8425012,16z/data=!4m6!3m5!1s0x48610a737b5d700b:0x32e2668f19dbfa83!8m2!3d54.6387696!4d-5.8384457!16s%2Fg%2F11c43xt1jc?entry=ttu">Top Floor, 144 High Street, Holywood, N. Ireland</a></p>
               </div>
               <div class="footer-map">
-                <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-5.8454%2C54.6353%2C-5.8314%2C54.6423&amp;layer=mapnik&amp;marker=54.6387696%2C-5.8384457" title="Astutely office location, Holywood" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-5.8454%2C54.6353%2C-5.8314%2C54.6423&amp;layer=mapnik" title="Astutely office location, Holywood" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <span class="footer-map__pin" aria-hidden="true"><svg viewBox="0 0 24 32" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.37 0 0 5.37 0 12c0 8.25 12 20 12 20s12-11.75 12-20C24 5.37 18.63 0 12 0z"/><circle cx="12" cy="12" r="4.3"/></svg></span>
               </div>
             </div>
 
@@ -643,6 +650,6 @@
         }
       })();
     </script>
-    <script src="assets/js/functions-astutely.js?v=20260718f"></script>
+    <script src="assets/js/functions-astutely.js?v=20260718h"></script>
   </body>
   </html>

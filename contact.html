@@ -55,7 +55,7 @@
       "image": "https://astutely.agency/assets/img/astutely-og.jpg",
       "description": "Astutely is a creative marketing agency in Holywood, Northern Ireland, delivering strategy, brand, digital and comms that help brands stand out and grow.",
       "email": "hi@astutely.agency",
-      "telephone": "+44 28 9181 0533",
+      "telephone": "+44 28 9013 1851",
       "vatID": "GB424848086",
       "address": {
         "@type": "PostalAddress",
@@ -216,8 +216,12 @@
       .c-social { display: flex; gap: 1rem; list-style: none; margin: 0 0 2rem; padding: 0; }
       .c-social a { display: inline-flex; align-items: center; justify-content: center; width: 2.7rem; height: 2.7rem; border-radius: 50%; border: 1px solid rgba(var(--hv-rgb),0.35); color: var(--hv); font-size: 1.05rem; text-decoration: none; transition: color 0.25s, background-color 0.25s, border-color 0.25s; }
       .c-social a:hover { color: #111111; background-color: var(--hv); border-color: var(--hv); }
-      .c-map { border-radius: 16px; overflow: hidden; border: 1px solid rgba(var(--hv-rgb),0.16); background: #17171B; height: 390px; }
+      .c-map { position: relative; border-radius: 16px; overflow: hidden; border: 1px solid rgba(var(--hv-rgb),0.16); background: #17171B; height: 390px; }
       .c-map iframe { width: 100%; height: 100%; border: 0; display: block; filter: grayscale(1) brightness(0.92) contrast(1.05); }
+      .c-map__pin { position: absolute; left: 50%; top: 50%; width: 30px; transform: translate(-50%, -100%); pointer-events: none; z-index: 2; filter: drop-shadow(0 4px 7px rgba(0,0,0,0.55)); }
+      .c-map__pin svg { display: block; width: 100%; height: auto; }
+      .c-map__pin path { fill: var(--hv); }
+      .c-map__pin circle { fill: #0d0d0d; }
       .c-services { margin-top: 2rem; font-size: 0.85rem; letter-spacing: 0.08em; color: rgba(245,245,245,0.5); text-transform: uppercase; }
 
       /* Sign-off footer */
@@ -331,7 +335,8 @@
                 </ul>
               </div>
               <div class="c-map">
-                <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-5.8454%2C54.6353%2C-5.8314%2C54.6423&amp;layer=mapnik&amp;marker=54.6387696%2C-5.8384457" title="Astutely office location, Holywood" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-5.8454%2C54.6353%2C-5.8314%2C54.6423&amp;layer=mapnik" title="Astutely office location, Holywood" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <span class="c-map__pin" aria-hidden="true"><svg viewBox="0 0 24 32" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.37 0 0 5.37 0 12c0 8.25 12 20 12 20s12-11.75 12-20C24 5.37 18.63 0 12 0z"/><circle cx="12" cy="12" r="4.3"/></svg></span>
               </div>
             </aside>
 
