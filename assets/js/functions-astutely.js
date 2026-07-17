@@ -613,7 +613,7 @@ if (window.matchMedia('(max-width: 767px)').matches) {
     if (!reduce) { for (var s = 1; s < scenes.length; s++) gsap.set(els(s), { autoAlpha: 0, y: 22 }); }
     var playReveal = function (i) {
       if (reduce || i === 0) return;
-      gsap.to(els(i), { autoAlpha: 1, y: 0, duration: 0.6, stagger: 0.1, ease: 'power2.out', overwrite: true });
+      gsap.to(els(i), { autoAlpha: 1, y: 0, duration: 0.85, stagger: 0.14, ease: 'power2.out', overwrite: true });
     };
     var armReveal = function (i) {
       if (reduce || i === 0) return;
@@ -629,21 +629,20 @@ if (window.matchMedia('(max-width: 767px)').matches) {
       animating = true;
       if (i === 0) mHideNav(); else mShowNav();
       armReveal(i);                                    // hide the target so it animates fresh on arrival
-      var fromY = window.scrollY, toY = sceneTop(i), t0 = null;
-      var dur = reduce ? 0 : 640;
-      var ease = function (x) { return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };  // easeInOutCubic
-      var step = function (ts) {
-        if (t0 === null) t0 = ts;
-        var p = dur ? Math.min(1, (ts - t0) / dur) : 1;
-        window.scrollTo(0, Math.round(fromY + (toY - fromY) * ease(p)));
-        if (p < 1) { requestAnimationFrame(step); }
-        else {
+      // Slow, smooth GSAP glide between scenes (power3.inOut = gentle ease in and out, no harsh stop).
+      var proxy = { y: window.scrollY };
+      gsap.to(proxy, {
+        y: sceneTop(i),
+        duration: reduce ? 0 : 1.1,
+        ease: 'power3.inOut',
+        overwrite: true,
+        onUpdate: function () { window.scrollTo(0, Math.round(proxy.y)); },
+        onComplete: function () {
           current = i; animating = false;
           window.scrollTo(0, sceneTop(i));             // land exactly on the scene
           playReveal(i);                               // ANIMATE content in only AFTER the slide stops
         }
-      };
-      requestAnimationFrame(step);
+      });
     };
 
     window.addEventListener('touchstart', function (e) {
