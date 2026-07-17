@@ -637,7 +637,13 @@ if (window.matchMedia('(max-width: 767px)').matches) {
       i = Math.max(0, Math.min(scenes.length - 1, i));
       animating = true;
       var changed = (i !== current);
-      if (changed) { if (i === 0) mHideNav(); else mShowNav(); }
+      // nav shows only when moving UP the page (back toward a previous scene); hidden going
+      // deeper and on the hero.
+      if (changed) {
+        if (i === 0) mHideNav();
+        else if (i < current) mShowNav();   // moving up / back -> reveal the menu
+        else mHideNav();                    // moving down / deeper -> hide it
+      }
       var fromY = pos, toY = sceneOffset(i);
       var frac = Math.min(1, Math.abs(toY - fromY) / vh());
       var proxy = { y: fromY };
@@ -678,13 +684,17 @@ if (window.matchMedia('(max-width: 767px)').matches) {
       else if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); settleTo(current - 1); }
     });
 
-    // start at the top; unlock sliding only once fully loaded (loader lifts on 'load')
-    var start = function () { current = 0; setY(0); ready = true; };
+    // start at the top; unlock sliding only once fully loaded (loader lifts on 'load').
+    // Guarded so it runs EXACTLY ONCE — the 4.2s fallback must never reset you to scene 0 after
+    // you've already swiped away (which was yanking you back mid-read).
+    var started = false;
+    var start = function () { if (started) return; started = true; current = 0; setY(0); ready = true; };
     setY(0);
     if (document.readyState === 'complete') start();
     else window.addEventListener('load', start);
-    window.addEventListener('pageshow', function () { current = 0; setY(0); });   // reset on bfcache restore
-    setTimeout(start, 4200);                            // fallback so it's never permanently locked
+    setTimeout(start, 4200);                            // fallback: unlock if 'load' never fires (runs once)
+    // bfcache restore (back/forward): jump back to the first scene, but only if we're not already there.
+    window.addEventListener('pageshow', function (e) { if (e.persisted && current !== 0) { current = 0; setY(0); } });
 
     window.addEventListener('resize', function () { if (!animating) setY(sceneOffset(current)); });
   })();
