@@ -188,15 +188,17 @@ function gentleScrollToScene(triggerId, fraction) {
     const heroTag = SplitText.create("#tagline", { type: "words" });
     _splitInstances.push(heroTag);
     gsap.set(".svg-bg", { autoAlpha: 0 });
-    gsap.set(".header .logo-outer", { autoAlpha: 0 });
+    gsap.set(".header .logo-outer", { autoAlpha: 0, scale: 0.92, y: 10 });
     gsap.set(heroTag.words, { autoAlpha: 0, y: 12 });
     gsap.set(".header .arrow", { autoAlpha: 0 });
 
-    heroIntro = gsap.timeline({ delay: 0.2, paused: true })                                        //    paused: plays when the loader lifts
-      .to(".svg-bg", { autoAlpha: 1, duration: 0.9, ease: "power2.out" })                          // 1. background fades in
-      .to(".header .logo-outer", { autoAlpha: 1, duration: 0.7, ease: "power2.out" }, "-=0.35")    // 2. logo fades on
-      .to(heroTag.words, { autoAlpha: 1, y: 0, stagger: 0.28, duration: 0.5, ease: "power2.out" }, "-=0.15") //    words fade in one after another
-      .to(".header .arrow", { autoAlpha: 1, duration: 0.45, ease: "power2.out" }, "-=0.1");        //    arrow appears
+    // Reveals in the curtain's wake: the watermark settles behind, the Astutely
+    // wordmark graces in (a slow scale + fade), then the tagline in order, arrow last.
+    heroIntro = gsap.timeline({ paused: true })
+      .to(".svg-bg", { autoAlpha: 1, duration: 1.2, ease: "power2.out" }, 0)                        // watermark eases in behind
+      .to(".header .logo-outer", { autoAlpha: 1, scale: 1, y: 0, duration: 1.0, ease: "power3.out" }, 0.15) // wordmark graces in
+      .to(heroTag.words, { autoAlpha: 1, y: 0, stagger: 0.28, duration: 0.5, ease: "power2.out" }, 0.75)    // tagline, word by word
+      .to(".header .arrow", { autoAlpha: 1, duration: 0.45, ease: "power2.out" }, ">-0.05");         // arrow appears last
   }
 
   // (The hero reveal timeline is played by the slider's start(), in step with the loader.)
@@ -603,11 +605,19 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
     else if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); settleTo(current - 1); }
   });
 
-  // start at the top; unlock only once fully loaded (the loader covers the screen till then).
-  var started = false;
+  // start at the top; the hero's first reveal is cued by the loader curtain lifting
+  // (so it animates in the curtain's wake, not underneath it). Input unlocks then too.
+  var started = false, revealed = false;
+  var reveal = function () {                        // the coordinated hero entrance (fires once)
+    if (revealed) return; revealed = true;
+    playReveal(0); ready = true;
+  };
+  window.addEventListener('loader:lift', function () { setTimeout(reveal, 340); });  // in the curtain's wake
+  setTimeout(reveal, 5200);                         // fallback: reveal even if the curtain event never fires
   var start = function () {
     if (started) return; started = true;
-    current = 0; setY(0); applyScene(0); playReveal(0); ready = true;
+    current = 0; setY(0); applyScene(0);
+    if (!document.getElementById('page-loader')) reveal();   // no loader present → reveal immediately
   };
   setY(0);
   if (document.readyState === 'complete') start();
