@@ -621,53 +621,71 @@ if (window.matchMedia('(max-width: 767px)').matches) {
     };
 
     var sceneTop = function (i) { return Math.round(scenes[i].getBoundingClientRect().top + window.scrollY); };
-    var current = 0, animating = false, ready = false, sy = 0, sx = 0;
+    var vh = function () { return window.innerHeight || document.documentElement.clientHeight; };
+    var now = function () { return window.performance ? performance.now() : Date.now(); };
+    var current = 0, animating = false, ready = false;
+    var dragging = false, startFinger = 0, lastFinger = 0, lastT = 0, baseY = 0, vel = 0;
 
-    var goTo = function (i) {
+    // Ease to a scene when the finger lifts. Duration scales with the remaining distance so it
+    // settles naturally whether you dragged most of the way or just flicked. Content reveals
+    // only once it lands.
+    var settleTo = function (i) {
       i = Math.max(0, Math.min(scenes.length - 1, i));
-      if (animating || i === current) return;
       animating = true;
-      if (i === 0) mHideNav(); else mShowNav();
-      armReveal(i);                                    // hide the target so it animates fresh on arrival
-      // Smooth GSAP glide. No Math.round (sub-pixel scroll = no stair-stepping at the gentle start).
-      var proxy = { y: window.scrollY };
+      var changed = (i !== current);
+      if (changed) { if (i === 0) mHideNav(); else mShowNav(); }
+      var fromY = window.scrollY, toY = sceneTop(i);
+      var frac = Math.min(1, Math.abs(toY - fromY) / vh());
+      var proxy = { y: fromY };
       gsap.to(proxy, {
-        y: sceneTop(i),
-        duration: reduce ? 0 : 0.9,
-        ease: 'power3.out',                            // slide feel: quick to respond, then a long smooth glide to rest
+        y: toY,
+        duration: reduce ? 0 : (0.4 + frac * 0.65),    // ~0.4s (nearly there) up to ~1.05s (full scene)
+        ease: 'power2.out',                            // moves off immediately, gentle glide into rest
         overwrite: true,
         onUpdate: function () { window.scrollTo(0, proxy.y); },
         onComplete: function () {
-          current = i; animating = false;
-          window.scrollTo(0, sceneTop(i));             // land exactly on the scene
-          playReveal(i);                               // ANIMATE content in only AFTER the slide stops
+          window.scrollTo(0, sceneTop(i));
+          animating = false;
+          if (changed) { armReveal(current); current = i; playReveal(i); }
         }
       });
     };
 
-    // A swipe only counts if it BOTH starts and ends while idle. This kills the "queued swipe"
-    // where a gesture begun mid-transition would fire the moment the transition ended.
-    var gestureOK = false;
+    // Drag-follow: the scene tracks your finger straight away (no waiting for release), then eases
+    // to the nearest scene when you let go — a real swipe, not a delayed jump.
     window.addEventListener('touchstart', function (e) {
-      gestureOK = ready && !animating;
-      if (!gestureOK) return;
-      sy = e.touches[0].clientY; sx = e.touches[0].clientX;
+      if (!ready || animating || e.touches.length !== 1) { dragging = false; return; }
+      dragging = true; vel = 0;
+      startFinger = lastFinger = e.touches[0].clientY;
+      lastT = now(); baseY = sceneTop(current);
     }, { passive: true });
     window.addEventListener('touchmove', function (e) {
-      if (ready && e.touches.length === 1) e.preventDefault();   // block native scroll; pinch-zoom still works
+      if (!ready) return;
+      if (e.touches.length !== 1) { dragging = false; return; }   // let pinch-zoom through
+      e.preventDefault();                                          // block native scroll
+      if (!dragging || animating) return;
+      var fy = e.touches[0].clientY, y = baseY + (startFinger - fy);
+      var minY = sceneTop(0), maxY = sceneTop(scenes.length - 1);
+      if (y < minY) y = minY + (y - minY) * 0.35;                  // rubber-band at the ends
+      else if (y > maxY) y = maxY + (y - maxY) * 0.35;
+      window.scrollTo(0, y);
+      var t = now(), dt = t - lastT;
+      if (dt > 0) vel = (lastFinger - fy) / dt;                    // px/ms; + = up
+      lastFinger = fy; lastT = t;
     }, { passive: false });
     window.addEventListener('touchend', function (e) {
-      if (!gestureOK || animating) return;
-      gestureOK = false;
-      var tt = e.changedTouches[0]; if (!tt) return;
-      var dy = sy - tt.clientY, dx = sx - tt.clientX;
-      if (Math.abs(dy) < 45 || Math.abs(dy) < Math.abs(dx)) return;   // clear vertical swipe only
-      goTo(current + (dy > 0 ? 1 : -1));
+      if (!ready || !dragging) return;
+      dragging = false;
+      var endFinger = e.changedTouches[0] ? e.changedTouches[0].clientY : startFinger;
+      var delta = startFinger - endFinger, commit = vh() * 0.16, flick = Math.abs(vel) > 0.45, dir = 0;
+      if (delta > commit || (flick && vel > 0)) dir = 1;           // enough drag or upward flick -> next
+      else if (delta < -commit || (flick && vel < 0)) dir = -1;    // -> previous
+      settleTo(current + dir);
     }, { passive: true });
     window.addEventListener('keydown', function (e) {
-      if (!ready) return;
-      if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); goTo(current + 1); }
-      else if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); goTo(current - 1); }
+      if (!ready || animating) return;
+      if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); settleTo(current + 1); }
+      else if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); settleTo(current - 1); }
     });
 
     // start at the top; unlock sliding only once fully loaded (loader lifts on 'load')
