@@ -222,8 +222,8 @@
       .c-map__pin svg { display: block; width: 100%; height: auto; }
       .c-map__pin path { fill: var(--hv); }
       .c-map__pin circle { fill: #0d0d0d; }
-      /* On touch devices make the map non-interactive: the pin can't drift and swipes scroll the page, not the map. */
-      @media (hover: none) and (pointer: coarse) { .c-map iframe { pointer-events: none; } }
+      /* Fixed location preview: non-interactive so the pin can never drift and swipes scroll the page, not the map. */
+      .c-map iframe { pointer-events: none; }
       .c-services { margin-top: 2rem; font-size: 0.85rem; letter-spacing: 0.08em; color: rgba(245,245,245,0.5); text-transform: uppercase; }
 
       /* Sign-off footer */
