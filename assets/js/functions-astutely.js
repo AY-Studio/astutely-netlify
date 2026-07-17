@@ -99,6 +99,7 @@ function sceneColorsFor(el) {
 
 gsap.registerPlugin(SplitText);
 const _splitInstances = [];   // so mobile can revert them to plain text
+let heroSplit = null;         // the hero tagline split — kept intact on mobile so the hero intro plays there too
 let heroIntro = null;         // hero reveal timeline; played once everything has loaded (loader lifts)
 const sceneReveals = new Map();   // scene element -> its (paused) reveal timeline, played on arrival by the slider
 let advanceScene = function () {};   // set by the slider; the scene arrows call it to go to the next scene
@@ -187,6 +188,7 @@ function gentleScrollToScene(triggerId, fraction) {
   if (!reduceMotion) {
     const heroTag = SplitText.create("#tagline", { type: "words" });
     _splitInstances.push(heroTag);
+    heroSplit = heroTag;                              // remember it so mobile keeps it (hero intro runs on mobile too)
     gsap.set(".svg-bg", { autoAlpha: 0 });
     gsap.set(".header .logo-outer", { autoAlpha: 0, scale: 0.92, y: 10 });
     gsap.set(heroTag.words, { autoAlpha: 0, y: 12 });
@@ -513,9 +515,9 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
     '.work-slider__viewport, .work-outro, .logo-slider__viewport', '.footer-info, .footer-map', '.footer-base' ];
   var phoneEls = function (i) { return phoneSel[i] ? Array.prototype.slice.call(scenes[i].querySelectorAll(phoneSel[i])) : []; };
   if (isPhone) {
-    _splitInstances.forEach(function (s) { if (s && s.revert) s.revert(); });
-    gsap.set([
-      '.header .container', '.header .logo-outer', '.header .arrow', '#tagline',
+    // keep the hero tagline split so the hero intro plays on mobile too; revert the rest to flat copy
+    _splitInstances.forEach(function (s) { if (s && s !== heroSplit && s.revert) s.revert(); });
+    gsap.set([  // NB: hero elements are intentionally NOT cleared here — heroIntro owns their reveal on mobile
       '.body h2', '.body .text', '.era-logo', '.era-logo__hi-fill', '.era-logo__ink',
       '.team__member', '.work-slider__viewport', '.logo-slider__viewport', '.work-tagline',
       '.footer-info', '.footer-info__title', '.footer-line', '.footer-map',
@@ -613,7 +615,7 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
     playReveal(0); ready = true;
   };
   window.addEventListener('loader:lift', function () { setTimeout(reveal, 1000); });  // as the gold iris finishes clearing
-  setTimeout(reveal, 5200);                         // fallback: reveal even if the curtain event never fires
+  setTimeout(reveal, 9500);                         // fallback ONLY if the loader cue never fires (after its own 8s fallback + bloom)
   var start = function () {
     if (started) return; started = true;
     current = 0; setY(0); applyScene(0);
