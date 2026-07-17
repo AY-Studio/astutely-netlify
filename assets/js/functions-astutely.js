@@ -525,9 +525,13 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
     ], { clearProps: 'all' });
     if (!reduce) for (var s2 = 1; s2 < scenes.length; s2++) gsap.set(phoneEls(s2), { autoAlpha: 0, y: 22 });
   }
+  var heroPlayed = false;                                          // the hero intro plays once, then stays put
   var playReveal = function (i) {
     if (reduce) return;
-    if (i === 0) { if (heroIntro) heroIntro.play(0); return; }     // hero handled by its own intro
+    if (i === 0) {                                                 // hero: animate on first arrival only; on return it stays as-is (no reset)
+      if (heroIntro && !heroPlayed) { heroPlayed = true; heroIntro.play(0); }
+      return;
+    }
     if (isPhone) gsap.to(phoneEls(i), { autoAlpha: 1, y: 0, duration: 0.85, stagger: 0.14, ease: 'power2.out', overwrite: true });
     else { var tl = sceneReveals.get(scenes[i]); if (tl) tl.play(0); }
   };
