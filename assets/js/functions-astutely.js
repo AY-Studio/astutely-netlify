@@ -160,6 +160,7 @@ gsap.to(".scroll-svg", {
 
 gsap.registerPlugin(SplitText);
 const _splitInstances = [];   // so mobile can revert them to plain text
+let heroIntro = null;         // hero reveal timeline; played once everything has loaded (loader lifts)
 
 // --- "A NEW ERA FOR AY" scene -------------------------------------------------
 // Same principle as the hero: pin the section and reveal the heading, then the
@@ -279,12 +280,22 @@ ScrollTrigger.create({
     gsap.set(heroTag.words, { autoAlpha: 0, y: 12 });
     gsap.set(".header .arrow", { autoAlpha: 0 });
 
-    gsap.timeline({ delay: 0.2 })
+    heroIntro = gsap.timeline({ delay: 0.2, paused: true })                                        //    paused: plays when the loader lifts
       .to(".svg-bg", { autoAlpha: 1, duration: 0.9, ease: "power2.out" })                          // 1. background fades in
       .to(".header .logo-outer", { autoAlpha: 1, duration: 0.7, ease: "power2.out" }, "-=0.35")    // 2. logo fades on
       .to(heroTag.words, { autoAlpha: 1, y: 0, stagger: 0.28, duration: 0.5, ease: "power2.out" }, "-=0.15") //    words fade in one after another
       .to(".header .arrow", { autoAlpha: 1, duration: 0.45, ease: "power2.out" }, "-=0.1");        //    arrow appears
   }
+
+  // Play the hero reveal once the page has fully loaded (in step with the loader fading out).
+  // Fallback timeout guarantees the hero never stays hidden if 'load' is slow.
+  (function () {
+    let played = false;
+    const playHero = function () { if (played) return; played = true; if (heroIntro) heroIntro.play(0); };
+    if (document.readyState === 'complete') playHero();
+    else window.addEventListener('load', playHero);
+    setTimeout(playHero, 4200);
+  })();
 
   // 3. Each scene arrow gently advances to the next scene, easing its reveal in.
   const heroArrow = document.querySelector(".header .arrow");
@@ -557,125 +568,111 @@ if (window.matchMedia('(max-width: 767px)').matches) {
     '.footer--signoff .container', '.footer--signoff .container *'
   ], { clearProps: 'all' });
 
-  // 3. nav: hidden by default, slides in only while scrolling UP (mirrors the desktop smart-nav).
+  // 3. nav: hidden on the hero scene, shown on the rest — driven by the slider (step 5).
   gsap.set('.home-nav', { clearProps: 'all' });
   var mNav = document.querySelector('.home-nav');
+  var mNavShown = false;
+  var mShowNav = function () {}, mHideNav = function () {};
   if (mNav) {
     gsap.set(mNav, { yPercent: -100, autoAlpha: 0 });   // hidden at rest / at the top
-    var mNavShown = false, mLastY = window.scrollY || 0, mNavTick = false;
-    var mShowNav = function () {
+    mShowNav = function () {
       if (mNavShown) return; mNavShown = true;
       gsap.to(mNav, { yPercent: 0, autoAlpha: 1, duration: 0.4, ease: 'power3.out', overwrite: true });
     };
-    var mHideNav = function () {
+    mHideNav = function () {
       if (!mNavShown) return; mNavShown = false;
       gsap.to(mNav, { yPercent: -100, autoAlpha: 0, duration: 0.35, ease: 'power2.in', overwrite: true });
     };
-    window.addEventListener('scroll', function () {
-      if (mNavTick) return; mNavTick = true;
-      requestAnimationFrame(function () {
-        var y = window.scrollY || 0, dy = y - mLastY;
-        if (y < 40) mHideNav();            // hero / very top: keep it hidden
-        else if (dy < -6) mShowNav();      // scrolling up -> reveal
-        else if (dy > 6) mHideNav();       // scrolling down -> hide
-        mLastY = y; mNavTick = false;
-      });
-    }, { passive: true });
   }
   // 4. one calm background (no scroll-driven colour changes)
   gsap.set('body', { clearProps: 'backgroundColor' });
 
-  // 5. gentle fade-in as each block scrolls into view — done with a plain IntersectionObserver
-  //    so it never depends on ScrollTrigger firing. Fail-safe: the hidden start state is only
-  //    applied once we know the observer is running, so if anything fails the content stays visible.
-  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && 'IntersectionObserver' in window) {
-    var revealEls = ['.header .container', '.body .container',
-                     '.footer--contact .container', '.footer--signoff .container']
-      .map(function (sel) { return document.querySelector(sel); })
-      .filter(Boolean);
-    revealEls.forEach(function (el) { el.classList.add('m-reveal'); });   // arms the CSS start state
-    var revealOne = function (el) { el.classList.add('m-reveal--in'); };
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) { revealOne(e.target); io.unobserve(e.target); }
-      });
-    }, { rootMargin: '0px 0px -8% 0px' });
-    revealEls.forEach(function (el) { io.observe(el); });
-    // belt-and-braces: never let a section stay hidden if the observer misbehaves
-    setTimeout(function () { revealEls.forEach(revealOne); }, 2500);
-  }
-
-  // 6. team photos: a tiny scroll-linked parallax instead of a one-shot reveal. The tiles drift
-  //    a few px, tied to where the scene sits in the viewport — so there's always a little fine
-  //    movement as you scroll and it never "arrives then locks". Small, staggered amplitudes.
-  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    var teamSection = document.querySelector('.team');
-    var teamTiles = Array.prototype.slice.call(document.querySelectorAll('.team__member'));
-    if (teamSection && teamTiles.length) {
-      var amps = [-14, 10, -18, 12];         // px of drift per tile (up/down for depth) — deliberately small
-      var ticking = false;
-      var updateTeamParallax = function () {
-        var r = teamSection.getBoundingClientRect();
-        var vh = window.innerHeight || document.documentElement.clientHeight;
-        // 0 when the scene is centred in view, ~-1/+1 as it moves off top/bottom
-        var p = Math.max(-1, Math.min(1, ((r.top + r.height / 2) - vh / 2) / vh));
-        for (var i = 0; i < teamTiles.length; i++) {
-          teamTiles[i].style.transform = 'translate3d(0,' + (p * (amps[i] || 0)).toFixed(1) + 'px,0)';
-        }
-        ticking = false;
-      };
-      var onTeamScroll = function () {
-        if (!ticking) { ticking = true; requestAnimationFrame(updateTeamParallax); }
-      };
-      window.addEventListener('scroll', onTeamScroll, { passive: true });
-      window.addEventListener('resize', onTeamScroll, { passive: true });
-      updateTeamParallax();
-    }
-  }
-
-  // 7. Always open at the very top. overflow-anchor:none (CSS) stops the browser restoring a
-  //    mid-journey position on refresh; this is the simple belt-and-braces reset.
-  var toTop = function () { window.scrollTo(0, 0); };
-  toTop();
-  window.addEventListener('load', toTop);
-  [60, 200].forEach(function (d) { setTimeout(toTop, d); });
-
-  // 8. Scene settling — the reliable replacement for CSS mandatory snap (which fought the mobile
-  //    address bar and jammed on fast swipes). Native scroll stays fully live, so it can NEVER
-  //    trap input. After movement stops we gently ease to the nearest scene, measured LIVE so the
-  //    address bar can't cause a jump; the ease aborts the instant a finger touches down.
+  // 5. Mobile slider: a locked, one-scene-per-swipe journey (fullPage-style). Native scroll is
+  //    disabled, each swipe moves exactly one scene (or back one), the transition can't be
+  //    interrupted, and each scene's content animates IN only after the slide has arrived.
+  //    Sliding stays locked until the page has fully loaded (the loader covers the screen).
   (function () {
     var scenes = Array.prototype.slice.call(document.querySelectorAll(
       '.header, .body, .team, .work-slider, .footer--contact, .footer--signoff'));
     if (scenes.length < 2) return;
-    var touching = false, snapping = false, settleTimer = null, raf = 0;
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    var sceneTop = function (el) { return el.getBoundingClientRect().top + window.scrollY; };
-    var nearest = function () {
-      var y = window.scrollY, best = scenes[0], bestD = Infinity;
-      scenes.forEach(function (s) { var d = Math.abs(sceneTop(s) - y); if (d < bestD) { bestD = d; best = s; } });
-      return best;
+    // content that animates in on arrival, selectors RELATIVE to each scene.
+    // scene 0 (hero) is handled by the hero intro timeline, so it's null.
+    var sceneSel = [
+      null,
+      'h2, .text',
+      '.team__titlewrap, .team__member',
+      '.work-slider__viewport, .work-outro, .logo-slider__viewport',
+      '.footer-info, .footer-map',
+      '.footer-base'
+    ];
+    var els = function (i) {
+      return sceneSel[i] ? Array.prototype.slice.call(scenes[i].querySelectorAll(sceneSel[i])) : [];
     };
-    var cancelSnap = function () { snapping = false; if (raf) { cancelAnimationFrame(raf); raf = 0; } };
-    var settle = function () {
-      if (touching || snapping) return;
-      var from = window.scrollY, to = sceneTop(nearest());
-      if (Math.abs(to - from) < 2) return;
-      snapping = true;
-      var dur = 420, t0 = null, ease = function (x) { return 1 - Math.pow(1 - x, 3); };
+    if (!reduce) { for (var s = 1; s < scenes.length; s++) gsap.set(els(s), { autoAlpha: 0, y: 22 }); }
+    var playReveal = function (i) {
+      if (reduce || i === 0) return;
+      gsap.to(els(i), { autoAlpha: 1, y: 0, duration: 0.6, stagger: 0.1, ease: 'power2.out', overwrite: true });
+    };
+    var armReveal = function (i) {
+      if (reduce || i === 0) return;
+      gsap.set(els(i), { autoAlpha: 0, y: 22 });
+    };
+
+    var sceneTop = function (i) { return Math.round(scenes[i].getBoundingClientRect().top + window.scrollY); };
+    var current = 0, animating = false, ready = false, sy = 0, sx = 0;
+
+    var goTo = function (i) {
+      i = Math.max(0, Math.min(scenes.length - 1, i));
+      if (animating || i === current) return;
+      animating = true;
+      if (i === 0) mHideNav(); else mShowNav();
+      armReveal(i);                                    // hide the target so it animates fresh on arrival
+      var fromY = window.scrollY, toY = sceneTop(i), t0 = null;
+      var dur = reduce ? 0 : 640;
+      var ease = function (x) { return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };  // easeInOutCubic
       var step = function (ts) {
-        if (touching) { cancelSnap(); return; }                 // finger down -> hand control back instantly
         if (t0 === null) t0 = ts;
-        var p = Math.min(1, (ts - t0) / dur);
-        window.scrollTo(0, Math.round(from + (to - from) * ease(p)));
-        if (p < 1) raf = requestAnimationFrame(step); else { snapping = false; raf = 0; }
+        var p = dur ? Math.min(1, (ts - t0) / dur) : 1;
+        window.scrollTo(0, Math.round(fromY + (toY - fromY) * ease(p)));
+        if (p < 1) { requestAnimationFrame(step); }
+        else {
+          current = i; animating = false;
+          window.scrollTo(0, sceneTop(i));             // land exactly on the scene
+          playReveal(i);                               // ANIMATE content in only AFTER the slide stops
+        }
       };
-      raf = requestAnimationFrame(step);
+      requestAnimationFrame(step);
     };
-    var queueSettle = function (d) { clearTimeout(settleTimer); settleTimer = setTimeout(settle, d); };
 
-    window.addEventListener('touchstart', function () { touching = true; cancelSnap(); clearTimeout(settleTimer); }, { passive: true });
-    window.addEventListener('touchend', function () { touching = false; queueSettle(140); }, { passive: true });
-    window.addEventListener('scroll', function () { if (!snapping) queueSettle(140); }, { passive: true });   // fires after momentum stops
+    window.addEventListener('touchstart', function (e) {
+      if (!ready) return; sy = e.touches[0].clientY; sx = e.touches[0].clientX;
+    }, { passive: true });
+    window.addEventListener('touchmove', function (e) {
+      if (ready && e.touches.length === 1) e.preventDefault();   // block single-finger scroll; pinch-zoom still works
+    }, { passive: false });
+    window.addEventListener('touchend', function (e) {
+      if (!ready || animating) return;
+      var tt = e.changedTouches[0]; if (!tt) return;
+      var dy = sy - tt.clientY, dx = sx - tt.clientX;
+      if (Math.abs(dy) < 45 || Math.abs(dy) < Math.abs(dx)) return;   // clear vertical swipe only
+      goTo(current + (dy > 0 ? 1 : -1));
+    }, { passive: true });
+    window.addEventListener('keydown', function (e) {
+      if (!ready) return;
+      if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); goTo(current + 1); }
+      else if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); goTo(current - 1); }
+    });
+
+    // start at the top; unlock sliding only once fully loaded (loader lifts on 'load')
+    var start = function () { current = 0; window.scrollTo(0, 0); ready = true; };
+    window.scrollTo(0, 0);
+    if (document.readyState === 'complete') start();
+    else window.addEventListener('load', start);
+    window.addEventListener('pageshow', function () { current = 0; window.scrollTo(0, 0); });  // reset on bfcache restore
+    setTimeout(start, 4200);                            // fallback so it's never permanently locked
+
+    window.addEventListener('resize', function () { if (!animating) window.scrollTo(0, sceneTop(current)); });
   })();
 }
