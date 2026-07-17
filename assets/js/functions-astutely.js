@@ -353,11 +353,22 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
     play: function () {
       if (this.tl) this.tl.kill();
       gsap.set(workView, { autoAlpha: 1 });
-      // Query cards live (the marquee rebuilds them); stagger the on-screen ones in.
-      var cards = gsap.utils.toArray(".work-marquee > .work-card").slice(0, 6);
+      // Query cards live (the marquee rebuilds them). Hide ALL first so none flash
+      // solid, then cascade however many actually fit the viewport (measured, so it
+      // scales to any width incl. XL) plus a small buffer; the rest snap in off-screen.
+      var cards = gsap.utils.toArray(".work-marquee > .work-card");
+      gsap.set(cards, { autoAlpha: 0, y: 46 });
+      var stride = cards.length > 1
+        ? (cards[1].getBoundingClientRect().left - cards[0].getBoundingClientRect().left)
+        : (cards[0] ? cards[0].getBoundingClientRect().width : 320);
+      var n = stride > 0
+        ? Math.min(cards.length, Math.ceil(workView.clientWidth / stride) + 2)
+        : cards.length;
       var tl = gsap.timeline();
-      tl.fromTo(cards, { autoAlpha: 0, y: 46 },
+      tl.to(cards.slice(0, n),
         { autoAlpha: 1, y: 0, stagger: 0.13, duration: 0.55, ease: "power2.out" }, 0);
+      if (cards.length > n) tl.to(cards.slice(n),   // off-screen: reveal quickly, no cascade
+        { autoAlpha: 1, y: 0, duration: 0.4, ease: "power2.out" }, 0.15);
       if (workWords.length) tl.fromTo(workWords, { y: 28, opacity: 0 },
         { y: 0, opacity: 1, stagger: 0.04, duration: 0.6, ease: "power2.out" }, 0.6);
       tl.fromTo(logoView, { autoAlpha: 0, y: 40 },
