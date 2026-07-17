@@ -626,11 +626,9 @@ if (window.matchMedia('(max-width: 767px)').matches) {
     if (!content) return;
     var sceneOffset = function (i) { return scenes[i].offsetTop; };   // position within #smooth-content
     var vh = function () { return window.innerHeight || document.documentElement.clientHeight; };
-    var now = function () { return window.performance ? performance.now() : Date.now(); };
     var pos = 0;                                        // current offset (like scrollTop, but composited)
     var setY = function (p) { pos = p; content.style.transform = 'translate3d(0,' + (-p) + 'px,0)'; };
-    var current = 0, animating = false, ready = false;
-    var dragging = false, startFinger = 0, lastFinger = 0, lastT = 0, baseY = 0, vel = 0;
+    var current = 0, animating = false, ready = false, fired = false, startY = 0, startX = 0;
 
     // Ease to a scene when the finger lifts. Duration scales with the remaining distance so it
     // settles naturally whether you dragged most of the way or just flicked. Content reveals
@@ -657,37 +655,23 @@ if (window.matchMedia('(max-width: 767px)').matches) {
       });
     };
 
-    // Drag-follow: the scene tracks your finger straight away (no waiting for release), then eases
-    // to the nearest scene when you let go — a real swipe, not a delayed jump.
+    // A swipe just picks a direction. The instant your finger clears a small threshold, the full
+    // smooth transition to the next/previous scene fires — the panel never tracks your finger.
     window.addEventListener('touchstart', function (e) {
-      if (!ready || animating || e.touches.length !== 1) { dragging = false; return; }
-      dragging = true; vel = 0;
-      startFinger = lastFinger = e.touches[0].clientY;
-      lastT = now(); baseY = pos;
+      if (!ready || animating || e.touches.length !== 1) { fired = true; return; }
+      fired = false; startY = e.touches[0].clientY; startX = e.touches[0].clientX;
     }, { passive: true });
     window.addEventListener('touchmove', function (e) {
       if (!ready) return;
-      if (e.touches.length !== 1) { dragging = false; return; }   // let pinch-zoom through
-      e.preventDefault();                                          // no native scroll to fight
-      if (!dragging || animating) return;
-      var fy = e.touches[0].clientY, y = baseY + (startFinger - fy);
-      var minY = sceneOffset(0), maxY = sceneOffset(scenes.length - 1);
-      if (y < minY) y = minY + (y - minY) * 0.35;                  // rubber-band at the ends
-      else if (y > maxY) y = maxY + (y - maxY) * 0.35;
-      setY(y);
-      var t = now(), dt = t - lastT;
-      if (dt > 0) vel = (lastFinger - fy) / dt;                    // px/ms; + = up
-      lastFinger = fy; lastT = t;
+      if (e.touches.length !== 1) { fired = true; return; }        // let pinch-zoom through
+      e.preventDefault();                                          // no native scroll, no finger-follow
+      if (fired || animating) return;
+      var dy = startY - e.touches[0].clientY, dx = startX - e.touches[0].clientX;
+      if (Math.abs(dy) < 40 || Math.abs(dy) < Math.abs(dx)) return;   // wait for a clear vertical swipe
+      fired = true;                                                // fire once per gesture, then ignore the rest
+      settleTo(current + (dy > 0 ? 1 : -1));                       // swipe up = next, down = previous
     }, { passive: false });
-    window.addEventListener('touchend', function (e) {
-      if (!ready || !dragging) return;
-      dragging = false;
-      var endFinger = e.changedTouches[0] ? e.changedTouches[0].clientY : startFinger;
-      var delta = startFinger - endFinger, commit = vh() * 0.16, flick = Math.abs(vel) > 0.45, dir = 0;
-      if (delta > commit || (flick && vel > 0)) dir = 1;           // enough drag or upward flick -> next
-      else if (delta < -commit || (flick && vel < 0)) dir = -1;    // -> previous
-      settleTo(current + dir);
-    }, { passive: true });
+    window.addEventListener('touchend', function () { fired = false; }, { passive: true });
     window.addEventListener('keydown', function (e) {
       if (!ready || animating) return;
       if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); settleTo(current + 1); }
