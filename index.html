@@ -241,6 +241,9 @@
       .footer-map__pin svg { display: block; width: 100%; height: auto; }
       .footer-map__pin path { fill: var(--hv); }
       .footer-map__pin circle { fill: #0d0d0d; }
+      /* On touch devices make the map non-interactive: the pin can't drift (map can't be panned)
+         and swipes pass straight through to the slider instead of scrolling the map. */
+      @media (hover: none) and (pointer: coarse) { .footer-map iframe { pointer-events: none; } }
       .footer-map iframe { width: 100%; height: 100%; border: 0; display: block; filter: grayscale(1) brightness(0.92) contrast(1.05); }
       .footer-info__title { margin: 0 0 1.6rem; color: var(--hv); font-weight: 600; font-size: clamp(1rem, 1.4vw, 1.15rem); letter-spacing: 0.14em; text-transform: uppercase; line-height: 1.1; }
       /* .theme-dark prefix needed to beat shared .footer p (margin:0) + .footer span (14px) */
@@ -562,7 +565,7 @@
                 <p class="footer-line"><span class="footer-line__label">Call in, the kettle's on:</span><a target="_blank" href="https://www.google.com/maps/place/144+High+St,+Holywood+BT18+9HS/@54.6373818,-5.8425012,16z/data=!4m6!3m5!1s0x48610a737b5d700b:0x32e2668f19dbfa83!8m2!3d54.6387696!4d-5.8384457!16s%2Fg%2F11c43xt1jc?entry=ttu">Top Floor, 144 High Street, Holywood, N. Ireland</a></p>
               </div>
               <div class="footer-map">
-                <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-5.8454%2C54.6353%2C-5.8314%2C54.6423&amp;layer=mapnik" title="Astutely office location, Holywood" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=-5.84195%2C54.63702%2C-5.83495%2C54.64052&amp;layer=mapnik" title="Astutely office location, Holywood" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 <span class="footer-map__pin" aria-hidden="true"><svg viewBox="0 0 24 32" xmlns="http://www.w3.org/2000/svg"><path d="M12 0C5.37 0 0 5.37 0 12c0 8.25 12 20 12 20s12-11.75 12-20C24 5.37 18.63 0 12 0z"/><circle cx="12" cy="12" r="4.3"/></svg></span>
               </div>
             </div>
