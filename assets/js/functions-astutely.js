@@ -63,14 +63,8 @@ const isMobile =
   ('ontouchstart' in window) ||
   (navigator.maxTouchPoints || 0) > 0;
 
-// create the scrollSmoother before your scrollTriggers (desktop only)
-if (!isMobile) {
-  ScrollSmoother.create({
-    smooth: 1.25, // how long (in seconds) it takes to "catch up" to the native scroll position
-    effects: true, // looks for data-speed and data-lag attributes on elements
-    smoothTouch: 0.1 // much shorter smoothing time on touch devices (default is NO smoothing on touch devices)
-  });
-}
+// ScrollSmoother is intentionally NOT created any more: the whole experience (desktop + mobile)
+// is now the intent-driven transform slider further down, which owns all movement.
 
 // Apply a scene's background + svg colour with a soft crossfade.
 function setSceneColors(bgColor, svgColor) {
@@ -87,70 +81,15 @@ function setSceneColors(bgColor, svgColor) {
   });
 }
 
-let coloredSections = gsap.utils.toArray("[data-color]");
-
-coloredSections.forEach((section) => {
-
-  let [bgColor, svgColor] =
-    section.getAttribute("data-color").split(" ");
-
-  ScrollTrigger.create({
-    trigger: section,
-    start: "top center",
-    end: "bottom center",
-    markers: false,
-
-    onToggle: (self) => {
-      if (self.isActive) setSceneColors(bgColor, svgColor);
-    }
-  });
-});
-
-{  // hero pin — runs on mobile too (native scroll); only ScrollSmoother is desktop-only
-  ScrollTrigger.create({
-    trigger: ".header",
-    start: "top top",
-    endTrigger: ".body",
-    end: "top 78%",
-    pin: ".header .container",
-    pinSpacing: false,
-    scrub: true,
-    markers: false
-  });
-
-  // Pin the hero arrow alongside the logo so it stays put (doesn't scroll away)
-  // while the tagline appears. Same range as the .container pin above.
-  ScrollTrigger.create({
-    trigger: ".header",
-    start: "top top",
-    endTrigger: ".body",
-    end: "top 78%",
-    pin: ".header .arrow",
-    pinSpacing: false,
-    markers: false
-  });
+// Each scene's background + watermark colour comes from its data-color attribute; the slider
+// applies it on arrival (this replaces the old scroll-position colour triggers).
+function sceneColorsFor(el) {
+  const dc = el && el.getAttribute && el.getAttribute("data-color");
+  return dc ? dc.split(" ") : null;
 }
 
-// gsap.registerPlugin(ScrollTrigger);
-
-gsap.to(".scroll-svg", {
-  // Travel mapped across the whole page so the end of "astutely" is reached just
-  // as the site ends. -33 stopped at "Astut", -75 overshot — -65 lands on the
-  // final letter at the page bottom. (Tune between those values.)
-  xPercent: -85,
-  ease: "none",
-  scrollTrigger: {
-    trigger: "#smooth-content",
-    start: "top top",
-    end: "bottom bottom",
-    scrub: 1, // ~1s smoothing so the watermark glides rather than tracking 1:1
-    // Refresh AFTER the pinned scenes (team/work/contact/sign-off) so "bottom bottom"
-    // measures the full page including their pin spacing. Without this the travel
-    // finishes around "meet the team" (where the pinning starts) and then sits still.
-    refreshPriority: -1,
-    markers: false
-  }
-});
+// Removed: the hero pin, the scroll-driven colour toggles, and the watermark's scroll-scrub
+// travel. The slider sets each scene's colour on arrival and drifts the watermark per transition.
 
 // gsap.to(":root", {
 //   "--bg": bgColor,
@@ -161,6 +100,8 @@ gsap.to(".scroll-svg", {
 gsap.registerPlugin(SplitText);
 const _splitInstances = [];   // so mobile can revert them to plain text
 let heroIntro = null;         // hero reveal timeline; played once everything has loaded (loader lifts)
+const sceneReveals = new Map();   // scene element -> its (paused) reveal timeline, played on arrival by the slider
+let advanceScene = function () {};   // set by the slider; the scene arrows call it to go to the next scene
 
 // --- "A NEW ERA FOR AY" scene -------------------------------------------------
 // Same principle as the hero: pin the section and reveal the heading, then the
@@ -207,18 +148,7 @@ function gentleScrollToScene(triggerId, fraction) {
   gsap.set(".era-logo__ink", { width: "0%" });      // black wordmark, revealed with the swipe
   gsap.set(".body .arrow", { autoAlpha: 1 });
 
-  let eraTimeline = gsap.timeline({
-    scrollTrigger: {
-      trigger: ".body",
-      id: "era",
-      start: "top top",
-      end: sceneEnd(() => eraTimeline),   // length tracks the timeline, incl. the hold
-      pin: true,
-      pinSpacing: true,
-      scrub: true,
-      markers: false
-    }
-  });
+  let eraTimeline = gsap.timeline({ paused: true });   // played on arrival by the slider
 
   eraTimeline
     // heading rises in, character by character (clipped by its mask)
@@ -242,27 +172,9 @@ function gentleScrollToScene(triggerId, fraction) {
     }, ">-0.1")
     .to(".era-logo__ink", {
       width: "100%", duration: 0.5, ease: "power2.out"
-    }, "<")
-    // breathing room: the fully-revealed scene sits still before releasing to the next.
-    // (The arrow stays visible as the "advance to Meet the team" cue.)
-    .to({}, { duration: SCENE_HOLD });
+    }, "<");
+  sceneReveals.set(document.querySelector(".body"), eraTimeline);
 }
-
-// Scrolling back UP, the centre-based colour trigger above fires too late
-// because the body is pinned (its measured edges sit at the top of the pin
-// spacer). This anchors the green to a fixed scroll-distance from the scene's
-// start instead, so it returns early — before the dark body text is legible.
-// "top top" matches the pin start; raise the "190%" to bring the green back even
-// sooner when scrolling up (lower it if the footer's text catches the green).
-const [bodyBg, bodySvg] = document.querySelector(".body").getAttribute("data-color").split(" ");
-
-ScrollTrigger.create({
-  trigger: ".body",
-  start: "top top",
-  end: "+=190%",
-  markers: false,
-  onEnterBack: () => setSceneColors(bodyBg, bodySvg)
-});
 
 // --- Scene 1 intro -----------------------------------------------------------
 // Plays once on load: the background (ASTUTELY watermark) fades in, the logo fades
@@ -287,27 +199,13 @@ ScrollTrigger.create({
       .to(".header .arrow", { autoAlpha: 1, duration: 0.45, ease: "power2.out" }, "-=0.1");        //    arrow appears
   }
 
-  // Play the hero reveal once the page has fully loaded (in step with the loader fading out).
-  // Fallback timeout guarantees the hero never stays hidden if 'load' is slow.
-  (function () {
-    let played = false;
-    const playHero = function () { if (played) return; played = true; if (heroIntro) heroIntro.play(0); };
-    if (document.readyState === 'complete') playHero();
-    else window.addEventListener('load', playHero);
-    setTimeout(playHero, 4200);
-  })();
+  // (The hero reveal timeline is played by the slider's start(), in step with the loader.)
 
-  // 3. Each scene arrow gently advances to the next scene, easing its reveal in.
+  // Each scene arrow advances to the next scene via the slider.
   const heroArrow = document.querySelector(".header .arrow");
-  if (heroArrow) {
-    heroArrow.style.cursor = "pointer";
-    heroArrow.addEventListener("click", () => gentleScrollToScene("era", 0.6));   // hero -> A New Era
-  }
+  if (heroArrow) { heroArrow.style.cursor = "pointer"; heroArrow.addEventListener("click", () => advanceScene()); }
   const eraArrow = document.querySelector(".body .arrow");
-  if (eraArrow) {
-    eraArrow.style.cursor = "pointer";
-    eraArrow.addEventListener("click", () => gentleScrollToScene("team", 0.6));    // A New Era -> Meet the team
-  }
+  if (eraArrow) { eraArrow.style.cursor = "pointer"; eraArrow.addEventListener("click", () => advanceScene()); }
 }
 
 
@@ -413,18 +311,15 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
   const teamPhotos = gsap.utils.toArray(".team__member");
   gsap.set(teamPhotos, { autoAlpha: 0, y: 90, scale: 0.86 });
 
-  const teamTl = gsap.timeline({
-    scrollTrigger: { trigger: ".team", id: "team", start: "top top", end: sceneEnd(() => teamTl), pin: true, pinSpacing: true, scrub: true }
-  });
+  const teamTl = gsap.timeline({ paused: true });
   teamTl
     .to(teamPhotos, { autoAlpha: 1, y: 0, scale: 1, stagger: 0.12, duration: 0.8, ease: "power3.out" })
-    .to(teamPhotos, {                       // depth drift, then freeze in place
+    .to(teamPhotos, {                       // depth drift, then settle in place
       y: (i) => [-90, 70, -120, 80][i] || 0,
       duration: 0.9, ease: "power1.inOut"
-    }, ">")
-    // breathing room: photos hold still (frozen) before the scene releases
-    .to({}, { duration: SCENE_HOLD });
-  // The "Meet the team" title runs as a seamless CSS marquee, independent of scroll.
+    }, ">");
+  sceneReveals.set(document.querySelector(".team"), teamTl);
+  // The "Meet the team" title runs as a seamless CSS marquee, independent of the slider.
 
   // Work: the card slider fades up, the tagline reveals word by word, logos follow.
   const workView = document.querySelector(".work-slider__viewport");
@@ -437,14 +332,11 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
   if (taglineWords) gsap.set(taglineWords.words, { y: 28, opacity: 0 });
   gsap.set(logoView, { autoAlpha: 0, y: 40 });
 
-  const workTl = gsap.timeline({
-    scrollTrigger: { trigger: ".work-slider", start: "top top", end: sceneEnd(() => workTl), pin: true, pinSpacing: true, scrub: true }
-  });
+  const workTl = gsap.timeline({ paused: true });
   workTl.to(workView, { autoAlpha: 1, y: 0, duration: 0.8, ease: "power3.out" });
   if (taglineWords) workTl.to(taglineWords.words, { y: 0, opacity: 1, stagger: 0.04, duration: 0.6, ease: "power2.out" }, ">-0.1");
   workTl.to(logoView, { autoAlpha: 1, y: 0, duration: 0.6, ease: "power2.out" }, ">-0.05");
-  // breathing room: logos hold visible before the scene releases
-  workTl.to({}, { duration: SCENE_HOLD });
+  sceneReveals.set(document.querySelector(".work-slider"), workTl);
 
   // Contact: heading rises, then details and map.
   const contactTitle = document.querySelector(".footer-info__title");
@@ -454,27 +346,20 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
   gsap.set([contactTitle, ...contactLines], { y: 42, autoAlpha: 0 });
   gsap.set(contactMap, { autoAlpha: 0, scale: 0.94 });
 
-  const contactTl = gsap.timeline({
-    scrollTrigger: { trigger: ".footer--contact", start: "top top", end: sceneEnd(() => contactTl), pin: true, pinSpacing: true, scrub: true }
-  });
+  const contactTl = gsap.timeline({ paused: true });
   contactTl
     .to(contactTitle, { y: 0, autoAlpha: 1, duration: 0.7, ease: "power3.out" })
     .to(contactLines, { y: 0, autoAlpha: 1, stagger: 0.14, duration: 0.6, ease: "power2.out" }, "-=0.05")
-    .to(contactMap, { autoAlpha: 1, scale: 1, duration: 0.6, ease: "power2.out" }, "<")
-    // breathing room: contact details hold before releasing to the sign-off
-    .to({}, { duration: SCENE_HOLD });
+    .to(contactMap, { autoAlpha: 1, scale: 1, duration: 0.6, ease: "power2.out" }, "<");
+  sceneReveals.set(document.querySelector(".footer--contact"), contactTl);
 
   // Sign-off: a separate closing scene — the Astutely wordmark and straplines settle in.
   const signoffItems = gsap.utils.toArray(".footer-base > *");
   gsap.set(signoffItems, { autoAlpha: 0, y: 46 });
 
-  const signoffTl = gsap.timeline({
-    scrollTrigger: { trigger: ".footer--signoff", start: "top top", end: sceneEnd(() => signoffTl), pin: true, pinSpacing: true, scrub: true }
-  });
-  signoffTl
-    .to(signoffItems, { autoAlpha: 1, y: 0, stagger: 0.16, duration: 0.7, ease: "power3.out" })
-    // breathing room: the sign-off holds fully revealed before the page ends
-    .to({}, { duration: SCENE_HOLD });
+  const signoffTl = gsap.timeline({ paused: true });
+  signoffTl.to(signoffItems, { autoAlpha: 1, y: 0, stagger: 0.16, duration: 0.7, ease: "power3.out" });
+  sceneReveals.set(document.querySelector(".footer--signoff"), signoffTl);
 }
 
 
@@ -551,151 +436,136 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
 // fragile with touch + the address-bar resize, so we tear them down, reveal everything in its
 // final state, and add gentle per-section fade-ins instead. Runs only on phones, so desktop
 // and tablet are completely unaffected.
-if (window.matchMedia('(max-width: 767px)').matches) {
-  // 1. remove every pin / scrub / scroll-driven trigger
-  ScrollTrigger.getAll().forEach(function (st) { st.kill(); });
-  // restore split headings/copy to plain flowing text (no per-char blocks)
-  _splitInstances.forEach(function (s) { if (s && s.revert) s.revert(); });
+// --- Intent-driven slider (desktop + mobile). Free scroll is removed: a swipe (touch) or a
+//     wheel/trackpad notch (desktop) advances exactly one scene, and each scene's content
+//     animates in ON ARRIVAL. Desktop plays the rich per-scene timelines; phones revert the
+//     split text to flat copy and use lighter fade-ups. Movement is a GPU-composited transform.
+(function () {
+  var scenes = Array.prototype.slice.call(document.querySelectorAll(
+    '.header, .body, .team, .work-slider, .footer--contact, .footer--signoff'));
+  var content = document.getElementById('smooth-content');
+  if (!content || scenes.length < 2) return;
 
-  // 2. reveal everything the desktop timelines had hidden or transformed (incl. SplitText parts)
-  gsap.set([
-    '.svg-bg', '.scroll-svg',
-    '.header .container', '.header .logo-outer', '.header .arrow', '#tagline', '#tagline *',
-    '.body h2', '.body h2 *', '.body .text', '.body .text *',
-    '.era-logo', '.era-logo__hi-fill', '.era-logo__ink',
-    '.team__member', '.work-slider__viewport', '.logo-slider__viewport', '.work-tagline', '.work-tagline *',
-    '.footer--contact .container', '.footer--contact .container *', '.footer-map',
-    '.footer--signoff .container', '.footer--signoff .container *'
-  ], { clearProps: 'all' });
+  var isPhone = window.matchMedia('(max-width: 767px)').matches;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  // 3. nav: hidden on the hero scene, shown on the rest — driven by the slider (step 5).
+  // nav: hidden on the hero, shown only when moving back UP the page.
   gsap.set('.home-nav', { clearProps: 'all' });
-  var mNav = document.querySelector('.home-nav');
-  var mNavShown = false;
+  var mNav = document.querySelector('.home-nav'), mNavShown = false;
   var mShowNav = function () {}, mHideNav = function () {};
   if (mNav) {
-    gsap.set(mNav, { yPercent: -100, autoAlpha: 0 });   // hidden at rest / at the top
-    mShowNav = function () {
-      if (mNavShown) return; mNavShown = true;
-      gsap.to(mNav, { yPercent: 0, autoAlpha: 1, duration: 0.4, ease: 'power3.out', overwrite: true });
-    };
-    mHideNav = function () {
-      if (!mNavShown) return; mNavShown = false;
-      gsap.to(mNav, { yPercent: -100, autoAlpha: 0, duration: 0.35, ease: 'power2.in', overwrite: true });
-    };
+    gsap.set(mNav, { yPercent: -100, autoAlpha: 0 });
+    mShowNav = function () { if (mNavShown) return; mNavShown = true; gsap.to(mNav, { yPercent: 0, autoAlpha: 1, duration: 0.4, ease: 'power3.out', overwrite: true }); };
+    mHideNav = function () { if (!mNavShown) return; mNavShown = false; gsap.to(mNav, { yPercent: -100, autoAlpha: 0, duration: 0.35, ease: 'power2.in', overwrite: true }); };
   }
-  // 4. one calm background (no scroll-driven colour changes)
-  gsap.set('body', { clearProps: 'backgroundColor' });
 
-  // 5. Mobile slider: a locked, one-scene-per-swipe journey (fullPage-style). Native scroll is
-  //    disabled, each swipe moves exactly one scene (or back one), the transition can't be
-  //    interrupted, and each scene's content animates IN only after the slide has arrived.
-  //    Sliding stays locked until the page has fully loaded (the loader covers the screen).
-  (function () {
-    var scenes = Array.prototype.slice.call(document.querySelectorAll(
-      '.header, .body, .team, .work-slider, .footer--contact, .footer--signoff'));
-    if (scenes.length < 2) return;
-    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // --- reveal system ---
+  // Phones: flatten the split text and fade whole blocks. Desktop: play the registered rich timelines.
+  var phoneSel = [ null, 'h2, .text', '.team__titlewrap, .team__member',
+    '.work-slider__viewport, .work-outro, .logo-slider__viewport', '.footer-info, .footer-map', '.footer-base' ];
+  var phoneEls = function (i) { return phoneSel[i] ? Array.prototype.slice.call(scenes[i].querySelectorAll(phoneSel[i])) : []; };
+  if (isPhone) {
+    _splitInstances.forEach(function (s) { if (s && s.revert) s.revert(); });
+    gsap.set([
+      '.header .container', '.header .logo-outer', '.header .arrow', '#tagline',
+      '.body h2', '.body .text', '.era-logo', '.era-logo__hi-fill', '.era-logo__ink',
+      '.team__member', '.work-slider__viewport', '.logo-slider__viewport', '.work-tagline',
+      '.footer-info', '.footer-map', '.footer-base'
+    ], { clearProps: 'all' });
+    if (!reduce) for (var s2 = 1; s2 < scenes.length; s2++) gsap.set(phoneEls(s2), { autoAlpha: 0, y: 22 });
+  }
+  var playReveal = function (i) {
+    if (reduce) return;
+    if (i === 0) { if (heroIntro) heroIntro.play(0); return; }     // hero handled by its own intro
+    if (isPhone) gsap.to(phoneEls(i), { autoAlpha: 1, y: 0, duration: 0.85, stagger: 0.14, ease: 'power2.out', overwrite: true });
+    else { var tl = sceneReveals.get(scenes[i]); if (tl) tl.play(0); }
+  };
+  var armReveal = function (i) {                                    // reset a scene so it re-animates on return
+    if (reduce || i === 0) return;
+    if (isPhone) gsap.set(phoneEls(i), { autoAlpha: 0, y: 22 });
+    else { var tl = sceneReveals.get(scenes[i]); if (tl) tl.pause(0); }
+  };
 
-    // content that animates in on arrival, selectors RELATIVE to each scene.
-    // scene 0 (hero) is handled by the hero intro timeline, so it's null.
-    var sceneSel = [
-      null,
-      'h2, .text',
-      '.team__titlewrap, .team__member',
-      '.work-slider__viewport, .work-outro, .logo-slider__viewport',
-      '.footer-info, .footer-map',
-      '.footer-base'
-    ];
-    var els = function (i) {
-      return sceneSel[i] ? Array.prototype.slice.call(scenes[i].querySelectorAll(sceneSel[i])) : [];
-    };
-    if (!reduce) { for (var s = 1; s < scenes.length; s++) gsap.set(els(s), { autoAlpha: 0, y: 22 }); }
-    var playReveal = function (i) {
-      if (reduce || i === 0) return;
-      gsap.to(els(i), { autoAlpha: 1, y: 0, duration: 0.85, stagger: 0.14, ease: 'power2.out', overwrite: true });
-    };
-    var armReveal = function (i) {
-      if (reduce || i === 0) return;
-      gsap.set(els(i), { autoAlpha: 0, y: 22 });
-    };
+  // scene background/watermark colour + a subtle watermark drift, applied as each scene arrives.
+  var drift = function (i) { return -(i * 85 / (scenes.length - 1)); };
+  var applyScene = function (i) {
+    var c = sceneColorsFor(scenes[i]);
+    if (c) setSceneColors(c[0], c[1]);
+    gsap.to('.scroll-svg', { xPercent: drift(i), duration: reduce ? 0 : 0.9, ease: 'power2.inOut', overwrite: true });
+  };
 
-    // Move the scenes with a GPU-composited transform on #smooth-content (not document scroll) —
-    // this is what makes it feel like a real, buttery smooth-scroll instead of a repaint per frame.
-    var content = document.getElementById('smooth-content');
-    if (!content) return;
-    var sceneOffset = function (i) { return scenes[i].offsetTop; };   // position within #smooth-content
-    var vh = function () { return window.innerHeight || document.documentElement.clientHeight; };
-    var pos = 0;                                        // current offset (like scrollTop, but composited)
-    var setY = function (p) { pos = p; content.style.transform = 'translate3d(0,' + (-p) + 'px,0)'; };
-    var current = 0, animating = false, ready = false, fired = false, startY = 0, startX = 0;
+  // --- transform-based navigation ---
+  var sceneOffset = function (i) { return scenes[i].offsetTop; };
+  var vh = function () { return window.innerHeight || document.documentElement.clientHeight; };
+  var pos = 0, setY = function (p) { pos = p; content.style.transform = 'translate3d(0,' + (-p) + 'px,0)'; };
+  var current = 0, animating = false, ready = false;
 
-    // Ease to a scene when the finger lifts. Duration scales with the remaining distance so it
-    // settles naturally whether you dragged most of the way or just flicked. Content reveals
-    // only once it lands.
-    var settleTo = function (i) {
-      i = Math.max(0, Math.min(scenes.length - 1, i));
-      animating = true;
-      var changed = (i !== current);
-      // nav shows only when moving UP the page (back toward a previous scene); hidden going
-      // deeper and on the hero.
-      if (changed) {
-        if (i === 0) mHideNav();
-        else if (i < current) mShowNav();   // moving up / back -> reveal the menu
-        else mHideNav();                    // moving down / deeper -> hide it
+  var settleTo = function (i) {
+    i = Math.max(0, Math.min(scenes.length - 1, i));
+    if (i === current || animating) return;
+    animating = true;
+    if (i === 0) mHideNav(); else if (i < current) mShowNav(); else mHideNav();
+    applyScene(i);                                       // colour + watermark drift DURING the slide
+    var fromY = pos, toY = sceneOffset(i);
+    var frac = Math.min(1, Math.abs(toY - fromY) / vh());
+    var proxy = { y: fromY };
+    gsap.to(proxy, {
+      y: toY, duration: reduce ? 0 : (0.55 + frac * 0.6), ease: 'power2.inOut', overwrite: true,
+      onUpdate: function () { setY(proxy.y); },
+      onComplete: function () {
+        setY(sceneOffset(i));
+        var prev = current; current = i; animating = false;
+        armReveal(prev); playReveal(i);                  // content animates IN only after arrival
       }
-      var fromY = pos, toY = sceneOffset(i);
-      var frac = Math.min(1, Math.abs(toY - fromY) / vh());
-      var proxy = { y: fromY };
-      gsap.to(proxy, {
-        y: toY,
-        duration: reduce ? 0 : (0.45 + frac * 0.7),    // ~0.45s (nearly there) up to ~1.15s (full scene)
-        ease: 'power2.inOut',                          // eased in and out of the glide
-        overwrite: true,
-        onUpdate: function () { setY(proxy.y); },
-        onComplete: function () {
-          setY(sceneOffset(i));
-          animating = false;
-          if (changed) { armReveal(current); current = i; playReveal(i); }
-        }
-      });
-    };
-
-    // A swipe just picks a direction. The instant your finger clears a small threshold, the full
-    // smooth transition to the next/previous scene fires — the panel never tracks your finger.
-    window.addEventListener('touchstart', function (e) {
-      if (!ready || animating || e.touches.length !== 1) { fired = true; return; }
-      fired = false; startY = e.touches[0].clientY; startX = e.touches[0].clientX;
-    }, { passive: true });
-    window.addEventListener('touchmove', function (e) {
-      if (!ready) return;
-      if (e.touches.length !== 1) { fired = true; return; }        // let pinch-zoom through
-      e.preventDefault();                                          // no native scroll, no finger-follow
-      if (fired || animating) return;
-      var dy = startY - e.touches[0].clientY, dx = startX - e.touches[0].clientX;
-      if (Math.abs(dy) < 40 || Math.abs(dy) < Math.abs(dx)) return;   // wait for a clear vertical swipe
-      fired = true;                                                // fire once per gesture, then ignore the rest
-      settleTo(current + (dy > 0 ? 1 : -1));                       // swipe up = next, down = previous
-    }, { passive: false });
-    window.addEventListener('touchend', function () { fired = false; }, { passive: true });
-    window.addEventListener('keydown', function (e) {
-      if (!ready || animating) return;
-      if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); settleTo(current + 1); }
-      else if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); settleTo(current - 1); }
     });
+  };
+  advanceScene = function () { if (ready && !animating) settleTo(current + 1); };   // used by the scene arrows
 
-    // start at the top; unlock sliding only once fully loaded (loader lifts on 'load').
-    // Guarded so it runs EXACTLY ONCE — the 4.2s fallback must never reset you to scene 0 after
-    // you've already swiped away (which was yanking you back mid-read).
-    var started = false;
-    var start = function () { if (started) return; started = true; current = 0; setY(0); ready = true; };
-    setY(0);
-    if (document.readyState === 'complete') start();
-    else window.addEventListener('load', start);
-    setTimeout(start, 4200);                            // fallback: unlock if 'load' never fires (runs once)
-    // bfcache restore (back/forward): jump back to the first scene, but only if we're not already there.
-    window.addEventListener('pageshow', function (e) { if (e.persisted && current !== 0) { current = 0; setY(0); } });
+  // --- input: touch (swipe = direction) ---
+  var fired = false, sy = 0, sx = 0;
+  window.addEventListener('touchstart', function (e) {
+    if (!ready || animating || e.touches.length !== 1) { fired = true; return; }
+    fired = false; sy = e.touches[0].clientY; sx = e.touches[0].clientX;
+  }, { passive: true });
+  window.addEventListener('touchmove', function (e) {
+    if (!ready) return;
+    if (e.touches.length !== 1) { fired = true; return; }          // let pinch-zoom through
+    e.preventDefault();
+    if (fired || animating) return;
+    var dy = sy - e.touches[0].clientY, dx = sx - e.touches[0].clientX;
+    if (Math.abs(dy) < 40 || Math.abs(dy) < Math.abs(dx)) return;
+    fired = true; settleTo(current + (dy > 0 ? 1 : -1));
+  }, { passive: false });
+  window.addEventListener('touchend', function () { fired = false; }, { passive: true });
 
-    window.addEventListener('resize', function () { if (!animating) setY(sceneOffset(current)); });
-  })();
-}
+  // --- input: wheel / trackpad (desktop) — one notch = one scene, with a momentum cooldown ---
+  var wheelLock = false, wheelTimer = null;
+  var bumpLock = function () { clearTimeout(wheelTimer); wheelTimer = setTimeout(function () { wheelLock = false; }, 240); };
+  window.addEventListener('wheel', function (e) {
+    e.preventDefault();                                  // no free scroll
+    if (!ready || Math.abs(e.deltaY) < 6) return;
+    if (wheelLock || animating) { bumpLock(); return; }  // ignore + keep the lock alive through the momentum
+    wheelLock = true; bumpLock();
+    settleTo(current + (e.deltaY > 0 ? 1 : -1));
+  }, { passive: false });
+
+  // --- input: keyboard ---
+  window.addEventListener('keydown', function (e) {
+    if (!ready || animating) return;
+    if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); settleTo(current + 1); }
+    else if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); settleTo(current - 1); }
+  });
+
+  // start at the top; unlock only once fully loaded (the loader covers the screen till then).
+  var started = false;
+  var start = function () {
+    if (started) return; started = true;
+    current = 0; setY(0); applyScene(0); playReveal(0); ready = true;
+  };
+  setY(0);
+  if (document.readyState === 'complete') start();
+  else window.addEventListener('load', start);
+  setTimeout(start, 4200);                               // fallback: unlock if 'load' never fires (runs once)
+  window.addEventListener('pageshow', function (e) { if (e.persisted && current !== 0) { current = 0; setY(0); } });
+  window.addEventListener('resize', function () { if (!animating) setY(sceneOffset(current)); });
+})();
