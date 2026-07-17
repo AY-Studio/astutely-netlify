@@ -615,7 +615,7 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
     document.documentElement.classList.remove('preload');   // backup unhide (loader also does this)
     playReveal(0); ready = true;
   };
-  window.addEventListener('loader:lift', function () { setTimeout(reveal, 1000); });  // as the gold iris finishes clearing
+  window.addEventListener('loader:lift', function () { setTimeout(reveal, 250); });  // as the dark loader begins fading
   setTimeout(reveal, 9500);                         // fallback ONLY if the loader cue never fires (after its own 8s fallback + bloom)
   var start = function () {
     if (started) return; started = true;
