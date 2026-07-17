@@ -372,7 +372,8 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
   };
   sceneReveals.set(document.querySelector(".work-slider"), workReveal);
 
-  // Contact: heading rises, then details and map.
+  // Contact: three clean steps — heading appears, then all the details as one block,
+  // then the map.
   const contactTitle = document.querySelector(".footer-info__title");
   const contactLines = gsap.utils.toArray(".footer-line");
   const contactMap = document.querySelector(".footer-map");
@@ -383,8 +384,8 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
   const contactTl = gsap.timeline({ paused: true });
   contactTl
     .to(contactTitle, { y: 0, autoAlpha: 1, duration: 0.5, ease: "power3.out" })
-    .to(contactLines, { y: 0, autoAlpha: 1, stagger: 0.08, duration: 0.42, ease: "power2.out" }, "-=0.1")
-    .to(contactMap, { autoAlpha: 1, scale: 1, duration: 0.5, ease: "power2.out" }, "<");
+    .to(contactLines, { y: 0, autoAlpha: 1, duration: 0.5, ease: "power2.out" }, "-=0.05")   // all lines together
+    .to(contactMap, { autoAlpha: 1, scale: 1, duration: 0.55, ease: "power2.out" }, ">-0.05"); // map last
   sceneReveals.set(document.querySelector(".footer--contact"), contactTl);
 
   // Sign-off: a separate closing scene — the Astutely wordmark and straplines settle in.
