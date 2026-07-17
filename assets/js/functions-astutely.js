@@ -307,19 +307,30 @@ if (!isTouchDevice) {
 // inside the guard so reduced-motion and mobile users see the content laid out flat.
 if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
 
-  // Meet the team: the photo cluster floats up in one continuous motion, each
-  // photo easing from below straight to its resting offset — with slightly
-  // different durations so they feel carried in by the slide, not stepped.
+  // Meet the team: the cluster assembles in one continuous motion, each photo
+  // drifting in from a different direction (left/right/up/down + slight tilt) to
+  // its resting offset. Curated entry vectors + varied durations so it feels
+  // organically scattered, not a uniform rise.
   const teamPhotos = gsap.utils.toArray(".team__member");
-  const teamEndY = [-90, 70, -120, 80];        // final resting offset per photo
-  const teamDur = [1.7, 2.1, 1.85, 2.25];      // slightly different per photo → floating feel
-  gsap.set(teamPhotos, { autoAlpha: 0, scale: 0.9, y: (i) => (teamEndY[i] || 0) + 130 });
+  const teamEndY = [-90, 70, -120, 80];             // final resting offset per photo
+  const teamStartX = [-150, 140, -95, 120];         // entry drift on X per photo
+  const teamStartDY = [-80, 105, 135, -110];        // entry drift on Y (added to resting)
+  const teamStartRot = [-6, 5, 4.5, -5];            // slight tilt on entry
+  const teamDur = [1.75, 2.15, 1.9, 2.3];           // slightly different per photo → floating feel
+  gsap.set(teamPhotos, {
+    autoAlpha: 0, scale: 0.9,
+    x: (i) => teamStartX[i] || 0,
+    y: (i) => (teamEndY[i] || 0) + (teamStartDY[i] || 0),
+    rotation: (i) => teamStartRot[i] || 0
+  });
 
   const teamTl = gsap.timeline({ paused: true });
   teamTl
     .to(teamPhotos, { autoAlpha: 1, scale: 1, duration: 0.7, stagger: 0.1, ease: "power2.out" }, 0)
-    .to(teamPhotos, {                       // single float to resting position
+    .to(teamPhotos, {                       // single drift from its own direction to rest
+      x: 0,
       y: (i) => teamEndY[i] || 0,
+      rotation: 0,
       duration: (i) => teamDur[i] || 1.9,
       stagger: 0.12, ease: "sine.inOut"
     }, 0);
@@ -475,7 +486,8 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
       '.header .container', '.header .logo-outer', '.header .arrow', '#tagline',
       '.body h2', '.body .text', '.era-logo', '.era-logo__hi-fill', '.era-logo__ink',
       '.team__member', '.work-slider__viewport', '.logo-slider__viewport', '.work-tagline',
-      '.footer-info', '.footer-map', '.footer-base'
+      '.footer-info', '.footer-info__title', '.footer-line', '.footer-map',
+      '.footer-base', '.footer-base > *'
     ], { clearProps: 'all' });
     if (!reduce) for (var s2 = 1; s2 < scenes.length; s2++) gsap.set(phoneEls(s2), { autoAlpha: 0, y: 22 });
   }
