@@ -612,7 +612,7 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
     if (revealed) return; revealed = true;
     playReveal(0); ready = true;
   };
-  window.addEventListener('loader:lift', function () { setTimeout(reveal, 340); });  // in the curtain's wake
+  window.addEventListener('loader:lift', function () { setTimeout(reveal, 1000); });  // as the gold iris finishes clearing
   setTimeout(reveal, 5200);                         // fallback: reveal even if the curtain event never fires
   var start = function () {
     if (started) return; started = true;

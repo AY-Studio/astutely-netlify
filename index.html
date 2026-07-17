@@ -107,7 +107,7 @@
     </script>
     <!-- SEO:end -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-    <link href="assets/css/style.css?v=20260718a" rel="stylesheet">
+    <link href="assets/css/style.css?v=20260718b" rel="stylesheet">
 
     <!-- ============================================================= -->
     <!--  index15 — based on v13 (scroll-timeline, constant grey #333333     -->
@@ -335,24 +335,28 @@
 
       /* Load guard: cover the page from first paint until everything is in, then fade to a
          smooth reveal. touch-action:none blocks scrolling/interaction while it's up. */
-      #page-loader { position: fixed; inset: 0; z-index: 100000; background: #060606; touch-action: none; display: flex; align-items: center; justify-content: center; transform: translateY(0); transition: transform 0.95s cubic-bezier(0.76, 0, 0.24, 1); will-change: transform; }
-      #page-loader.is-lifting { transform: translateY(-100%); }   /* the curtain rises to reveal the hero */
-      .page-loader__dots { display: flex; gap: 12px; transition: opacity 0.4s ease, transform 0.4s ease; }
-      #page-loader.is-dots-out .page-loader__dots { opacity: 0; transform: translateY(-6px) scale(0.85); }   /* dots bow out first */
-      .page-loader__dots i { width: 11px; height: 11px; border-radius: 50%; background: #F3DFA2; opacity: 0.25; transform: scale(0.7); animation: dotPulse 1.3s ease-in-out infinite; }
+      /* Gilded iris: a soft gold field with black loading dots, then a near-black
+         circle blooms open from the centre to develop the gold away to the hero. */
+      #page-loader { position: fixed; inset: 0; z-index: 100000; background: #F3DFA2; touch-action: none; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+      .page-loader__dots { display: flex; gap: 13px; position: relative; z-index: 1; transition: opacity 0.34s ease, transform 0.42s cubic-bezier(0.6, 0, 0.2, 1); }
+      #page-loader.is-dots-out .page-loader__dots { opacity: 0; transform: scale(0.18); }   /* dots draw into the centre */
+      .page-loader__dots i { width: 11px; height: 11px; border-radius: 50%; background: #0A0A0A; opacity: 0.3; transform: scale(0.7); animation: dotPulse 1.3s ease-in-out infinite; }
       .page-loader__dots i:nth-child(2) { animation-delay: 0.16s; }
       .page-loader__dots i:nth-child(3) { animation-delay: 0.32s; }
-      @keyframes dotPulse { 0%, 100% { opacity: 0.25; transform: scale(0.7); } 50% { opacity: 1; transform: scale(1.1); } }
+      @keyframes dotPulse { 0%, 100% { opacity: 0.3; transform: scale(0.7); } 50% { opacity: 1; transform: scale(1.12); } }
+      .loader-iris { position: absolute; inset: 0; background: #060606; clip-path: circle(0% at 50% 50%); -webkit-clip-path: circle(0% at 50% 50%); transition: clip-path 1.05s cubic-bezier(0.66, 0, 0.34, 1), -webkit-clip-path 1.05s cubic-bezier(0.66, 0, 0.34, 1); will-change: clip-path; }
+      #page-loader.is-opening .loader-iris { clip-path: circle(150% at 50% 50%); -webkit-clip-path: circle(150% at 50% 50%); }   /* the aperture blooms open */
       @media (prefers-reduced-motion: reduce) {
-        .page-loader__dots i { animation: none; opacity: 0.8; transform: none; }
-        #page-loader { transition: opacity 0.5s ease; }               /* no slide for reduced motion: fade instead */
-        #page-loader.is-lifting { transform: none; opacity: 0; pointer-events: none; }
+        .page-loader__dots i { animation: none; opacity: 0.85; transform: none; }
+        .loader-iris { display: none; }
+        #page-loader { transition: opacity 0.55s ease; }               /* no bloom for reduced motion: fade instead */
+        #page-loader.is-opening { opacity: 0; pointer-events: none; }
       }
     </style>
   </head>
   <body class="theme-dark">
 
-    <div id="page-loader" aria-hidden="true"><span class="page-loader__dots"><i></i><i></i><i></i></span></div>
+    <div id="page-loader" aria-hidden="true"><span class="page-loader__dots"><i></i><i></i><i></i></span><div class="loader-iris"></div></div>
     <script>
       // Independent of the animation JS so it can never leave the page stuck covered.
       (function () {
@@ -366,12 +370,12 @@
           var wait = Math.max(0, MIN - (Date.now() - shownAt));
           setTimeout(function () {
             window.scrollTo(0, 0);
-            l.classList.add('is-dots-out');                 // 1. dots gracefully bow out
+            l.classList.add('is-dots-out');                 // 1. dots draw into the centre
             setTimeout(function () {
-              l.classList.add('is-lifting');                // 2. curtain rises
-              window.dispatchEvent(new Event('loader:lift'));   // 3. cue the hero to reveal in its wake
-              setTimeout(function () { if (l.parentNode) l.parentNode.removeChild(l); }, 1000);
-            }, 380);
+              l.classList.add('is-opening');                // 2. the black iris blooms open, developing the gold away
+              window.dispatchEvent(new Event('loader:lift'));   // 3. cue the hero to emerge as the gold clears
+              setTimeout(function () { if (l.parentNode) l.parentNode.removeChild(l); }, 1200);
+            }, 300);
           }, wait);
         };
         window.addEventListener('load', lift);
@@ -637,6 +641,6 @@
         }
       })();
     </script>
-    <script src="assets/js/functions-astutely.js?v=20260718a"></script>
+    <script src="assets/js/functions-astutely.js?v=20260718b"></script>
   </body>
   </html>
