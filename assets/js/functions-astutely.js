@@ -307,32 +307,28 @@ if (!isTouchDevice) {
 // inside the guard so reduced-motion and mobile users see the content laid out flat.
 if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
 
-  // Meet the team: the cluster assembles in one continuous motion, each photo
-  // drifting in from a different direction (left/right/up/down + slight tilt) to
-  // its resting offset. Curated entry vectors + varied durations so it feels
-  // organically scattered, not a uniform rise.
+  // Meet the team: the cluster settles into place with a restrained, refined drift —
+  // a subtle parallax (small offsets, no tilt) and a soft fade, so it reads as
+  // considered rather than busy.
   const teamPhotos = gsap.utils.toArray(".team__member");
   const teamEndY = [-90, 70, -120, 80];             // final resting offset per photo
-  const teamStartX = [-150, 140, -95, 120];         // entry drift on X per photo
-  const teamStartDY = [-80, 105, 135, -110];        // entry drift on Y (added to resting)
-  const teamStartRot = [-6, 5, 4.5, -5];            // slight tilt on entry
-  const teamDur = [1.75, 2.15, 1.9, 2.3];           // slightly different per photo → floating feel
+  const teamStartX = [-26, 22, -18, 24];            // subtle lateral drift on entry
+  const teamStartDY = [34, 28, 40, 30];             // gentle rise into place (added to resting)
+  const teamDur = [1.45, 1.6, 1.5, 1.65];           // slightly different per photo → organic, not uniform
   gsap.set(teamPhotos, {
-    autoAlpha: 0, scale: 0.9,
+    autoAlpha: 0, scale: 0.965,
     x: (i) => teamStartX[i] || 0,
-    y: (i) => (teamEndY[i] || 0) + (teamStartDY[i] || 0),
-    rotation: (i) => teamStartRot[i] || 0
+    y: (i) => (teamEndY[i] || 0) + (teamStartDY[i] || 0)
   });
 
   const teamTl = gsap.timeline({ paused: true });
   teamTl
-    .to(teamPhotos, { autoAlpha: 1, scale: 1, duration: 0.7, stagger: 0.1, ease: "power2.out" }, 0)
-    .to(teamPhotos, {                       // single drift from its own direction to rest
+    .to(teamPhotos, { autoAlpha: 1, scale: 1, duration: 0.75, stagger: 0.1, ease: "power2.out" }, 0)
+    .to(teamPhotos, {                       // gentle settle to resting position
       x: 0,
       y: (i) => teamEndY[i] || 0,
-      rotation: 0,
-      duration: (i) => teamDur[i] || 1.9,
-      stagger: 0.12, ease: "sine.inOut"
+      duration: (i) => teamDur[i] || 1.5,
+      stagger: 0.1, ease: "power2.out"
     }, 0);
   sceneReveals.set(document.querySelector(".team"), teamTl);
   // The "Meet the team" title runs as a seamless CSS marquee, independent of the slider.
