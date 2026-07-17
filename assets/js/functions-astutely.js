@@ -344,15 +344,37 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
   const taglineWords = taglineEl ? SplitText.create(taglineEl, { type: "words" }) : null;
   if (taglineWords) _splitInstances.push(taglineWords);
 
-  gsap.set(workView, { autoAlpha: 0, y: 70 });
-  if (taglineWords) gsap.set(taglineWords.words, { y: 28, opacity: 0 });
+  // The viewport container is the "gate": it stays hidden between scenes (its inline
+  // style survives the marquee's innerHTML rebuild, unlike the individual cards). On
+  // arrival we reveal the gate, then stagger the *live* cards in one after another.
+  const workWords = taglineWords ? taglineWords.words : [];
+  gsap.set(workView, { autoAlpha: 0 });
   gsap.set(logoView, { autoAlpha: 0, y: 40 });
+  if (workWords.length) gsap.set(workWords, { y: 28, opacity: 0 });
 
-  const workTl = gsap.timeline({ paused: true });
-  workTl.to(workView, { autoAlpha: 1, y: 0, duration: 0.8, ease: "power3.out" });
-  if (taglineWords) workTl.to(taglineWords.words, { y: 0, opacity: 1, stagger: 0.04, duration: 0.6, ease: "power2.out" }, ">-0.1");
-  workTl.to(logoView, { autoAlpha: 1, y: 0, duration: 0.6, ease: "power2.out" }, ">-0.05");
-  sceneReveals.set(document.querySelector(".work-slider"), workTl);
+  const workReveal = {
+    tl: null,
+    play: function () {
+      if (this.tl) this.tl.kill();
+      gsap.set(workView, { autoAlpha: 1 });
+      // Query cards live (the marquee rebuilds them); stagger the on-screen ones in.
+      var cards = gsap.utils.toArray(".work-marquee > .work-card").slice(0, 6);
+      var tl = gsap.timeline();
+      tl.fromTo(cards, { autoAlpha: 0, y: 46 },
+        { autoAlpha: 1, y: 0, stagger: 0.13, duration: 0.55, ease: "power2.out" }, 0);
+      if (workWords.length) tl.fromTo(workWords, { y: 28, opacity: 0 },
+        { y: 0, opacity: 1, stagger: 0.04, duration: 0.6, ease: "power2.out" }, 0.6);
+      tl.fromTo(logoView, { autoAlpha: 0, y: 40 },
+        { autoAlpha: 1, y: 0, duration: 0.6, ease: "power2.out" }, 0.85);
+      this.tl = tl;
+    },
+    pause: function () {
+      if (this.tl) { this.tl.kill(); this.tl = null; }
+      gsap.set([workView, logoView], { autoAlpha: 0 });
+      if (workWords.length) gsap.set(workWords, { opacity: 0 });
+    }
+  };
+  sceneReveals.set(document.querySelector(".work-slider"), workReveal);
 
   // Contact: heading rises, then details and map.
   const contactTitle = document.querySelector(".footer-info__title");
@@ -585,4 +607,53 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
   setTimeout(start, 4200);                               // fallback: unlock if 'load' never fires (runs once)
   window.addEventListener('pageshow', function (e) { if (e.persisted && current !== 0) { current = 0; setY(0); } });
   window.addEventListener('resize', function () { if (!animating) setY(sceneOffset(current)); });
+})();
+
+
+// --- "A New Era" copy: match the desktop line breaks on mobile too --------------
+// Desktop uses <br class="era-break"> to control the phrasing. On phones we enable the
+// same breaks and scale the paragraphs so the longest intended line just fits the
+// width — the copy then reads exactly as designed (just smaller). Fallback: if this
+// never runs, .era-fit is never added and phones keep natural wrapping.
+(function () {
+  var body = document.querySelector('.body');
+  if (!body) return;
+  var paras = Array.prototype.slice.call(body.querySelectorAll('p.text'));
+  if (!paras.length) return;
+  var mq = window.matchMedia('(max-width: 767px)');
+
+  function widestLine(p) {                        // widest <br>-delimited line box (nowrap)
+    var range = document.createRange();
+    range.selectNodeContents(p);
+    var rects = range.getClientRects(), w = 0;
+    for (var i = 0; i < rects.length; i++) if (rects[i].width > w) w = rects[i].width;
+    if (range.detach) range.detach();
+    return w;
+  }
+
+  function fit() {
+    if (!mq.matches) {                             // tablet/desktop: leave CSS in charge
+      body.classList.remove('era-fit');
+      paras.forEach(function (p) { p.style.fontSize = ''; });
+      return;
+    }
+    body.classList.add('era-fit');                 // show the breaks + nowrap the lines
+    paras.forEach(function (p) { p.style.fontSize = ''; });   // measure at the CSS base size
+    var scale = Infinity;
+    paras.forEach(function (p) {
+      var cs = getComputedStyle(p);
+      var avail = p.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
+      var cur = parseFloat(cs.fontSize), widest = widestLine(p);
+      if (avail > 0 && cur > 0 && widest > 0) scale = Math.min(scale, cur * avail / widest);
+    });
+    if (scale === Infinity) return;
+    var size = Math.max(11, Math.min(scale * 0.97, 30));      // largest that fits, within reason
+    paras.forEach(function (p) { p.style.fontSize = size.toFixed(2) + 'px'; });
+  }
+
+  fit();
+  window.addEventListener('load', fit);
+  window.addEventListener('resize', fit);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+  if (mq.addEventListener) mq.addEventListener('change', fit);
 })();
