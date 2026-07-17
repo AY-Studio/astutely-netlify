@@ -307,17 +307,22 @@ if (!isTouchDevice) {
 // inside the guard so reduced-motion and mobile users see the content laid out flat.
 if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
 
-  // Meet the team: the photo cluster rises in, then drifts (parallax) before release.
+  // Meet the team: the photo cluster floats up in one continuous motion, each
+  // photo easing from below straight to its resting offset — with slightly
+  // different durations so they feel carried in by the slide, not stepped.
   const teamPhotos = gsap.utils.toArray(".team__member");
-  gsap.set(teamPhotos, { autoAlpha: 0, y: 90, scale: 0.86 });
+  const teamEndY = [-90, 70, -120, 80];        // final resting offset per photo
+  const teamDur = [1.7, 2.1, 1.85, 2.25];      // slightly different per photo → floating feel
+  gsap.set(teamPhotos, { autoAlpha: 0, scale: 0.9, y: (i) => (teamEndY[i] || 0) + 130 });
 
   const teamTl = gsap.timeline({ paused: true });
   teamTl
-    .to(teamPhotos, { autoAlpha: 1, y: 0, scale: 1, stagger: 0.12, duration: 0.8, ease: "power3.out" })
-    .to(teamPhotos, {                       // depth drift, then settle in place
-      y: (i) => [-90, 70, -120, 80][i] || 0,
-      duration: 0.9, ease: "power1.inOut"
-    }, ">");
+    .to(teamPhotos, { autoAlpha: 1, scale: 1, duration: 0.7, stagger: 0.1, ease: "power2.out" }, 0)
+    .to(teamPhotos, {                       // single float to resting position
+      y: (i) => teamEndY[i] || 0,
+      duration: (i) => teamDur[i] || 1.9,
+      stagger: 0.12, ease: "sine.inOut"
+    }, 0);
   sceneReveals.set(document.querySelector(".team"), teamTl);
   // The "Meet the team" title runs as a seamless CSS marquee, independent of the slider.
 
@@ -348,9 +353,9 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
 
   const contactTl = gsap.timeline({ paused: true });
   contactTl
-    .to(contactTitle, { y: 0, autoAlpha: 1, duration: 0.7, ease: "power3.out" })
-    .to(contactLines, { y: 0, autoAlpha: 1, stagger: 0.14, duration: 0.6, ease: "power2.out" }, "-=0.05")
-    .to(contactMap, { autoAlpha: 1, scale: 1, duration: 0.6, ease: "power2.out" }, "<");
+    .to(contactTitle, { y: 0, autoAlpha: 1, duration: 0.5, ease: "power3.out" })
+    .to(contactLines, { y: 0, autoAlpha: 1, stagger: 0.08, duration: 0.42, ease: "power2.out" }, "-=0.1")
+    .to(contactMap, { autoAlpha: 1, scale: 1, duration: 0.5, ease: "power2.out" }, "<");
   sceneReveals.set(document.querySelector(".footer--contact"), contactTl);
 
   // Sign-off: a separate closing scene — the Astutely wordmark and straplines settle in.
