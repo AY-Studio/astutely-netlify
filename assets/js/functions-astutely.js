@@ -612,6 +612,7 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
   var started = false, revealed = false;
   var reveal = function () {                        // the coordinated hero entrance (fires once)
     if (revealed) return; revealed = true;
+    document.documentElement.classList.remove('preload');   // backup unhide (loader also does this)
     playReveal(0); ready = true;
   };
   window.addEventListener('loader:lift', function () { setTimeout(reveal, 1000); });  // as the gold iris finishes clearing
