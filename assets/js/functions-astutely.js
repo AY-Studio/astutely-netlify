@@ -629,14 +629,14 @@ if (window.matchMedia('(max-width: 767px)').matches) {
       animating = true;
       if (i === 0) mHideNav(); else mShowNav();
       armReveal(i);                                    // hide the target so it animates fresh on arrival
-      // Slow, smooth GSAP glide between scenes (power3.inOut = gentle ease in and out, no harsh stop).
+      // Smooth GSAP glide. No Math.round (sub-pixel scroll = no stair-stepping at the gentle start).
       var proxy = { y: window.scrollY };
       gsap.to(proxy, {
         y: sceneTop(i),
-        duration: reduce ? 0 : 1.1,
-        ease: 'power3.inOut',
+        duration: reduce ? 0 : 1.0,
+        ease: 'power2.inOut',
         overwrite: true,
-        onUpdate: function () { window.scrollTo(0, Math.round(proxy.y)); },
+        onUpdate: function () { window.scrollTo(0, proxy.y); },
         onComplete: function () {
           current = i; animating = false;
           window.scrollTo(0, sceneTop(i));             // land exactly on the scene
@@ -645,14 +645,20 @@ if (window.matchMedia('(max-width: 767px)').matches) {
       });
     };
 
+    // A swipe only counts if it BOTH starts and ends while idle. This kills the "queued swipe"
+    // where a gesture begun mid-transition would fire the moment the transition ended.
+    var gestureOK = false;
     window.addEventListener('touchstart', function (e) {
-      if (!ready) return; sy = e.touches[0].clientY; sx = e.touches[0].clientX;
+      gestureOK = ready && !animating;
+      if (!gestureOK) return;
+      sy = e.touches[0].clientY; sx = e.touches[0].clientX;
     }, { passive: true });
     window.addEventListener('touchmove', function (e) {
-      if (ready && e.touches.length === 1) e.preventDefault();   // block single-finger scroll; pinch-zoom still works
+      if (ready && e.touches.length === 1) e.preventDefault();   // block native scroll; pinch-zoom still works
     }, { passive: false });
     window.addEventListener('touchend', function (e) {
-      if (!ready || animating) return;
+      if (!gestureOK || animating) return;
+      gestureOK = false;
       var tt = e.changedTouches[0]; if (!tt) return;
       var dy = sy - tt.clientY, dx = sx - tt.clientX;
       if (Math.abs(dy) < 45 || Math.abs(dy) < Math.abs(dx)) return;   // clear vertical swipe only
