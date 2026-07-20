@@ -664,15 +664,18 @@ if (!matchMedia('(prefers-reduced-motion: reduce)').matches) {
     }
     body.classList.add('era-fit');                 // show the breaks + nowrap the lines
     paras.forEach(function (p) { p.style.fontSize = ''; });   // measure at the CSS base size
-    var scale = Infinity;
+    var scale = Infinity, base = 0;
     paras.forEach(function (p) {
       var cs = getComputedStyle(p);
       var avail = p.clientWidth - parseFloat(cs.paddingLeft) - parseFloat(cs.paddingRight);
       var cur = parseFloat(cs.fontSize), widest = widestLine(p);
+      base = cur;                                  // the CSS base (clamp) size = the heading size
       if (avail > 0 && cur > 0 && widest > 0) scale = Math.min(scale, cur * avail / widest);
     });
-    if (scale === Infinity) return;
-    var size = Math.max(11, Math.min(scale * 0.97, 30));      // largest that fits, within reason
+    if (scale === Infinity || !base) return;
+    // Shrink to fit on narrow phones, but never grow larger than the heading (base) size —
+    // otherwise wide phones (~700-767px) balloon the copy above the heading and look broken.
+    var size = Math.max(11, Math.min(scale * 0.97, base));
     paras.forEach(function (p) { p.style.fontSize = size.toFixed(2) + 'px'; });
   }
 
