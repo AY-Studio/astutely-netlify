@@ -15,7 +15,7 @@
     <link rel="icon" type="image/jpeg" href="../assets/img/favicon.jpg">
     <link rel="apple-touch-icon" href="../assets/img/favicon.jpg">
     <title>SuperCupNI: Year One | Astutely Agency</title>
-    <meta name="description" content="How Astutely delivered a connected digital and PR campaign for the Budget Energy SuperCupNI: a new website, the tournament's first apps and the PR to launch them. No.6 in the UK App Store's Top Free Sports chart and over 4 million in-app interactions in year one.">
+    <meta name="description" content="How Astutely led Budget Energy SuperCupNI's 2026 communications strategy: a PR-led campaign, delivered through a new website and the tournament's first app. 14 million social views in tournament week and No.6 in the UK App Store on day one.">
     <meta property="og:site_name" content="Astutely Agency"/>
     <meta property="og:title" content="SuperCupNI: Year One | Astutely Agency"/>
     <meta property="og:type" content="article"/>
@@ -28,14 +28,14 @@
     <meta name="theme-color" content="#060606"/>
     <meta property="og:url" content="https://astutely.agency/work/supercupni"/>
     <meta property="og:locale" content="en_GB"/>
-    <meta property="og:description" content="The 43rd SuperCupNI. The first with an app. A connected digital and PR campaign that reached No.6 in the UK App Store's Top Free Sports chart."/>
+    <meta property="og:description" content="We shaped the story, then built everything to carry it. A PR-led campaign for SuperCupNI, delivered across web, app and social."/>
     <meta property="og:image" content="https://astutely.agency/assets/img/work/supercupni/og.jpg"/>
     <meta property="og:image:width" content="1200"/>
     <meta property="og:image:height" content="630"/>
     <meta property="og:image:alt" content="Right to Dream celebrate winning the Boys' Premier final at the Budget Energy SuperCupNI 2026"/>
     <meta name="twitter:card" content="summary_large_image"/>
     <meta name="twitter:title" content="SuperCupNI: Year One | Astutely Agency"/>
-    <meta name="twitter:description" content="The 43rd SuperCupNI. The first with an app. A connected digital and PR campaign that reached No.6 in the UK App Store's Top Free Sports chart."/>
+    <meta name="twitter:description" content="We shaped the story, then built everything to carry it. A PR-led campaign for SuperCupNI, delivered across web, app and social."/>
     <meta name="twitter:image" content="https://astutely.agency/assets/img/work/supercupni/og.jpg"/>
     <meta name="twitter:image:alt" content="Right to Dream celebrate winning the Boys' Premier final at the Budget Energy SuperCupNI 2026"/>
     <script type="application/ld+json">
@@ -47,7 +47,7 @@
       "@id": "https://astutely.agency/work/supercupni#webpage",
       "url": "https://astutely.agency/work/supercupni",
       "name": "SuperCupNI: Year One | Astutely Agency",
-      "description": "How Astutely delivered a connected digital and PR campaign for the Budget Energy SuperCupNI.",
+      "description": "How Astutely led Budget Energy SuperCupNI's 2026 communications strategy, with a PR-led campaign delivered across web, app and social.",
       "primaryImageOfPage": "https://astutely.agency/assets/img/work/supercupni/og.jpg",
       "isPartOf": { "@id": "https://astutely.agency/#website" },
       "about": { "@id": "https://astutely.agency/#organization" },
@@ -149,6 +149,34 @@
       @media (min-width: 992px) { .cs-meta { grid-template-columns: 1fr 1.4fr 1.4fr 1fr; } }
       .cs-meta span { display: block; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--hv); margin-bottom: 0.35rem; }
       .cs-meta p { margin: 0; font-size: 1.15rem; line-height: 1.45; color: var(--ink); }
+
+      /* Phone: stack the hero. The photo shows clean at the top, fades into the ground,
+         and the copy sits on solid colour beneath instead of over the whole image. */
+      @media (max-width: 767px) {
+        .cs-hero { display: block; min-height: 0; }
+        .cs-hero__media { position: relative; inset: auto; height: min(62svh, 540px); min-height: 340px; overflow: hidden; }
+        .cs-hero__media img { object-position: 50% 45%; }
+        .cs-hero::before { bottom: auto; height: min(62svh, 540px); min-height: 340px; background: linear-gradient(180deg, rgba(6,6,6,0.45) 0%, rgba(6,6,6,0) 22%, rgba(6,6,6,0) 58%, var(--ground) 100%); }
+        .cs-hero__inner { position: relative; padding-top: 0; margin-top: -3.5rem; }
+      }
+
+
+      /* Hero: a calm image with just the title; copy lives in the intro row below */
+      .cs-hero h1 { font-size: clamp(2.5rem, 5.4vw, 5.6rem); line-height: 1; }
+      .cs-hero__inner { padding-bottom: clamp(3rem, 6vw, 5.5rem); }
+      .cs-hero__row { position: relative; display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem; }
+      @media (min-width: 768px) {
+        .cs-hero::before { background: linear-gradient(180deg, rgba(6,6,6,0.5) 0%, rgba(6,6,6,0) 24%, rgba(6,6,6,0) 52%, rgba(6,6,6,0.82) 88%, rgba(6,6,6,1) 100%), linear-gradient(90deg, rgba(6,6,6,0.45) 0%, rgba(6,6,6,0) 55%); }
+      }
+      .cs-intro { padding: clamp(4rem, 8vw, 7rem) 0 0; }
+      .cs-intro__row { display: grid; grid-template-columns: minmax(0,1fr); gap: 2.5rem; align-items: end; }
+      @media (min-width: 992px) { .cs-intro__row { grid-template-columns: minmax(0,1.6fr) minmax(0,1fr); gap: 4rem; } .cs-intro .cs-ctas { justify-content: flex-end; } }
+      .cs-intro__lead { margin: 0; max-width: 44ch; color: var(--ink); font-weight: 300; font-size: clamp(1.35rem, 2.2vw, 1.95rem); line-height: 1.45; text-wrap: pretty; }
+      .cs-intro__lead strong { font-weight: 600; color: var(--hv); }
+      .cs-intro .cs-ctas { margin-top: 0; }
+      .cs-intro .cs-meta { margin-top: clamp(3.5rem, 7vw, 5.5rem); }
+      @media (min-width: 992px) { .cs-intro .cs-meta { grid-template-columns: 1fr 1.1fr 1.3fr 1.3fr; } }
+      
 
       /* ---------- 2. The stage ---------- */
       .cs-split { display: grid; grid-template-columns: 1fr; gap: clamp(3rem, 7vw, 6rem); align-items: start; }
@@ -465,6 +493,19 @@
       .button:hover { background: #FFFFFF; color: #161618; }
       .cs-credit-photo { margin: 2.5rem 0 0; font-size: 0.95rem; color: var(--faint); }
 
+
+      /* Back to top: small, out of the way. Hidden while reading down; appears on scroll-up
+         or at the end of the page. The ring shows how far through the story you are. */
+      .to-top { position: fixed; right: max(1rem, env(safe-area-inset-right)); bottom: max(1rem, env(safe-area-inset-bottom)); z-index: 1030; width: 3.25rem; height: 3.25rem; padding: 0; border: 0; border-radius: 50%; background: rgba(22,22,24,0.82); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); box-shadow: 0 10px 30px rgba(0,0,0,0.35); opacity: 0; transform: translateY(12px) scale(0.9); pointer-events: none; transition: opacity 0.3s ease, transform 0.3s ease; cursor: pointer; }
+      .to-top.is-on { opacity: 1; transform: none; pointer-events: auto; }
+      .to-top svg { display: block; width: 100%; height: 100%; }
+      .to-top__track { fill: none; stroke: rgba(255,255,255,0.14); stroke-width: 2.5; }
+      .to-top__ring { fill: none; stroke: var(--hv); stroke-width: 2.5; stroke-linecap: round; transform: rotate(-90deg); transform-origin: 50% 50%; stroke-dasharray: 131.95; stroke-dashoffset: 131.95; }
+      .to-top__arrow { fill: none; stroke: #FFFFFF; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.25s ease; }
+      .to-top:hover .to-top__arrow { transform: translateY(-2px); }
+      .to-top:focus-visible { outline: 2px solid var(--hv); outline-offset: 3px; }
+      @media (prefers-reduced-motion: reduce) { .to-top, .to-top__arrow { transition: none; } }
+
       /* Sign-off footer (as contact page) */
       .footer { color: #F5F5F5; padding: clamp(4rem, 8vw, 7rem) 0; background: #111111; }
       .footer svg { fill: var(--hv); }
@@ -530,24 +571,33 @@
           <img src="../assets/img/work/supercupni/hero.webp" width="2200" height="1467" alt="" fetchpriority="high">
         </div>
         <div class="container cs-hero__inner">
-          <p class="cs-eyebrow" data-hero><i></i>Case study &middot; Budget Energy SuperCupNI</p>
-          <h1 id="cs-title">
-            <span class="line" data-hero>The 43rd SuperCupNI.</span>
-            <span class="line gold" data-hero>The first with an app.</span>
-          </h1>
-          <p class="cs-hero__lead" data-hero>One of the world's leading youth football tournaments had never had an app. In 2026 we built it one, alongside a new website, and launched both with a connected PR campaign. By the end of the first day of matches, the app was <strong>No.6 in the UK App Store's Top Free Sports chart</strong>.</p>
-          <div class="cs-ctas" data-hero>
-            <a class="button" href="https://supercupni.com" target="_blank" rel="noopener">Visit supercupni.com <svg viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M14 3h7v7h-2V6.4l-9.3 9.3-1.4-1.4L17.6 5H14V3zM5 5h6v2H5v12h12v-6h2v8H3V5h2z"/></svg></a>
+          <div class="cs-hero__row">
+            <h1 id="cs-title">
+              <span class="line" data-hero>We shaped the story.</span>
+              <span class="line gold" data-hero>Then built everything to carry it.</span>
+            </h1>
+          </div>
+        </div>
+      </section>
+
+      <!-- INTRO ========================================================= -->
+      <section class="cs-intro" aria-label="Introduction">
+        <div class="container">
+          <div class="cs-intro__row">
+            <p class="cs-intro__lead" data-reveal>For its 43rd year, we set the communications strategy for Budget Energy SuperCupNI: <strong>a PR-led campaign</strong> to grow its audience, reach new fans and deliver for its partners. To carry it, we built a new website and the tournament's first app, then backed both with photography, press, email and social, from the first announcement to the final whistle.</p>
+            <div class="cs-ctas" data-reveal>
+              <a class="button" href="https://supercupni.com" target="_blank" rel="noopener">Visit supercupni.com <svg viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M14 3h7v7h-2V6.4l-9.3 9.3-1.4-1.4L17.6 5H14V3zM5 5h6v2H5v12h12v-6h2v8H3V5h2z"/></svg></a>
             <div class="cs-badges">
                 <a href="https://apps.apple.com/gb/app/supercupni/id6763050914" target="_blank" rel="noopener" aria-label="Download SuperCupNI on the App Store"><img src="../assets/img/work/supercupni/badge-app-store.svg" width="120" height="40" alt=""></a>
                 <a href="https://play.google.com/store/apps/details?id=com.aystudio.supercupni" target="_blank" rel="noopener" aria-label="Get SuperCupNI on Google Play"><img src="../assets/img/work/supercupni/badge-google-play.svg" width="120" height="40" alt=""></a>
             </div>
           </div>
-          <ul class="cs-meta" data-hero>
+          </div>
+          <ul class="cs-meta" data-stagger>
             <li><span>Client</span><p>Budget Energy SuperCupNI</p></li>
-            <li><span>Digital</span><p>Website, iOS &amp; Android apps, API &amp; CMS, match status board</p></li>
+            <li><span>Strategy</span><p>Communications strategy and campaign planning</p></li>
             <li><span>PR &amp; comms</span><p>PR, media relations, photography, editorial, email, social</p></li>
-            <li><span>Result</span><p>No.6, UK App Store Top Free Sports</p></li>
+            <li><span>Digital</span><p>Website, iOS &amp; Android apps, API &amp; CMS, match status board</p></li>
           </ul>
         </div>
       </section>
@@ -556,10 +606,10 @@
       <section class="cs-glance" aria-label="Results at a glance">
         <div class="container">
           <ul class="cs-glance__list" data-stagger>
-            <li class="is-gold"><b>No.6</b><small>UK App Store, Top Free Sports, on day one</small></li>
+            <li class="is-gold"><b>14M</b><small>social views in tournament week</small></li>
+            <li><b>No.6</b><small>UK App Store, Top Free Sports, on day one</small></li>
+            <li><b>848k</b><small>page views on the new website</small></li>
             <li><b>4M+</b><small>in-app interactions in year one</small></li>
-            <li><b>14M</b><small>social views in tournament week</small></li>
-            <li><b data-count="15120">15,120</b><small>devices using the app</small></li>
             <li><b>4.7<span>/5</span></b><small>average fan rating</small></li>
           </ul>
         </div>
@@ -633,24 +683,10 @@
         <div class="container">
           <div data-reveal>
             <p class="cs-eyebrow"><i></i>03 &middot; Our approach</p>
-            <h2 class="cs-h2" id="cs-approach">One connected campaign. <span>Digital and PR working as one.</span></h2>
-            <p class="cs-lead">We ran the digital build and the PR and communications side by side, with one team and one plan. Every press release, photoshoot, article, email and social post had somewhere to send people, and the website and app gave them a reason to stay.</p>
+            <h2 class="cs-h2" id="cs-approach">PR-led. <span>Digitally delivered.</span></h2>
+            <p class="cs-lead">The strategy came first, and PR and communications led it. We ran the campaign and the digital build side by side, with one team and one plan. Every press release, photoshoot, article, email and social post had somewhere to send people, and the website and app gave them a reason to stay.</p>
           </div>
           <div class="cs-pillars">
-            <article class="cs-pillar" data-reveal>
-              <span class="cs-pillar__tag">Digital</span>
-              <h3>The platform</h3>
-              <p>A new website, the tournament's first iOS and Android apps, and the system that powers them.</p>
-              <ul data-stagger>
-                <li>Website</li>
-                <li>iOS &amp; Android apps</li>
-                <li>API &amp; CMS</li>
-                <li>Push notifications</li>
-                <li>Internal match status board</li>
-                <li>Analytics</li>
-              </ul>
-            </article>
-            <div class="cs-pillars__join" aria-hidden="true">+</div>
             <article class="cs-pillar" data-reveal>
               <span class="cs-pillar__tag">PR &amp; comms</span>
               <h3>The campaign</h3>
@@ -664,16 +700,73 @@
                 <li>Social</li>
               </ul>
             </article>
+            <div class="cs-pillars__join" aria-hidden="true">+</div>
+            <article class="cs-pillar" data-reveal>
+              <span class="cs-pillar__tag">Digital</span>
+              <h3>The platform</h3>
+              <p>A new website, the tournament's first iOS and Android apps, and the system that powers them.</p>
+              <ul data-stagger>
+                <li>Website</li>
+                <li>iOS &amp; Android apps</li>
+                <li>API &amp; CMS</li>
+                <li>Push notifications</li>
+                <li>Internal match status board</li>
+                <li>Analytics</li>
+              </ul>
+            </article>
           </div>
         </div>
       </section>
 
-      <!-- 5. THE PLATFORM =============================================== -->
+      <!-- 5. THE CAMPAIGN =============================================== -->
+      <section class="cs-section" aria-labelledby="cs-campaign">
+        <div class="container">
+          <div class="cs-split">
+            <div data-reveal>
+              <p class="cs-eyebrow"><i></i>04 &middot; The campaign</p>
+              <h2 class="cs-h2" id="cs-campaign">Building momentum <span>before a ball was kicked</span>.</h2>
+            </div>
+            <div class="cs-body" data-reveal>
+              <p>From the spring trophy shoot to the launch photocall in July, we planned and produced the moments that kept the tournament in the news, and used every one of them to send people to the new website and app.</p>
+              <p>The website and app were officially launched on <strong>22 July 2026</strong>, four days before the opening parade. The project was funded through the National Lottery Dormant Assets for All Fund.</p>
+            </div>
+          </div>
+
+          <div class="cs-mosaic">
+            <figure class="cs-mosaic__a" data-reveal><div class="cs-img"><img src="../assets/img/work/supercupni/launch.webp" width="1800" height="1258" alt="Launch photocall: a young player holds a phone showing the app beside a laptop showing the new website and the SuperCupNI trophy" loading="lazy"></div><figcaption class="cs-caption">Digital launch photocall, July 2026.</figcaption></figure>
+            <figure class="cs-mosaic__b" data-reveal><div class="cs-img"><img src="../assets/img/work/supercupni/trophy-coast.webp" width="1800" height="1200" alt="The SuperCupNI trophy and a match ball on rocks by the sea" loading="lazy"></div><figcaption class="cs-caption">Trophy shoot, March 2026.</figcaption></figure>
+            <figure class="cs-mosaic__c" data-reveal><div class="cs-img"><img src="../assets/img/work/supercupni/accreditation.webp" width="768" height="1024" alt="2026 SuperCupNI events team accreditation pass, lanyards and vouchers" loading="lazy"></div><figcaption class="cs-caption">Accreditation, tournament week 2026.</figcaption></figure>
+          </div>
+
+          <ol class="cs-channels">
+            <li data-reveal><b>PR &amp; press</b><p>Press releases and media relations around every milestone, including the digital launch, which was covered by The Irish News.</p></li>
+            <li data-reveal><b>Media management</b><p>Accreditation, briefings and a simple way for photographers to deliver their images during tournament week.</p></li>
+            <li data-reveal><b>Photoshoots</b><p>Planned shoots for launches and announcements, giving press, partners and social a steady supply of strong images.</p></li>
+            <li data-reveal><b>Articles &amp; news</b><p>Stories on supercupni.com that kept the website fresh and gave fans a reason to come back.</p></li>
+            <li data-reveal><b>Email</b><p>Campaigns to fans, media and partners, from ticket news to tournament week updates.</p></li>
+            <li data-reveal><b>Social</b><p>Content for the tournament's channels through the build-up and tournament week.</p></li>
+          </ol>
+
+          <div class="cs-ground">
+            <div class="cs-ground__copy" data-reveal>
+              <p class="cs-eyebrow"><i></i>On the ground</p>
+              <h3 class="cs-h2" style="font-size:clamp(1.8rem,3.6vw,2.8rem)">With the tournament team, <span>all week</span>.</h3>
+              <p class="cs-lead">We didn't hand over and walk away. Astutely's Russell was on the ground through tournament week, helping to manage the event from tournament HQ to the touchline, alongside the media team and the organisers.</p>
+            </div>
+            <figure class="cs-ground__a" data-reveal><div class="cs-img"><img src="../assets/img/work/supercupni/ground-hq.webp" width="768" height="1024" alt="Russell working at a bank of screens in the tournament HQ room" loading="lazy"></div><figcaption class="cs-caption">Tournament HQ, late on Wednesday 29 July, the busiest day of the week.</figcaption></figure>
+            <figure class="cs-ground__b" data-reveal><div class="cs-img"><img src="../assets/img/work/supercupni/ground-pitch.webp" width="1024" height="768" alt="Russell pitchside with tournament staff and media photographers" loading="lazy"></div><figcaption class="cs-caption">Pitchside with the media team on boys' finals night, 31 July.</figcaption></figure>
+            <figure class="cs-ground__c" data-reveal><div class="cs-img"><img src="../assets/img/work/supercupni/ground-finals.webp" width="768" height="1024" alt="Russell on the pitch under the SuperCupNI big screen at dusk" loading="lazy"></div><figcaption class="cs-caption">Finals night, under the lights.</figcaption></figure>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 6. THE PLATFORM =============================================== -->
       <section class="cs-section" aria-labelledby="cs-platform" style="padding-bottom:0">
         <div class="container">
           <div class="cs-split">
             <div data-reveal>
-              <p class="cs-eyebrow"><i></i>04 &middot; The platform</p>
+              <p class="cs-eyebrow"><i></i>05 &middot; The platform</p>
               <h2 class="cs-h2" id="cs-platform">One platform behind <span>every screen</span>.</h2>
             </div>
             <div class="cs-body" data-reveal>
@@ -775,49 +868,6 @@
         </div>
 
 
-      </section>
-
-      <!-- 6. THE CAMPAIGN =============================================== -->
-      <section class="cs-section" aria-labelledby="cs-campaign">
-        <div class="container">
-          <div class="cs-split">
-            <div data-reveal>
-              <p class="cs-eyebrow"><i></i>05 &middot; The campaign</p>
-              <h2 class="cs-h2" id="cs-campaign">Building momentum <span>before a ball was kicked</span>.</h2>
-            </div>
-            <div class="cs-body" data-reveal>
-              <p>From the spring trophy shoot to the launch photocall in July, we planned and produced the moments that kept the tournament in the news, and used every one of them to send people to the new website and app.</p>
-              <p>The website and app were officially launched on <strong>22 July 2026</strong>, four days before the opening parade. The project was funded through the National Lottery Dormant Assets for All Fund.</p>
-            </div>
-          </div>
-
-          <div class="cs-mosaic">
-            <figure class="cs-mosaic__a" data-reveal><div class="cs-img"><img src="../assets/img/work/supercupni/launch.webp" width="1800" height="1258" alt="Launch photocall: a young player holds a phone showing the app beside a laptop showing the new website and the SuperCupNI trophy" loading="lazy"></div><figcaption class="cs-caption">Digital launch photocall, July 2026.</figcaption></figure>
-            <figure class="cs-mosaic__b" data-reveal><div class="cs-img"><img src="../assets/img/work/supercupni/trophy-coast.webp" width="1800" height="1200" alt="The SuperCupNI trophy and a match ball on rocks by the sea" loading="lazy"></div><figcaption class="cs-caption">Trophy shoot, March 2026.</figcaption></figure>
-            <figure class="cs-mosaic__c" data-reveal><div class="cs-img"><img src="../assets/img/work/supercupni/accreditation.webp" width="768" height="1024" alt="2026 SuperCupNI events team accreditation pass, lanyards and vouchers" loading="lazy"></div><figcaption class="cs-caption">Accreditation, tournament week 2026.</figcaption></figure>
-          </div>
-
-          <ol class="cs-channels">
-            <li data-reveal><b>PR &amp; press</b><p>Press releases and media relations around every milestone, including the digital launch, which was covered by The Irish News.</p></li>
-            <li data-reveal><b>Media management</b><p>Accreditation, briefings and a simple way for photographers to deliver their images during tournament week.</p></li>
-            <li data-reveal><b>Photoshoots</b><p>Planned shoots for launches and announcements, giving press, partners and social a steady supply of strong images.</p></li>
-            <li data-reveal><b>Articles &amp; news</b><p>Stories on supercupni.com that kept the website fresh and gave fans a reason to come back.</p></li>
-            <li data-reveal><b>Email</b><p>Campaigns to fans, media and partners, from ticket news to tournament week updates.</p></li>
-            <li data-reveal><b>Social</b><p>Content for the tournament's channels through the build-up and tournament week.</p></li>
-          </ol>
-
-          <div class="cs-ground">
-            <div class="cs-ground__copy" data-reveal>
-              <p class="cs-eyebrow"><i></i>On the ground</p>
-              <h3 class="cs-h2" style="font-size:clamp(1.8rem,3.6vw,2.8rem)">With the tournament team, <span>all week</span>.</h3>
-              <p class="cs-lead">We didn't hand over and walk away. Astutely's Russell was on the ground through tournament week, helping to manage the event from tournament HQ to the touchline, alongside the media team and the organisers.</p>
-            </div>
-            <figure class="cs-ground__a" data-reveal><div class="cs-img"><img src="../assets/img/work/supercupni/ground-hq.webp" width="768" height="1024" alt="Russell working at a bank of screens in the tournament HQ room" loading="lazy"></div><figcaption class="cs-caption">Tournament HQ, late on Wednesday 29 July, the busiest day of the week.</figcaption></figure>
-            <figure class="cs-ground__b" data-reveal><div class="cs-img"><img src="../assets/img/work/supercupni/ground-pitch.webp" width="1024" height="768" alt="Russell pitchside with tournament staff and media photographers" loading="lazy"></div><figcaption class="cs-caption">Pitchside with the media team on boys' finals night, 31 July.</figcaption></figure>
-            <figure class="cs-ground__c" data-reveal><div class="cs-img"><img src="../assets/img/work/supercupni/ground-finals.webp" width="768" height="1024" alt="Russell on the pitch under the SuperCupNI big screen at dusk" loading="lazy"></div><figcaption class="cs-caption">Finals night, under the lights.</figcaption></figure>
-          </div>
-
-        </div>
       </section>
 
       <!-- 7. RESULTS: DAY ONE =========================================== -->
@@ -1029,6 +1079,10 @@
 
     </main>
 
+    <button class="to-top" type="button" aria-label="Back to top">
+      <svg viewBox="0 0 48 48" aria-hidden="true"><circle class="to-top__track" cx="24" cy="24" r="21"/><circle class="to-top__ring" cx="24" cy="24" r="21"/><path class="to-top__arrow" d="M24 31V17M17.5 23.5 24 17l6.5 6.5"/></svg>
+    </button>
+
     <footer class="footer">
       <div class="container">
         <div class="footer-base">
@@ -1072,6 +1126,31 @@
             requestAnimationFrame(raf);
           }
         }
+
+        // Back to top: show on scroll-up (or at the end), fill the ring with read progress.
+        (function () {
+          var btn = document.querySelector('.to-top');
+          if (!btn) return;
+          var ring = btn.querySelector('.to-top__ring'), C = 131.95, lastY = window.scrollY, ticking = false;
+          function update() {
+            var y = window.scrollY, max = document.documentElement.scrollHeight - window.innerHeight;
+            var p = max > 0 ? Math.min(1, y / max) : 0;
+            ring.style.strokeDashoffset = C * (1 - p);
+            if (y < window.innerHeight * 1.2) btn.classList.remove('is-on');
+            else if (y < lastY - 2 || p > 0.97) btn.classList.add('is-on');
+            else if (y > lastY + 2) btn.classList.remove('is-on');
+            lastY = y; ticking = false;
+          }
+          window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+          btn.addEventListener('click', function () {
+            if (lenis) lenis.scrollTo(0, { duration: 1.4 });
+            else window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
+            var home = document.querySelector('.home-nav__brand');
+            if (home) home.focus({ preventScroll: true });
+            btn.classList.remove('is-on');
+          });
+          update();
+        })();
 
         // Without GSAP, or with reduced motion, the page is already complete as authored.
         if (!hasGsap || reduced) return;
