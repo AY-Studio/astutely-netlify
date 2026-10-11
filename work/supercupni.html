@@ -1,0 +1,977 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-47JX6WKEXW"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-47JX6WKEXW');
+    </script>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="icon" type="image/jpeg" href="../assets/img/favicon.jpg">
+    <link rel="apple-touch-icon" href="../assets/img/favicon.jpg">
+    <title>SuperCupNI: Year One | Astutely Agency</title>
+    <meta name="description" content="How Astutely delivered a connected digital and PR campaign for the Budget Energy SuperCupNI: a new website, the tournament's first apps and the PR to launch them. No.6 in the UK App Store's Top Free Sports chart and over 4 million taps in year one.">
+    <meta property="og:site_name" content="Astutely Agency"/>
+    <meta property="og:title" content="SuperCupNI: Year One | Astutely Agency"/>
+    <meta property="og:type" content="article"/>
+
+    <!-- SEO:begin -->
+    <link rel="canonical" href="https://astutely.agency/work/supercupni"/>
+    <!-- Pending client approval: switch to "index, follow, max-image-preview:large" and add to sitemap.xml once signed off. -->
+    <meta name="robots" content="noindex, nofollow"/>
+    <meta name="author" content="Astutely"/>
+    <meta name="theme-color" content="#060606"/>
+    <meta property="og:url" content="https://astutely.agency/work/supercupni"/>
+    <meta property="og:locale" content="en_GB"/>
+    <meta property="og:description" content="The 43rd SuperCupNI. The first with an app. A connected digital and PR campaign that reached No.6 in the UK App Store's Top Free Sports chart."/>
+    <meta property="og:image" content="https://astutely.agency/assets/img/work/supercupni/og.jpg"/>
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="630"/>
+    <meta property="og:image:alt" content="A Manchester United youth player celebrates at the Budget Energy SuperCupNI"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="SuperCupNI: Year One | Astutely Agency"/>
+    <meta name="twitter:description" content="The 43rd SuperCupNI. The first with an app. A connected digital and PR campaign that reached No.6 in the UK App Store's Top Free Sports chart."/>
+    <meta name="twitter:image" content="https://astutely.agency/assets/img/work/supercupni/og.jpg"/>
+    <meta name="twitter:image:alt" content="A Manchester United youth player celebrates at the Budget Energy SuperCupNI"/>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://astutely.agency/work/supercupni#webpage",
+      "url": "https://astutely.agency/work/supercupni",
+      "name": "SuperCupNI: Year One | Astutely Agency",
+      "description": "How Astutely delivered a connected digital and PR campaign for the Budget Energy SuperCupNI.",
+      "primaryImageOfPage": "https://astutely.agency/assets/img/work/supercupni/og.jpg",
+      "isPartOf": { "@id": "https://astutely.agency/#website" },
+      "about": { "@id": "https://astutely.agency/#organization" },
+      "inLanguage": "en-GB",
+      "breadcrumb": { "@id": "https://astutely.agency/work/supercupni#breadcrumb" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://astutely.agency/work/supercupni#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://astutely.agency/" },
+        { "@type": "ListItem", "position": 2, "name": "SuperCupNI", "item": "https://astutely.agency/work/supercupni" }
+      ]
+    }
+  ]
+}
+    </script>
+    <!-- SEO:end -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link href="../assets/css/style.css?v=20260716r" rel="stylesheet">
+    <link rel="preload" as="image" href="../assets/img/work/supercupni/hero.webp" fetchpriority="high">
+    <!-- Lenis smooth scroll (base styles) -->
+    <style>
+      html.lenis, html.lenis body { height: auto; }
+      .lenis.lenis-smooth { scroll-behavior: auto !important; }
+      .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+      .lenis.lenis-stopped { overflow: hidden; }
+    </style>
+
+    <!-- ============================================================= -->
+    <!--  Case study: SuperCupNI. Dark, on-brand with contact15.       -->
+    <!--  Story-led long scroll; GSAP + ScrollTrigger drive the        -->
+    <!--  reveals. Everything renders complete without JS.             -->
+    <!-- ============================================================= -->
+    <style>
+      :root {
+        --hv: #F3DFA2; --hv-rgb: 243, 223, 162;
+        --ground: #060606; --panel: #111113; --panel-2: #17171B;
+        --ink: #F5F5F5; --muted: rgba(245,245,245,0.66); --faint: rgba(245,245,245,0.42);
+        --line: rgba(var(--hv-rgb),0.16);
+        --scni: #3DF28A; --scni-rgb: 61, 242, 138;   /* SuperCupNI app green, used sparingly for "live" moments */
+        --gutter: clamp(1rem, 4vw, 2.5rem);
+      }
+      /* Static ASTUTELY wordmark watermark, as on the contact page */
+      .theme-dark .svg-bg { pointer-events: none; }
+      .theme-dark .svg-bg svg { opacity: 1; }
+      .theme-dark .wave-path { fill: #191919; }
+
+      * { box-sizing: border-box; }
+      * { cursor: auto; }
+      a, button, [role="button"], label, summary, .site-nav__cta, .button { cursor: pointer; }
+      body.theme-dark { background: var(--ground); color: var(--ink); font-family: "ModernEra", system-ui, -apple-system, sans-serif; -webkit-font-smoothing: antialiased; margin: 0; overflow-x: hidden; }
+      .skip-link { position: absolute; left: -9999px; }
+      .skip-link:focus { left: 1rem; top: 1rem; background: var(--hv); color: #111; padding: 0.5rem 1rem; border-radius: 8px; z-index: 100000; }
+      img { max-width: 100%; height: auto; display: block; }
+
+      /* Nav: identical to the homepage / contact page, but floats over the hero */
+      .theme-dark .home-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1040; background: transparent; border-bottom: none; padding: 1rem 1rem 0; backdrop-filter: none; -webkit-backdrop-filter: none; visibility: visible; opacity: 1; }
+      .theme-dark .home-nav__inner { background: #161618; border: 1px solid rgba(var(--hv-rgb),0.22); border-radius: 16px; padding: 0.5rem 0.5rem 0.5rem 1.6rem; box-shadow: 0 14px 36px rgba(0,0,0,0.4); }
+      .theme-dark .home-nav__brand svg { fill: var(--hv); }
+      .theme-dark .home-nav .site-nav a { color: #F5F5F5; }
+      .theme-dark .home-nav .site-nav a:hover { color: var(--hv); }
+      .theme-dark .home-nav .site-nav a.site-nav__cta { background-color: var(--hv); color: #333333; }
+      .theme-dark .home-nav .site-nav a.site-nav__cta:hover { background-color: #FFFFFF; color: #333333; }
+      @media (max-width: 460px) {
+        .home-nav__brand svg { width: 104px; }
+        .site-nav__list { gap: 0.3rem 0.8rem; }
+        .theme-dark .home-nav__inner { padding: 0.45rem 0.45rem 0.45rem 1.05rem; }
+        .theme-dark .home-nav .site-nav a.site-nav__cta { padding: 0.5rem 0.85rem; }
+      }
+
+      /* ---------- Shared type ---------- */
+      .cs-eyebrow { display: inline-flex; align-items: center; gap: 0.6rem; color: var(--hv); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; margin: 0 0 1.1rem; }
+      .cs-eyebrow i { display: inline-block; width: 1.8rem; height: 1px; background: currentColor; opacity: 0.6; }
+      .cs-h2 { color: #FFFFFF; font-weight: 800; font-size: clamp(2rem, 5vw, 4rem); letter-spacing: -0.025em; line-height: 1.02; margin: 0; text-wrap: balance; }
+      .cs-h2 span { color: var(--hv); }
+      .cs-lead { color: var(--muted); font-weight: 300; font-size: clamp(1.08rem, 1.6vw, 1.35rem); line-height: 1.6; max-width: 58ch; margin: 1.5rem 0 0; text-wrap: pretty; }
+      .cs-lead strong { color: var(--ink); font-weight: 600; }
+      .cs-body p { color: var(--muted); font-weight: 300; font-size: clamp(1.02rem, 1.3vw, 1.15rem); line-height: 1.7; margin: 0 0 1.2rem; max-width: 60ch; }
+      .cs-body p strong { color: var(--ink); font-weight: 600; }
+      .cs-section { position: relative; padding: clamp(5rem, 12vw, 10rem) 0; }
+      .cs-caption { margin: 0.8rem 0 0; font-size: 0.92rem; letter-spacing: 0.04em; color: var(--faint); }
+      .cs-source { margin: 1.8rem 0 0; font-size: 0.8rem; letter-spacing: 0.06em; color: var(--faint); text-transform: uppercase; }
+
+      /* ---------- 1. Hero ---------- */
+      .cs-hero { position: relative; min-height: 100vh; min-height: 100svh; display: flex; align-items: flex-end; overflow: hidden; isolation: isolate; }
+      .cs-hero__media { position: absolute; inset: 0; z-index: -2; }
+      .cs-hero__media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; transform-origin: 50% 40%; }
+      .cs-hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background:
+          linear-gradient(180deg, rgba(6,6,6,0.55) 0%, rgba(6,6,6,0.05) 28%, rgba(6,6,6,0.25) 52%, rgba(6,6,6,0.94) 86%, #060606 100%),
+          linear-gradient(90deg, rgba(6,6,6,0.7) 0%, rgba(6,6,6,0) 60%); }
+      .cs-hero__inner { width: 100%; padding-top: 9rem; padding-bottom: clamp(2.5rem, 6vw, 4.5rem); }
+      @media (max-width: 767px) { .cs-hero::before { background: linear-gradient(180deg, rgba(6,6,6,0.5) 0%, rgba(6,6,6,0.15) 22%, rgba(6,6,6,0.75) 48%, rgba(6,6,6,0.96) 75%, #060606 100%); } }
+      .cs-hero h1 { margin: 0; color: #FFFFFF; font-weight: 800; letter-spacing: -0.035em; line-height: 0.95; font-size: clamp(2.9rem, 8.4vw, 8rem); }
+      .cs-hero h1 .line { display: block; }
+      .cs-hero h1 .gold { color: var(--hv); }
+      .cs-hero__lead { margin: 1.6rem 0 0; max-width: 52ch; color: rgba(245,245,245,0.82); font-weight: 300; font-size: clamp(1.05rem, 1.6vw, 1.35rem); line-height: 1.55; }
+      .cs-meta { list-style: none; margin: clamp(2.5rem, 5vw, 4rem) 0 0; padding: 1.5rem 0 0; border-top: 1px solid rgba(245,245,245,0.16); display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1.4rem 2rem; }
+      @media (min-width: 992px) { .cs-meta { grid-template-columns: 1fr 1.4fr 1.4fr 1fr; } }
+      .cs-meta span { display: block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--hv); margin-bottom: 0.35rem; }
+      .cs-meta p { margin: 0; font-size: 1.05rem; line-height: 1.45; color: var(--ink); }
+
+      /* ---------- 2. The stage ---------- */
+      .cs-split { display: grid; grid-template-columns: 1fr; gap: clamp(2.5rem, 6vw, 5rem); align-items: start; }
+      @media (min-width: 992px) { .cs-split { grid-template-columns: 1fr 1fr; } }
+      .cs-stats { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); border-top: 1px solid var(--line); }
+      .cs-stats li { padding: 1.6rem 1rem 1.6rem 0; border-bottom: 1px solid var(--line); }
+      .cs-stats li:nth-child(odd) { border-right: 1px solid var(--line); }
+      .cs-stats li:nth-child(even) { padding-left: 1.4rem; }
+      .cs-stats b { display: block; color: #FFFFFF; font-weight: 800; font-size: clamp(2rem, 4.4vw, 3.4rem); letter-spacing: -0.03em; line-height: 1; font-variant-numeric: tabular-nums; }
+      .cs-stats small { display: block; margin-top: 0.55rem; color: var(--muted); font-size: 1.05rem; line-height: 1.4; }
+      .cs-bleed { position: relative; margin-top: clamp(4rem, 9vw, 7rem); }
+      .cs-bleed__frame { overflow: hidden; border-radius: 0; aspect-ratio: 16 / 9; max-height: 88vh; width: 100%; }
+      @media (max-width: 767px) { .cs-bleed__frame { aspect-ratio: 4 / 3; } }
+      .cs-bleed__frame img { width: 100%; height: 118%; object-fit: cover; }
+      .cs-duo { display: grid; grid-template-columns: 1fr; gap: 1.25rem; margin-top: 1.25rem; }
+      @media (min-width: 768px) { .cs-duo { grid-template-columns: repeat(3, minmax(0,1fr)); } }
+      .cs-duo figure { margin: 0; }
+      .cs-duo .cs-img { border-radius: 14px; overflow: hidden; aspect-ratio: 3 / 2; background: var(--panel-2); }
+      .cs-duo .cs-img img { width: 100%; height: 100%; object-fit: cover; }
+
+      /* ---------- 3. The problem: scattered chips converge ---------- */
+      html { overflow-x: clip; }   /* scattered chips start off-canvas; never let them widen the page */
+      .cs-problem { text-align: center; overflow: clip; }
+      .cs-problem .cs-lead { margin-inline: auto; }
+      .cs-chips { list-style: none; margin: clamp(3rem, 7vw, 5rem) auto 0; padding: 0; max-width: 880px; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 0.75rem; }
+      @media (min-width: 640px) { .cs-chips { grid-template-columns: repeat(3, minmax(0,1fr)); } }
+      .cs-chips li { display: flex; align-items: center; gap: 0.7rem; padding: 1rem 1.1rem; border-radius: 12px; background: var(--panel); border: 1px solid var(--line); color: var(--ink); font-weight: 600; font-size: clamp(0.92rem, 1.3vw, 1.05rem); text-align: left; }
+      .cs-chips li svg { flex: none; width: 1.15rem; height: 1.15rem; fill: none; stroke: var(--hv); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+      .cs-chips__out { margin: clamp(2.5rem, 5vw, 3.5rem) auto 0; display: inline-flex; align-items: center; gap: 0.9rem; padding: 0.9rem 1.4rem 0.9rem 0.9rem; border-radius: 18px; background: #161618; border: 1px solid rgba(var(--hv-rgb),0.3); }
+      .cs-chips__out img { width: 3.1rem; height: 3.1rem; border-radius: 12px; }
+      .cs-chips__out p { margin: 0; text-align: left; font-size: 1.02rem; line-height: 1.35; color: var(--muted); }
+      .cs-chips__out p b { display: block; color: #FFFFFF; font-size: 1.05rem; }
+
+      /* ---------- 4. The build: system diagram ---------- */
+      .cs-system { margin-top: clamp(3.5rem, 7vw, 5rem); display: grid; gap: 0; justify-items: center; }
+      .cs-node { border-radius: 14px; background: var(--panel); border: 1px solid var(--line); padding: 1.1rem 1.3rem; text-align: center; }
+      .cs-node b { display: block; color: #FFFFFF; font-weight: 700; font-size: 1.12rem; }
+      .cs-node small { display: block; margin-top: 0.3rem; color: var(--muted); font-size: 0.95rem; line-height: 1.35; }
+      .cs-node--input { max-width: 340px; }
+      .cs-node--core { min-width: min(100%, 420px); background: var(--hv); border-color: var(--hv); padding: 1.4rem 1.6rem; }
+      .cs-node--core b { color: #111111; font-size: 1.2rem; }
+      .cs-node--core small { color: rgba(17,17,17,0.7); }
+      .cs-wire { width: 1px; height: 2.6rem; background: linear-gradient(var(--hv), rgba(var(--hv-rgb),0.25)); position: relative; }
+      .cs-wire::after { content: ""; position: absolute; left: -3px; bottom: -3px; width: 7px; height: 7px; border-radius: 50%; background: var(--hv); }
+      .cs-outputs { position: relative; width: 100%; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 0.75rem; padding-top: 2.4rem; }
+      @media (min-width: 768px) { .cs-outputs { grid-template-columns: repeat(4, minmax(0,1fr)); gap: 1rem; } }
+      /* the bus line the four outputs hang from */
+      .cs-outputs::before { content: ""; position: absolute; top: 0; left: 12.5%; right: 12.5%; height: 1px; background: rgba(var(--hv-rgb),0.4); }
+      .cs-outputs .cs-node { position: relative; }
+      .cs-outputs .cs-node::before { content: ""; position: absolute; top: -2.4rem; left: 50%; width: 1px; height: 2.4rem; background: rgba(var(--hv-rgb),0.4); }
+      @media (max-width: 767px) {
+        .cs-outputs::before { left: 25%; right: 25%; }
+        .cs-outputs .cs-node:nth-child(n+3)::before { display: none; }
+      }
+      .cs-node .cs-node__icon { display: block; width: 1.6rem; height: 1.6rem; margin: 0 auto 0.6rem; fill: none; stroke: var(--hv); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+
+      /* ---------- 4b. Phone rail ---------- */
+      .cs-rail { position: relative; overflow: hidden; padding: clamp(4rem, 8vw, 6rem) 0 clamp(2rem, 4vw, 3rem); }
+      .cs-rail__head { margin-bottom: clamp(2rem, 4vw, 3rem); }
+      .cs-rail__viewport { overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; scrollbar-width: none; padding-bottom: 1rem; }
+      .cs-rail__viewport::-webkit-scrollbar { display: none; }
+      .cs-rail__track { display: flex; gap: clamp(1rem, 2.4vw, 2rem); width: max-content; padding-inline: max(var(--gutter), calc((100vw - 1320px) / 2 + 12px)); }
+      .cs-phone { margin: 0; flex: 0 0 auto; width: clamp(200px, 21vw, 280px); scroll-snap-align: center; }
+      .cs-phone__frame { position: relative; border-radius: 34px; padding: 7px; background: linear-gradient(145deg, #2a2a2e, #0e0e10); box-shadow: 0 30px 60px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.08); }
+      .cs-phone__frame img { border-radius: 27px; width: 100%; aspect-ratio: 640 / 1391; object-fit: cover; background: #0e0e10; }
+      .cs-phone figcaption { margin-top: 1.2rem; color: var(--ink); font-weight: 700; font-size: 1.15rem; }
+      .cs-phone figcaption span { display: block; margin-top: 0.35rem; color: var(--muted); font-weight: 300; font-size: 1.02rem; line-height: 1.45; }
+      .cs-rail__hint { margin: 1rem 0 0; color: var(--faint); font-size: 0.8rem; letter-spacing: 0.08em; text-transform: uppercase; }
+      /* desktop: the rail is pinned and driven by vertical scroll (JS adds .is-pinned) */
+      .cs-rail.is-pinned .cs-rail__viewport { overflow: visible; scroll-snap-type: none; }
+      .cs-rail.is-pinned .cs-rail__hint { display: none; }
+
+      .cs-features { list-style: none; margin: clamp(3rem, 6vw, 4.5rem) 0 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: 0; border-top: 1px solid var(--line); }
+      @media (min-width: 640px) { .cs-features { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+      @media (min-width: 1100px) { .cs-features { grid-template-columns: repeat(4, minmax(0,1fr)); } }
+      .cs-features li { padding: 1.9rem 1.6rem 1.9rem 0; border-bottom: 1px solid var(--line); }
+      .cs-features b { display: block; color: #FFFFFF; font-weight: 800; font-size: clamp(1.25rem, 1.8vw, 1.45rem); letter-spacing: -0.01em; margin-bottom: 0.5rem; }
+      .cs-features p { margin: 0; color: var(--muted); font-weight: 300; font-size: 1.1rem; line-height: 1.5; }
+
+      /* ---------- 5. Launch ---------- */
+      .cs-launch__img { border-radius: 16px; overflow: hidden; aspect-ratio: 3 / 2; background: var(--panel-2); }
+      .cs-launch__img img { width: 100%; height: 100%; object-fit: cover; }
+      .cs-quote { margin: 0; padding: 0; border: 0; }
+      .cs-quote p { margin: 0; color: #FFFFFF; font-weight: 600; font-size: clamp(1.5rem, 3vw, 2.4rem); line-height: 1.22; letter-spacing: -0.015em; text-wrap: balance; }
+      .cs-quote p::before { content: "\201C"; display: block; color: var(--hv); font-size: 4.2rem; line-height: 0.6; margin-bottom: 0.9rem; font-weight: 800; }
+      .cs-quote footer { margin-top: 1.4rem; color: var(--muted); font-size: 0.95rem; }
+      .cs-quote footer b { color: var(--hv); font-weight: 600; }
+
+      /* ---------- 6. Day one: the chart ---------- */
+      .cs-dayone { background: radial-gradient(120% 80% at 80% 10%, rgba(var(--hv-rgb),0.08), rgba(6,6,6,0) 55%), var(--ground); }
+      .cs-clock { display: inline-flex; align-items: center; gap: 0.7rem; padding: 0.5rem 0.9rem; border-radius: 999px; border: 1px solid rgba(var(--scni-rgb),0.45); color: var(--scni); font-weight: 700; font-size: 0.82rem; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1.6rem; }
+      .cs-clock::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--scni); box-shadow: 0 0 0 0 rgba(var(--scni-rgb),0.6); animation: livePulse 1.8s ease-out infinite; }
+      @keyframes livePulse { 0% { box-shadow: 0 0 0 0 rgba(var(--scni-rgb),0.55); } 100% { box-shadow: 0 0 0 12px rgba(var(--scni-rgb),0); } }
+      .cs-big { display: flex; align-items: flex-start; color: var(--hv); font-weight: 800; letter-spacing: -0.06em; line-height: 0.78; font-size: clamp(9rem, 24vw, 20rem); margin: 0 0 1.5rem -0.04em; }
+      .cs-big__no { font-size: 0.22em; letter-spacing: 0; line-height: 1; font-weight: 700; margin: 0.12em 0.1em 0 0; }
+      .cs-chart { list-style: none; margin: 0; padding: 0; border-radius: 18px; background: var(--panel); border: 1px solid var(--line); overflow: hidden; }
+      .cs-chart .cs-chart__head { display: flex; justify-content: space-between; gap: 1rem; padding: 1rem 1.3rem; border-bottom: 1px solid var(--line); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--faint); }
+      .cs-chart li { display: grid; grid-template-columns: 2.2rem 1fr; align-items: center; gap: 0.6rem; padding: 0.95rem 1.3rem; border-bottom: 1px solid rgba(245,245,245,0.06); }
+      .cs-chart li:last-child { border-bottom: 0; }
+      .cs-chart .rank { color: var(--faint); font-weight: 700; font-variant-numeric: tabular-nums; font-size: 1.05rem; }
+      .cs-chart .name { color: rgba(245,245,245,0.78); font-size: 1.08rem; line-height: 1.3; }
+      .cs-chart .name small { display: block; color: var(--faint); font-size: 0.8rem; }
+      .cs-chart li.is-us { background: var(--hv); position: relative; padding-right: 5rem; }
+      .cs-chart li.is-us .rank, .cs-chart li.is-us .name { color: #111111; font-weight: 800; }
+      .cs-chart li.is-us .name small { color: rgba(17,17,17,0.7); font-weight: 600; }
+      .cs-chart li.is-us .us-flag { position: absolute; right: 1.1rem; top: 50%; transform: translateY(-50%); background: #111111; color: var(--hv); font-size: 0.66rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 0.35rem 0.6rem; border-radius: 999px; }
+      .cs-chart li.is-dim { opacity: 0.5; }
+      .cs-behind { margin: 1.8rem 0 0; color: var(--muted); font-weight: 300; font-size: 1.02rem; line-height: 1.65; }
+      .cs-behind b { color: var(--ink); font-weight: 600; }
+      .cs-proof { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2.2rem; max-width: 420px; }
+      .cs-proof figure { margin: 0; }
+      .cs-proof img { border-radius: 16px; border: 1px solid rgba(245,245,245,0.12); }
+      .cs-proof figcaption { margin-top: 0.6rem; font-size: 0.85rem; color: var(--faint); line-height: 1.4; }
+
+      /* ---------- 7. The numbers ---------- */
+      .cs-mega { margin: clamp(2.5rem, 6vw, 4rem) 0 0; }
+      .cs-mega b { display: block; color: #FFFFFF; font-weight: 800; letter-spacing: -0.045em; line-height: 0.9; font-size: clamp(2.4rem, 13vw, 11.5rem); font-variant-numeric: tabular-nums; white-space: nowrap; }
+      .cs-mega span { display: block; margin-top: 1rem; color: var(--hv); font-size: clamp(1rem, 1.6vw, 1.3rem); font-weight: 600; }
+      .cs-grid { list-style: none; margin: clamp(3rem, 7vw, 5rem) 0 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; }
+      @media (min-width: 992px) { .cs-grid { grid-template-columns: repeat(4, minmax(0,1fr)); } }
+      .cs-grid li { background: var(--ground); padding: clamp(1.3rem, 2.6vw, 2rem); }
+      .cs-grid b { display: block; color: #FFFFFF; font-weight: 800; letter-spacing: -0.03em; line-height: 1; font-size: clamp(1.8rem, 3.6vw, 2.9rem); font-variant-numeric: tabular-nums; }
+      .cs-grid small { display: block; margin-top: 0.7rem; color: var(--muted); font-size: 1.05rem; line-height: 1.4; }
+      .cs-grid li.is-gold { background: var(--hv); }
+      .cs-grid li.is-gold b { color: #111111; }
+      .cs-grid li.is-gold small { color: rgba(17,17,17,0.75); }
+      /* one day vs the week */
+      .cs-share { margin-top: clamp(3rem, 6vw, 4.5rem); }
+      .cs-share__label { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem 1rem; color: var(--muted); font-size: 1.1rem; margin-bottom: 0.9rem; }
+      .cs-share__label b { color: #FFFFFF; font-weight: 700; }
+      .cs-share__bar { position: relative; height: 3.2rem; border-radius: 12px; background: var(--panel); border: 1px solid var(--line); overflow: hidden; }
+      .cs-share__fill { position: absolute; inset: 0 auto 0 0; width: 24.75%; background: var(--hv); display: flex; align-items: center; justify-content: flex-end; padding-right: 0.9rem; color: #111111; font-weight: 800; font-size: 1rem; white-space: nowrap; }
+
+      /* ---------- Approach: two pillars ---------- */
+      .cs-pillars { display: grid; grid-template-columns: 1fr; gap: 1.25rem; margin-top: clamp(3rem, 6vw, 4.5rem); align-items: stretch; }
+      @media (min-width: 992px) { .cs-pillars { grid-template-columns: 1fr auto 1fr; } }
+      .cs-pillar { border-radius: 20px; background: var(--panel); border: 1px solid var(--line); padding: clamp(1.6rem, 3.5vw, 2.6rem); }
+      .cs-pillar__tag { display: inline-block; background: var(--hv); color: #111111; font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 0.4rem 0.75rem; border-radius: 999px; }
+      .cs-pillar h3 { margin: 1.2rem 0 0; color: #FFFFFF; font-weight: 800; font-size: clamp(1.6rem, 3vw, 2.2rem); letter-spacing: -0.02em; }
+      .cs-pillar > p { margin: 0.7rem 0 0; color: var(--muted); font-weight: 300; font-size: 1.1rem; line-height: 1.6; }
+      .cs-pillar ul { list-style: none; margin: 1.6rem 0 0; padding: 0; border-top: 1px solid var(--line); }
+      .cs-pillar li { padding: 0.85rem 0; border-bottom: 1px solid var(--line); color: var(--ink); font-size: 1.1rem; font-weight: 600; }
+      .cs-pillars__join { align-self: center; justify-self: center; display: grid; place-items: center; width: 3.2rem; height: 3.2rem; border-radius: 50%; border: 1px solid rgba(var(--hv-rgb),0.4); color: var(--hv); font-size: 1.6rem; font-weight: 300; }
+
+      /* ---------- Campaign: mosaic + channels ---------- */
+      .cs-mosaic { display: grid; grid-template-columns: minmax(0,1fr); gap: 1.25rem; margin-top: clamp(3rem, 6vw, 4.5rem); }
+      @media (min-width: 768px) {
+        .cs-mosaic { grid-template-columns: minmax(0,1.5fr) minmax(0,1fr); grid-template-rows: 1fr 1fr; }
+        .cs-mosaic__a { grid-row: span 2; }
+        .cs-mosaic figure { display: flex; flex-direction: column; min-height: 0; }
+        .cs-mosaic__a .cs-img { flex: none; aspect-ratio: 5 / 4; }
+        .cs-mosaic__b .cs-img, .cs-mosaic__c .cs-img { flex: 1; min-height: 0; aspect-ratio: auto; }
+      }
+      .cs-mosaic figure { margin: 0; }
+      .cs-mosaic .cs-img { border-radius: 16px; overflow: hidden; background: var(--panel-2); width: 100%; }
+      .cs-mosaic__a .cs-img { aspect-ratio: 4 / 3; }
+      .cs-mosaic__b .cs-img, .cs-mosaic__c .cs-img { aspect-ratio: 16 / 10; }
+      .cs-mosaic img { width: 100%; height: 100%; object-fit: cover; }
+      .cs-mosaic__c img { object-position: 50% 40%; }
+      .cs-channels { list-style: none; counter-reset: ch; margin: clamp(3rem, 6vw, 4.5rem) 0 0; padding: 0; display: grid; grid-template-columns: 1fr; border-top: 1px solid var(--line); }
+      @media (min-width: 768px) { .cs-channels { grid-template-columns: repeat(2, minmax(0,1fr)); column-gap: 3rem; } }
+      @media (min-width: 1100px) { .cs-channels { grid-template-columns: repeat(3, minmax(0,1fr)); } }
+      .cs-channels li { counter-increment: ch; padding: 1.8rem 0; border-bottom: 1px solid var(--line); }
+      .cs-channels li::before { content: counter(ch, decimal-leading-zero); display: block; color: var(--hv); font-size: 0.85rem; font-weight: 700; letter-spacing: 0.12em; margin-bottom: 0.7rem; }
+      .cs-channels b { display: block; color: #FFFFFF; font-weight: 800; font-size: clamp(1.3rem, 2vw, 1.55rem); letter-spacing: -0.01em; }
+      .cs-channels p { margin: 0.6rem 0 0; color: var(--muted); font-weight: 300; font-size: 1.1rem; line-height: 1.6; max-width: 40ch; }
+      .cs-quote--wide { margin-top: clamp(4rem, 8vw, 6rem); max-width: 900px; }
+
+      /* ---------- On the ground: venues + push ---------- */
+      .cs-venues__title { margin: 0 0 1.2rem; color: var(--hv); font-size: 0.85rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; }
+      .cs-venues { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.1rem; }
+      .cs-venues li { display: grid; grid-template-columns: minmax(7.5rem, 9.5rem) 1fr auto; align-items: center; gap: 1rem; }
+      .cs-venues__name { color: var(--ink); font-size: 1.1rem; font-weight: 600; }
+      .cs-venues__bar { height: 0.9rem; border-radius: 999px; background: var(--panel); overflow: hidden; }
+      .cs-venues__bar i { display: block; height: 100%; border-radius: 999px; background: var(--hv); }
+      .cs-venues b { color: #FFFFFF; font-weight: 800; font-size: 1.15rem; font-variant-numeric: tabular-nums; min-width: 3.4rem; text-align: right; }
+      .cs-push { position: relative; margin-top: clamp(4rem, 8vw, 6rem); border-radius: 20px; overflow: hidden; min-height: 460px; display: flex; align-items: flex-end; isolation: isolate; border: 1px solid var(--line); }
+      .cs-push > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+      .cs-push::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(6,6,6,0.94) 0%, rgba(6,6,6,0.7) 45%, rgba(6,6,6,0.1) 100%); }
+      @media (max-width: 767px) { .cs-push::before { background: linear-gradient(180deg, rgba(6,6,6,0.15) 0%, rgba(6,6,6,0.94) 60%); } }
+      .cs-push__body { padding: clamp(1.8rem, 4vw, 3.2rem); max-width: 560px; }
+      .cs-push__body b { display: block; color: #FFFFFF; font-weight: 800; letter-spacing: -0.04em; line-height: 0.95; font-size: clamp(3.4rem, 8vw, 6.5rem); font-variant-numeric: tabular-nums; }
+      .cs-push__body p { margin: 1rem 0 0; color: rgba(245,245,245,0.85); font-weight: 300; font-size: clamp(1.1rem, 1.6vw, 1.3rem); line-height: 1.55; }
+
+      /* ---------- Social ---------- */
+      .cs-social { display: grid; grid-template-columns: 1fr; gap: clamp(2.5rem, 5vw, 4.5rem); align-items: center; }
+      @media (min-width: 992px) { .cs-social { grid-template-columns: 1fr 1fr; } }
+      .cs-social__media { border-radius: 20px; overflow: hidden; aspect-ratio: 4 / 3; background: var(--panel-2); }
+      .cs-social__media img { width: 100%; height: 100%; object-fit: cover; }
+      .cs-social__tiles { list-style: none; margin: 2.2rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+      .cs-social__tile { border-radius: 16px; background: var(--hv); padding: 1.6rem 1.8rem; }
+      .cs-social__tile b { display: block; color: #111111; font-weight: 800; letter-spacing: -0.04em; line-height: 1; font-size: clamp(3rem, 6vw, 4.8rem); }
+      .cs-social__tile small { display: block; margin-top: 0.6rem; color: rgba(17,17,17,0.75); font-weight: 600; font-size: 1.05rem; }
+
+      /* ---------- What's next ---------- */
+      .cs-next-wrap { text-align: center; }
+      .cs-next-wrap .cs-lead { margin-inline: auto; }
+
+      /* ---------- 10. Credits + CTA ---------- */
+      .cs-credits { display: grid; grid-template-columns: 1fr; gap: 2.5rem; padding-top: clamp(2.5rem, 5vw, 3.5rem); border-top: 1px solid var(--line); }
+      @media (min-width: 768px) { .cs-credits { grid-template-columns: repeat(3, minmax(0,1fr)); } }
+      @media (max-width: 991px) { .cs-grid--3 li:last-child { grid-column: 1 / -1; } }
+      @media (min-width: 992px) { .cs-grid--3 { grid-template-columns: repeat(3, minmax(0,1fr)); } }
+      .cs-credits h3 { margin: 0 0 1rem; color: var(--hv); font-size: 0.78rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; }
+      .cs-credits ul { list-style: none; margin: 0; padding: 0; }
+      .cs-credits li { color: var(--ink); font-size: 1.1rem; line-height: 1.9; }
+      .cs-badges { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+      .cs-badges a { display: inline-block; border-radius: 8px; transition: transform 0.25s ease; }
+      .cs-badges a:hover { transform: translateY(-2px); }
+      .cs-badges img { height: 44px; width: auto; }
+      .cs-link { color: var(--ink); text-decoration: none; background-image: linear-gradient(var(--hv), var(--hv)); background-repeat: no-repeat; background-position: left 100%; background-size: 100% 1px; padding-bottom: 2px; transition: color 0.25s ease; }
+      .cs-link:hover { color: var(--hv); }
+      .cs-cta { text-align: center; padding: clamp(5rem, 12vw, 9rem) 0; }
+      .cs-cta .cs-h2 { font-size: clamp(2.4rem, 7vw, 5.5rem); }
+      .button { display: inline-flex; align-items: center; gap: 0.55rem; background: var(--hv); color: #161618; font-weight: 700; border: 0; text-decoration: none; padding: 1rem 1.8rem; border-radius: 10px; font-size: 1rem; letter-spacing: 0.02em; transition: background-color 0.25s ease; margin-top: 2.2rem; }
+      .button:hover { background: #FFFFFF; color: #161618; }
+      .cs-credit-photo { margin: 2.5rem 0 0; font-size: 0.85rem; color: var(--faint); }
+
+      /* Sign-off footer (as contact page) */
+      .footer { color: #F5F5F5; padding: clamp(4rem, 8vw, 7rem) 0; background: #111111; }
+      .footer svg { fill: var(--hv); }
+      .footer-base { margin-top: 0; text-align: center; }
+      .footer-base .footer-logo { width: 300px; max-width: 80%; height: auto; margin-bottom: 1.75rem; }
+      .footer-base .text__pink { display: block; font-weight: 300; font-size: clamp(0.72rem, 1vw, 0.88rem); letter-spacing: 0.16em; color: #FFFFFF; margin-bottom: 0.55rem; }
+      .theme-dark .footer-base .byline { display: block; font-weight: 300; color: var(--hv); font-size: clamp(0.78rem, 1.1vw, 0.92rem); letter-spacing: 0.08em; }
+      .footer-legal { margin: 2.4rem auto 0; max-width: 62ch; font-size: clamp(0.68rem, 1vw, 0.78rem); font-weight: 300; line-height: 1.55; color: rgba(245,245,245,0.45); }
+
+      /* Motion is opt-in: JS adds .cs-motion only when GSAP loaded and the visitor
+         hasn't asked for reduced motion, so the page is always complete without it. */
+      @media (prefers-reduced-motion: reduce) { .cs-clock::before { animation: none; } }
+    </style>
+  </head>
+  <body class="theme-dark news-body">
+    <div class="svg-bg" aria-hidden="true">
+      <svg class="scroll-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192.84 45.34">
+        <g id="Layer_1-2" data-name="Layer 1">
+                  <path class="wave-path" d="M22.2,12.6v12.76s-8.21.72-8.21.72l8.21-13.48ZM7.46,26.71l-5.35.49,1.13,4.63,1.18-.13-4.42,7.15,4.75,2.48,6.21-10.2,11.23-1.05v7.96s8.36,2.4,8.36,2.4l-.21-32.99-9.63-2.31L7.46,26.71Z"/>
+                  <path class="wave-path" d="M46.61,17.57c-1.2.04-2.2.31-3.01.81-.8.5-1.2,1.05-1.17,1.67.02.47.36.84,1.03,1.11.67.27,1.53.51,2.58.73,1.05.21,2.16.47,3.33.77,1.17.3,2.28.71,3.34,1.25,1.06.54,1.93,1.25,2.63,2.13.69.89,1.06,2.05,1.11,3.48.05,1.44-.29,2.78-1.03,4.02-.74,1.24-1.77,2.34-3.1,3.3-1.33.96-2.9,1.71-4.7,2.27-1.8.56-3.74.88-5.82.95-2.87.1-5.21-.34-7.02-1.3-1.81-.96-2.74-2.31-2.8-4.04-.04-1.17.33-2.23,1.12-3.18.79-.95,1.91-1.69,3.36-2.21l5.39,2.01c-1.3.6-1.93,1.34-1.9,2.22.02.47.29.86.81,1.18.52.32,1.34.46,2.46.42,1.67-.06,2.98-.46,3.92-1.21.94-.75,1.4-1.49,1.38-2.23-.02-.62-.36-1.08-1.02-1.4-.66-.31-1.49-.56-2.49-.75-1-.19-2.07-.4-3.21-.64-1.14-.24-2.22-.58-3.25-1.03-1.03-.45-1.87-1.09-2.53-1.94-.66-.84-1.01-1.95-1.06-3.33-.06-1.79.46-3.42,1.57-4.89,1.11-1.47,2.62-2.66,4.54-3.54,1.92-.89,4.07-1.37,6.44-1.45,1.79-.06,3.43.12,4.93.56,1.5.43,2.71,1.08,3.63,1.94.92.86,1.41,1.9,1.45,3.1.03.79-.15,1.56-.54,2.31-.39.75-.95,1.4-1.69,1.95l-6.24-2.25c.57-.4.85-.84.83-1.3-.01-.41-.3-.77-.85-1.07-.55-.3-1.36-.44-2.41-.4"/>
+                  <path class="wave-path" d="M58.61,12.81l6.5-.36,2.35-7.21,7.52,2.38-1.39,4.32,6.89-.32-1.49,4.8-6.98.37-3.98,12.32c.93-1.03,1.89-2.04,2.87-3.02.98-.99,1.98-1.94,3-2.85l3.16,3.59c-2.19,1.92-4.32,3.93-6.37,6.01-2.06,2.08-4.04,4.23-5.96,6.43l-7.52-2.38,6.37-19.58-3.64.21-1.31-4.71Z"/>
+                  <path class="wave-path" d="M105.54,13.35l-7.99,24.78-7.52-2.38,3.78-11.53c-1.85,2.53-3.74,5-5.66,7.41-1.93,2.41-3.89,4.75-5.9,7.02l-7.39-2.39,7.99-24.78,7.52,2.38-4.58,14.02c2.28-2.72,4.48-5.48,6.58-8.3,2.1-2.81,4.03-5.69,5.78-8.63l7.39,2.39Z"/>
+                  <path class="wave-path" d="M107.6,11.11l3.67-.26,2.35-7.21,7.52,2.38-1.39,4.32,7.05-.26-1.67,4.74-6.98.37-3.98,12.32c.93-1.03,1.89-2.04,2.87-3.02.98-.99,1.98-1.94,3-2.85l3.16,3.59c-2.19,1.92-4.32,3.93-6.37,6.01-2.06,2.08-4.04,4.22-5.96,6.43l-7.52-2.38,6.37-19.58-3.64.21,1.52-4.8Z"/>
+                  <path class="wave-path" d="M138.37,14.38c-1.03.04-2.02.66-2.99,1.86-.97,1.21-1.83,2.95-2.57,5.24,1.78-.24,3.22-.66,4.31-1.27,1.09-.61,1.89-1.3,2.39-2.06.5-.77.74-1.47.72-2.11-.04-1.14-.66-1.69-1.86-1.65M145.43,30.07c-1.02,1.94-2.53,3.54-4.52,4.8s-4.21,1.93-6.64,2.01c-2.29.08-4.2-.31-5.74-1.17-1.54-.86-2.71-2.04-3.51-3.55-.8-1.51-1.23-3.22-1.3-5.13-.04-1.08.02-2.12.16-3.11.14-.99.37-1.98.69-2.99.71-2.25,1.79-4.21,3.23-5.88,1.44-1.66,3.1-2.97,4.99-3.91,1.89-.95,3.87-1.45,5.95-1.52,2.7-.09,4.86.46,6.5,1.67,1.64,1.21,2.5,2.88,2.57,5.02.09,2.67-1.09,4.86-3.54,6.57-2.45,1.71-5.98,2.84-10.6,3.38l-1.46-2.9c-.41,1.72-.59,3.23-.55,4.55.04,1.29.32,2.29.83,3.01.51.72,1.25,1.06,2.21,1.02.91-.03,1.76-.43,2.55-1.21.79-.78,1.46-1.94,1.99-3.48l6.17,2.82Z"/>
+                  <polygon class="wave-path" points="156 0 144.97 33.86 152.49 36.25 163.52 2.38 156 0"/>
+                  <path class="wave-path" d="M186.96,10.59l-11.35,34.76-7.52-2.38,6.89-21.14c-3.53,4.81-7.29,9.49-11.27,14.03l-7.52-2.38,7.99-24.74,7.52,2.38-4.49,13.93c2.22-2.69,4.37-5.44,6.43-8.25,2.06-2.81,3.96-5.67,5.71-8.58l7.61,2.38Z"/>
+                  <polygon class="wave-path" points="182.88 32.99 190.29 34.94 192.84 27.15 185.43 25.21 182.88 32.99"/>
+                </g>
+      </svg>
+    </div>
+
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="home-nav">
+      <div class="container home-nav__inner">
+        <a class="home-nav__brand" href="../index.html" aria-label="Astutely Agency home">
+          <svg viewBox="0 0 192.84 45.34" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true" focusable="false">
+            <path d="M22.2,12.6v12.76s-8.21.72-8.21.72l8.21-13.48ZM7.46,26.71l-5.35.49,1.13,4.63,1.18-.13-4.42,7.15,4.75,2.48,6.21-10.2,11.23-1.05v7.96s8.36,2.4,8.36,2.4l-.21-32.99-9.63-2.31L7.46,26.71Z"/>
+            <path d="M46.61,17.57c-1.2.04-2.2.31-3.01.81-.8.5-1.2,1.05-1.17,1.67.02.47.36.84,1.03,1.11.67.27,1.53.51,2.58.73,1.05.21,2.16.47,3.33.77,1.17.3,2.28.71,3.34,1.25,1.06.54,1.93,1.25,2.63,2.13.69.89,1.06,2.05,1.11,3.48.05,1.44-.29,2.78-1.03,4.02-.74,1.24-1.77,2.34-3.1,3.3-1.33.96-2.9,1.71-4.7,2.27-1.8.56-3.74.88-5.82.95-2.87.1-5.21-.34-7.02-1.3-1.81-.96-2.74-2.31-2.8-4.04-.04-1.17.33-2.23,1.12-3.18.79-.95,1.91-1.69,3.36-2.21l5.39,2.01c-1.3.6-1.93,1.34-1.9,2.22.02.47.29.86.81,1.18.52.32,1.34.46,2.46.42,1.67-.06,2.98-.46,3.92-1.21.94-.75,1.4-1.49,1.38-2.23-.02-.62-.36-1.08-1.02-1.4-.66-.31-1.49-.56-2.49-.75-1-.19-2.07-.4-3.21-.64-1.14-.24-2.22-.58-3.25-1.03-1.03-.45-1.87-1.09-2.53-1.94-.66-.84-1.01-1.95-1.06-3.33-.06-1.79.46-3.42,1.57-4.89,1.11-1.47,2.62-2.66,4.54-3.54,1.92-.89,4.07-1.37,6.44-1.45,1.79-.06,3.43.12,4.93.56,1.5.43,2.71,1.08,3.63,1.94.92.86,1.41,1.9,1.45,3.1.03.79-.15,1.56-.54,2.31-.39.75-.95,1.4-1.69,1.95l-6.24-2.25c.57-.4.85-.84.83-1.3-.01-.41-.3-.77-.85-1.07-.55-.3-1.36-.44-2.41-.4"/>
+            <path d="M58.61,12.81l6.5-.36,2.35-7.21,7.52,2.38-1.39,4.32,6.89-.32-1.49,4.8-6.98.37-3.98,12.32c.93-1.03,1.89-2.04,2.87-3.02.98-.99,1.98-1.94,3-2.85l3.16,3.59c-2.19,1.92-4.32,3.93-6.37,6.01-2.06,2.08-4.04,4.23-5.96,6.43l-7.52-2.38,6.37-19.58-3.64.21-1.31-4.71Z"/>
+            <path d="M105.54,13.35l-7.99,24.78-7.52-2.38,3.78-11.53c-1.85,2.53-3.74,5-5.66,7.41-1.93,2.41-3.89,4.75-5.9,7.02l-7.39-2.39,7.99-24.78,7.52,2.38-4.58,14.02c2.28-2.72,4.48-5.48,6.58-8.3,2.1-2.81,4.03-5.69,5.78-8.63l7.39,2.39Z"/>
+            <path d="M107.6,11.11l3.67-.26,2.35-7.21,7.52,2.38-1.39,4.32,7.05-.26-1.67,4.74-6.98.37-3.98,12.32c.93-1.03,1.89-2.04,2.87-3.02.98-.99,1.98-1.94,3-2.85l3.16,3.59c-2.19,1.92-4.32,3.93-6.37,6.01-2.06,2.08-4.04,4.22-5.96,6.43l-7.52-2.38,6.37-19.58-3.64.21,1.52-4.8Z"/>
+            <path d="M138.37,14.38c-1.03.04-2.02.66-2.99,1.86-.97,1.21-1.83,2.95-2.57,5.24,1.78-.24,3.22-.66,4.31-1.27,1.09-.61,1.89-1.3,2.39-2.06.5-.77.74-1.47.72-2.11-.04-1.14-.66-1.69-1.86-1.65M145.43,30.07c-1.02,1.94-2.53,3.54-4.52,4.8s-4.21,1.93-6.64,2.01c-2.29.08-4.2-.31-5.74-1.17-1.54-.86-2.71-2.04-3.51-3.55-.8-1.51-1.23-3.22-1.3-5.13-.04-1.08.02-2.12.16-3.11.14-.99.37-1.98.69-2.99.71-2.25,1.79-4.21,3.23-5.88,1.44-1.66,3.1-2.97,4.99-3.91,1.89-.95,3.87-1.45,5.95-1.52,2.7-.09,4.86.46,6.5,1.67,1.64,1.21,2.5,2.88,2.57,5.02.09,2.67-1.09,4.86-3.54,6.57-2.45,1.71-5.98,2.84-10.6,3.38l-1.46-2.9c-.41,1.72-.59,3.23-.55,4.55.04,1.29.32,2.29.83,3.01.51.72,1.25,1.06,2.21,1.02.91-.03,1.76-.43,2.55-1.21.79-.78,1.46-1.94,1.99-3.48l6.17,2.82Z"/>
+            <polygon points="156 0 144.97 33.86 152.49 36.25 163.52 2.38 156 0"/>
+            <path d="M186.96,10.59l-11.35,34.76-7.52-2.38,6.89-21.14c-3.53,4.81-7.29,9.49-11.27,14.03l-7.52-2.38,7.99-24.74,7.52,2.38-4.49,13.93c2.22-2.69,4.37-5.44,6.43-8.25,2.06-2.81,3.96-5.67,5.71-8.58l7.61,2.38Z"/>
+            <polygon points="182.88 32.99 190.29 34.94 192.84 27.15 185.43 25.21 182.88 32.99"/>
+          </svg>
+        </a>
+        <nav class="site-nav" aria-label="Primary">
+          <ul class="site-nav__list">
+            <!-- News hidden for now: restore this line to bring it back: <li><a href="../news/">News</a></li> -->
+            <li><a class="site-nav__cta" href="../contact.html">Get in touch</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+
+      <!-- 1. HERO ======================================================= -->
+      <section class="cs-hero" aria-labelledby="cs-title">
+        <div class="cs-hero__media" aria-hidden="true">
+          <img src="../assets/img/work/supercupni/hero.webp" width="2400" height="1451" alt="" fetchpriority="high">
+        </div>
+        <div class="container cs-hero__inner">
+          <p class="cs-eyebrow" data-hero><i></i>Case study &middot; Budget Energy SuperCupNI</p>
+          <h1 id="cs-title">
+            <span class="line" data-hero>The 43rd SuperCupNI.</span>
+            <span class="line gold" data-hero>The first with an app.</span>
+          </h1>
+          <p class="cs-hero__lead" data-hero>In 2026 we delivered a connected digital and PR campaign for one of the world's leading youth football tournaments. A new website, its first iOS and Android apps and the platform behind them, launched and amplified through PR, media, photography, editorial, email and social. On the first day of matches, the app was <strong>No.6 in the UK App Store's Top Free Sports chart</strong>.</p>
+          <ul class="cs-meta" data-hero>
+            <li><span>Client</span><p>Budget Energy SuperCupNI</p></li>
+            <li><span>Digital</span><p>Website, iOS &amp; Android apps, API &amp; CMS, live match board</p></li>
+            <li><span>PR &amp; comms</span><p>PR, media relations, photography, editorial, email, social</p></li>
+            <li><span>Result</span><p>No.6, UK App Store Top Free Sports</p></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 2. THE CLIENT ================================================= -->
+      <section class="cs-section" aria-labelledby="cs-client">
+        <div class="container">
+          <div class="cs-split">
+            <div data-reveal>
+              <p class="cs-eyebrow"><i></i>01 &middot; The client</p>
+              <h2 class="cs-h2" id="cs-client">One of the biggest weeks in <span>world youth football</span>.</h2>
+              <div class="cs-body" style="margin-top:1.8rem">
+                <p>Since 1983, first as the Milk Cup, the tournament has brought elite academy and representative teams to Northern Ireland every July. Kobbie Mainoo, Kyle Walker and Darren Fletcher all played in it on their way to the top.</p>
+                <p>Matches are spread across Causeway Coast and Glens, Antrim and Newtownabbey, and Mid and East Antrim, with every game streamed live and teams, families and scouts travelling from four continents.</p>
+              </div>
+            </div>
+            <div data-reveal>
+              <ul class="cs-stats">
+                <li><b data-count="60000" data-suffix="+">60,000+</b><small>fans through the gates</small></li>
+                <li><b data-count="1200" data-suffix="+">1,200+</b><small>young players</small></li>
+                <li><b data-count="17">17</b><small>venues across three council areas</small></li>
+                <li><b>&pound;11.19m</b><small>direct economic benefit</small></li>
+              </ul>
+              <p class="cs-source">2025 figures &middot; SuperCupNI 2025 Partnership Evaluation Report</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-bleed" data-reveal>
+          <div class="cs-bleed__frame"><img src="../assets/img/work/supercupni/parade.webp" width="1800" height="1245" alt="Crowds line the street as teams march in the SuperCupNI opening parade" loading="lazy" data-parallax></div>
+          <div class="container"><p class="cs-caption">The opening parade.</p></div>
+        </div>
+        <div class="container">
+          <div class="cs-duo">
+            <figure data-reveal><div class="cs-img"><img src="../assets/img/work/supercupni/crowd.webp" width="1800" height="1164" alt="A packed stand of supporters watching a SuperCupNI match" loading="lazy"></div><figcaption class="cs-caption">Matchday crowds.</figcaption></figure>
+            <figure data-reveal><div class="cs-img"><img src="../assets/img/work/supercupni/girls-joy.webp" width="1600" height="1067" alt="Two Manchester United girls players celebrate a goal" loading="lazy"></div><figcaption class="cs-caption">Five competitions, boys and girls.</figcaption></figure>
+            <figure data-reveal><div class="cs-img"><img src="../assets/img/work/supercupni/flags.webp" width="1600" height="1040" alt="Young players carrying the flags of the USA and Bermuda at the opening ceremony" loading="lazy"></div><figcaption class="cs-caption">Teams from four continents.</figcaption></figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. THE CHALLENGE ============================================== -->
+      <section class="cs-section cs-problem" aria-labelledby="cs-challenge">
+        <div class="container">
+          <div data-reveal>
+            <p class="cs-eyebrow"><i></i>02 &middot; The challenge</p>
+            <h2 class="cs-h2" id="cs-challenge">Get people talking.<br><span>Then give them one place to follow it all.</span></h2>
+            <p class="cs-lead">With more than 150 fixtures in five days across three council areas, fans, families and teams needed fast, reliable answers: who's playing next, where, how the groups stand and how to get tickets. At the same time, the tournament needed to reach new audiences, sell tickets and deliver for its partners. A new app on its own wouldn't do that. It needed a campaign behind it.</p>
+          </div>
+          <ul class="cs-chips" data-chips aria-label="Everything fans needed, in one place">
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>Fixtures</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Live scores</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16M9 3v18"/></svg>Group tables</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4v6h6v4h6M6 20v-6"/><circle cx="18" cy="14" r="2"/></svg>Knockout routes</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg>Venues &amp; directions</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8a2 2 0 0 0 0 4v4h18v-4a2 2 0 0 1 0-4V4H3z"/><path d="M14 4v12" stroke-dasharray="2 2"/></svg>Tickets</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg>Favourite teams</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10 21a2 2 0 0 0 4 0"/></svg>Alerts</li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H4zM8 20h8M12 16v4"/></svg>News &amp; streams</li>
+          </ul>
+          <div class="cs-chips__out" data-reveal>
+            <img src="../assets/img/work/supercupni/app-icon.webp" width="320" height="320" alt="" loading="lazy">
+            <p><b>One website. Two apps. One source of truth.</b>Free on iPhone and Android.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. OUR APPROACH =============================================== -->
+      <section class="cs-section" aria-labelledby="cs-approach" style="padding-top:0">
+        <div class="container">
+          <div data-reveal>
+            <p class="cs-eyebrow"><i></i>03 &middot; Our approach</p>
+            <h2 class="cs-h2" id="cs-approach">One connected campaign. <span>Digital and PR working as one.</span></h2>
+            <p class="cs-lead">We ran the digital build and the PR and communications side by side, with one team and one plan. Every press release, photoshoot, article, email and social post had somewhere to send people, and the website and app gave them a reason to stay.</p>
+          </div>
+          <div class="cs-pillars">
+            <article class="cs-pillar" data-reveal>
+              <span class="cs-pillar__tag">Digital</span>
+              <h3>The platform</h3>
+              <p>A new website, the tournament's first iOS and Android apps, and the system that powers them.</p>
+              <ul>
+                <li>Website</li>
+                <li>iOS &amp; Android apps</li>
+                <li>API &amp; CMS</li>
+                <li>Push notifications</li>
+                <li>Live match board</li>
+                <li>Analytics</li>
+              </ul>
+            </article>
+            <div class="cs-pillars__join" aria-hidden="true">+</div>
+            <article class="cs-pillar" data-reveal>
+              <span class="cs-pillar__tag">PR &amp; comms</span>
+              <h3>The campaign</h3>
+              <p>The story, the images and the conversation, all pointing people to the same place.</p>
+              <ul>
+                <li>PR &amp; press releases</li>
+                <li>Media management &amp; accreditation</li>
+                <li>Photoshoots</li>
+                <li>Articles &amp; news</li>
+                <li>Email campaigns</li>
+                <li>Social</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. THE PLATFORM =============================================== -->
+      <section class="cs-section" aria-labelledby="cs-platform" style="padding-top:0;padding-bottom:0">
+        <div class="container">
+          <div class="cs-split">
+            <div data-reveal>
+              <p class="cs-eyebrow"><i></i>04 &middot; The platform</p>
+              <h2 class="cs-h2" id="cs-platform">One platform behind <span>every screen</span>.</h2>
+            </div>
+            <div class="cs-body" data-reveal>
+              <p>We built a single tournament platform: an API and content management system holding every team, fixture, venue and result.</p>
+              <p>The tournament team enters information once and it updates the website, the iOS app, the Android app and the match board together. <strong>One workflow for a small team under pressure, and one version of the truth for fans.</strong></p>
+            </div>
+          </div>
+
+          <div class="cs-system" data-reveal aria-label="How the SuperCupNI platform fits together">
+            <div class="cs-node cs-node--input"><b>Tournament team</b><small>Teams, fixtures, venues, scores and alerts</small></div>
+            <div class="cs-wire" aria-hidden="true"></div>
+            <div class="cs-node cs-node--core"><b>SuperCupNI API &amp; CMS</b><small>One source of truth, built by Astutely</small></div>
+            <div class="cs-outputs">
+              <div class="cs-node"><svg class="cs-node__icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg><b>iOS app</b><small>App Store</small></div>
+              <div class="cs-node"><svg class="cs-node__icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg><b>Android app</b><small>Google Play</small></div>
+              <div class="cs-node"><svg class="cs-node__icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8M12 17v4"/></svg><b>Website</b><small>supercupni.com</small></div>
+              <div class="cs-node"><svg class="cs-node__icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="4" width="20" height="13" rx="1"/><path d="M7 21h10"/><path d="M6 13l3-3 3 2 5-5"/></svg><b>Match board</b><small>Live results on screen</small></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cs-rail" data-rail>
+          <div class="container cs-rail__head" data-reveal>
+            <h3 class="cs-h2" style="font-size:clamp(1.6rem,3.4vw,2.6rem)">Built for <span>tournament week</span>.</h3>
+          </div>
+          <div class="cs-rail__viewport" tabindex="0" aria-label="App screens, scroll sideways">
+            <div class="cs-rail__track">
+              <figure class="cs-phone"><div class="cs-phone__frame"><img src="../assets/img/work/supercupni/app-2118.webp" width="640" height="1391" alt="SuperCupNI app launch screen" loading="lazy"></div><figcaption>Launch screen<span>Official tournament branding from the first open.</span></figcaption></figure>
+              <figure class="cs-phone"><div class="cs-phone__frame"><img src="../assets/img/work/supercupni/app-2121.webp" width="640" height="1391" alt="App home screen with a countdown to kick off and quick links" loading="lazy"></div><figcaption>Home<span>Countdown, quick links and today's matches.</span></figcaption></figure>
+              <figure class="cs-phone"><div class="cs-phone__frame"><img src="../assets/img/work/supercupni/app-2123.webp" width="640" height="1391" alt="Competitions screen listing Boys' Premier, Junior and Minor and Girls' Premier and Junior" loading="lazy"></div><figcaption>Competitions<span>Five competitions, each with its own colour.</span></figcaption></figure>
+              <figure class="cs-phone"><div class="cs-phone__frame"><img src="../assets/img/work/supercupni/app-2124.webp" width="640" height="1391" alt="Boys' Premier fixtures and results" loading="lazy"></div><figcaption>Fixtures &amp; results<span>Every match by day, with kick-off times and venues.</span></figcaption></figure>
+              <figure class="cs-phone"><div class="cs-phone__frame"><img src="../assets/img/work/supercupni/app-groups.webp" width="640" height="1391" alt="Group tables showing the knockout route by group position" loading="lazy"></div><figcaption>Groups &amp; knockouts<span>Live tables and the route to each final.</span></figcaption></figure>
+              <figure class="cs-phone"><div class="cs-phone__frame"><img src="../assets/img/work/supercupni/app-2126.webp" width="640" height="1391" alt="Match detail screen with directions and ticket buttons" loading="lazy"></div><figcaption>Match details<span>Kick-off, venue, directions and tickets.</span></figcaption></figure>
+              <figure class="cs-phone"><div class="cs-phone__frame"><img src="../assets/img/work/supercupni/app-2128.webp" width="640" height="1391" alt="Venue screen listing upcoming matches at The Rope Walk" loading="lazy"></div><figcaption>Venues<span>Every match at each ground.</span></figcaption></figure>
+              <figure class="cs-phone"><div class="cs-phone__frame"><img src="../assets/img/work/supercupni/app-2125.webp" width="640" height="1391" alt="Matches screen listing final results across competitions" loading="lazy"></div><figcaption>Results<span>Final scores across every competition.</span></figcaption></figure>
+            </div>
+          </div>
+          <div class="container"><p class="cs-rail__hint">Swipe to see more screens</p></div>
+        </div>
+
+        <div class="container">
+          <ul class="cs-features">
+            <li data-reveal><b>Live scores</b><p>Results update across every platform as soon as they're entered.</p></li>
+            <li data-reveal><b>Favourite teams</b><p>Follow a team and see its matches first.</p></li>
+            <li data-reveal><b>Directions</b><p>A route to any of the 16 venues in one tap.</p></li>
+            <li data-reveal><b>Tickets</b><p>Buy tickets directly from the match.</p></li>
+            <li data-reveal><b>Push notifications</b><p>Alerts that open straight to the right match, story or tickets page.</p></li>
+            <li data-reveal><b>Calendar</b><p>Save fixtures to your phone's calendar.</p></li>
+            <li data-reveal><b>Sharing</b><p>Send match details to friends and family.</p></li>
+            <li data-reveal><b>Feedback</b><p>Fan ratings collected in the app to shape future updates.</p></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- 6. THE CAMPAIGN =============================================== -->
+      <section class="cs-section" aria-labelledby="cs-campaign">
+        <div class="container">
+          <div class="cs-split">
+            <div data-reveal>
+              <p class="cs-eyebrow"><i></i>05 &middot; The campaign</p>
+              <h2 class="cs-h2" id="cs-campaign">Building momentum <span>before a ball was kicked</span>.</h2>
+            </div>
+            <div class="cs-body" data-reveal>
+              <p>From the spring trophy shoot to the launch photocall in July, we planned and produced the moments that kept the tournament in the news, and used every one of them to send people to the new website and app.</p>
+              <p>The website and app were officially launched on <strong>22 July 2026</strong>, four days before the opening parade. The project was funded through the National Lottery Dormant Assets for All Fund.</p>
+            </div>
+          </div>
+
+          <div class="cs-mosaic">
+            <figure class="cs-mosaic__a" data-reveal><div class="cs-img"><img src="../assets/img/work/supercupni/launch.webp" width="1800" height="1258" alt="Launch photocall: a young player holds a phone showing the app beside a laptop showing the new website and the SuperCupNI trophy" loading="lazy"></div><figcaption class="cs-caption">Digital launch photocall, July 2026.</figcaption></figure>
+            <figure class="cs-mosaic__b" data-reveal><div class="cs-img"><img src="../assets/img/work/supercupni/trophy-coast.webp" width="1800" height="1200" alt="The SuperCupNI trophy and a match ball on rocks by the sea" loading="lazy"></div><figcaption class="cs-caption">Trophy shoot, March 2026.</figcaption></figure>
+            <figure class="cs-mosaic__c" data-reveal><div class="cs-img"><img src="../assets/img/work/supercupni/accreditation.webp" width="768" height="1024" alt="2026 SuperCupNI events team accreditation pass, lanyards and vouchers" loading="lazy"></div><figcaption class="cs-caption">Accreditation, tournament week 2026.</figcaption></figure>
+          </div>
+
+          <ol class="cs-channels">
+            <li data-reveal><b>PR &amp; press</b><p>Press releases and media relations around every milestone, including the digital launch, which was covered by The Irish News.</p></li>
+            <li data-reveal><b>Media management</b><p>Accreditation, briefings and a simple way for photographers to deliver their images during tournament week.</p></li>
+            <li data-reveal><b>Photoshoots</b><p>Planned shoots for launches and announcements, giving press, partners and social a steady supply of strong images.</p></li>
+            <li data-reveal><b>Articles &amp; news</b><p>Stories on supercupni.com that kept the website fresh and gave fans a reason to come back.</p></li>
+            <li data-reveal><b>Email</b><p>Campaigns to fans, media and partners, from ticket news to tournament week updates.</p></li>
+            <li data-reveal><b>Social</b><p>Content for the tournament's channels through the build-up and tournament week.</p></li>
+          </ol>
+
+          <blockquote class="cs-quote cs-quote--wide" data-reveal>
+            <p>For the first time, everything people need to follow the tournament is available in one place.</p>
+            <footer><b>Sam Gamble</b>, Tournament Co-ordinator, Budget Energy SuperCupNI</footer>
+          </blockquote>
+        </div>
+      </section>
+
+      <!-- 7. RESULTS: DAY ONE =========================================== -->
+      <section class="cs-section cs-dayone" aria-labelledby="cs-dayone">
+        <div class="container">
+          <div class="cs-split" style="align-items:center">
+            <div data-reveal>
+              <p class="cs-clock">Monday 27 July &middot; 23:43</p>
+              <p class="cs-eyebrow"><i></i>06 &middot; Results: day one</p>
+              <span class="cs-big" aria-hidden="true"><span class="cs-big__no">No.</span><span data-count="6" data-from="20">6</span></span>
+              <h2 class="cs-h2" id="cs-dayone">No.6 in the UK App Store <span>on the first day of matches</span>.</h2>
+              <p class="cs-lead">By the end of the first day of matches, SuperCupNI was the sixth most downloaded free sports app in the UK, behind only Playtomic, the Premier League, Spond, The Hundred and the Official England App.</p>
+              <p class="cs-behind">It ranked ahead of <b>the Glasgow 2026 Commonwealth Games, Sky Sports, DAZN, the Official Liverpool FC App and TNT Sports</b>.</p>
+            </div>
+            <div data-reveal>
+              <ol class="cs-chart" data-chart aria-label="UK App Store, Top Downloaded free Sports apps, 27 July 2026, 23:43">
+                <li class="cs-chart__head" aria-hidden="true"><span>Top Free &middot; Sports</span><span>UK App Store</span></li>
+                <li class="is-dim"><span class="rank">1</span><span class="name">Playtomic<small>Play padel</small></span></li>
+                <li class="is-dim"><span class="rank">2</span><span class="name">Premier League<small>Scores, News</small></span></li>
+                <li class="is-dim"><span class="rank">3</span><span class="name">Spond<small>Sports Team Management</small></span></li>
+                <li class="is-dim"><span class="rank">4</span><span class="name">The Hundred<small>The Hundred official app</small></span></li>
+                <li class="is-dim"><span class="rank">5</span><span class="name">The Official England App<small>Football Scores, News, Videos</small></span></li>
+                <li class="is-us"><span class="rank">6</span><span class="name">SuperCupNI<small>Official Tournament App</small></span><span class="us-flag">Ours</span></li>
+                <li class="is-dim"><span class="rank">7</span><span class="name">T100 Athlete Tracker<small>Athlete tracker for PTO events</small></span></li>
+              </ol>
+              <div class="cs-proof">
+                <figure><img src="../assets/img/work/supercupni/proof-chart.webp" width="602" height="1308" alt="iPhone screenshot of the App Store Top Downloaded Sports chart with SuperCupNI at number 6" loading="lazy"><figcaption>Top Downloaded, Sports. 27 July, 23:43.</figcaption></figure>
+                <figure><img src="../assets/img/work/supercupni/proof-listing.webp" width="602" height="1308" alt="iPhone screenshot of the SuperCupNI App Store listing showing Chart No.6 Sports" loading="lazy"><figcaption>The App Store listing: No.6, Sports.</figcaption></figure>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. RESULTS: THE APP =========================================== -->
+      <section class="cs-section" aria-labelledby="cs-numbers">
+        <div class="container">
+          <div data-reveal>
+            <p class="cs-eyebrow"><i></i>07 &middot; Results: year one</p>
+            <h2 class="cs-h2" id="cs-numbers">Over four million taps <span>in its first year</span>.</h2>
+          </div>
+          <div class="cs-mega" data-reveal>
+            <b data-count="4002428">4,002,428</b>
+            <span>taps in the app across the 2026 season</span>
+          </div>
+
+          <ul class="cs-grid">
+            <li data-reveal><b data-count="15120">15,120</b><small>devices used the app</small></li>
+            <li data-reveal><b data-count="264">264</b><small>average taps per device</small></li>
+            <li data-reveal><b data-count="134671">134,671</b><small>competition views</small></li>
+            <li data-reveal><b data-count="68588">68,588</b><small>team profile views</small></li>
+            <li data-reveal><b data-count="58751">58,751</b><small>match page views</small></li>
+            <li data-reveal><b data-count="3124">3,124</b><small>teams followed</small></li>
+            <li data-reveal><b data-count="531">531</b><small>matches saved to calendars</small></li>
+            <li data-reveal class="is-gold"><b>4.7<span style="font-size:0.5em">/5</span></b><small>average fan rating</small></li>
+          </ul>
+
+          <div class="cs-share" data-reveal>
+            <div class="cs-share__label"><span><b>Wednesday 29 July</b>, the busiest day</span><span><b data-count="980570">980,570</b> taps in 24 hours</span></div>
+            <div class="cs-share__bar" role="img" aria-label="Wednesday 29 July accounted for almost a quarter of all app activity in the season">
+              <div class="cs-share__fill" data-fill>~25%</div>
+            </div>
+            <p class="cs-caption">Almost a quarter of all app activity across the season happened in a single day of tournament week.</p>
+          </div>
+
+          <ul class="cs-grid cs-grid--3" style="margin-top:clamp(2rem,4vw,3rem)">
+            <li data-reveal><b data-count="848441">848,441</b><small>page views on the new website</small></li>
+            <li data-reveal><b data-count="911">911</b><small>people on the website in a single 30 minute window on the opening day</small></li>
+            <li data-reveal><b data-count="152">152</b><small>matches, every result live across web and app</small></li>
+          </ul>
+          <p class="cs-source">Source: SuperCupNI app analytics (28 April to 29 October 2026) and Google Analytics</p>
+        </div>
+      </section>
+
+      <!-- 9. RESULTS: ON THE GROUND ===================================== -->
+      <section class="cs-section" aria-labelledby="cs-ground" style="padding-top:0">
+        <div class="container">
+          <div class="cs-split" style="align-items:center">
+            <div data-reveal>
+              <p class="cs-eyebrow"><i></i>08 &middot; Results: on the ground</p>
+              <h2 class="cs-h2" id="cs-ground">Getting fans to <span>the right pitch</span>.</h2>
+              <div class="cs-body" style="margin-top:1.6rem">
+                <p>With matches spread across 16 venues, many of them new to visiting families, directions became one of the app's most used features. Fans opened directions <strong>9,520 times</strong> across the season.</p>
+              </div>
+            </div>
+            <div data-reveal>
+              <p class="cs-venues__title">Directions opened, top five venues</p>
+              <ol class="cs-venues" data-bars>
+                <li><span class="cs-venues__name">The Rope Walk</span><span class="cs-venues__bar"><i style="width:100%"></i></span><b>1,090</b></li>
+                <li><span class="cs-venues__name">Parker Avenue</span><span class="cs-venues__bar"><i style="width:95.6%"></i></span><b>1,042</b></li>
+                <li><span class="cs-venues__name">Seahaven</span><span class="cs-venues__bar"><i style="width:93.8%"></i></span><b>1,022</b></li>
+                <li><span class="cs-venues__name">Riada Stadium</span><span class="cs-venues__bar"><i style="width:76.2%"></i></span><b>831</b></li>
+                <li><span class="cs-venues__name">Broughshane</span><span class="cs-venues__bar"><i style="width:71.7%"></i></span><b>781</b></li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="cs-push" data-reveal>
+            <img src="../assets/img/work/supercupni/phone-in-hand.webp" width="1600" height="1067" alt="" loading="lazy">
+            <div class="cs-push__body">
+              <span class="cs-eyebrow"><i></i>Push notifications</span>
+              <b data-count="20702">20,702</b>
+              <p>push notifications delivered to fans' phones, each one opening straight to the right ticket, story or match.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10. SOCIAL ==================================================== -->
+      <!-- TO CONFIRM: Instagram figure (10M+ interactions) and add other platforms
+           (Facebook, TikTok, X) by copying a .cs-social__tile once figures are in. -->
+      <section class="cs-section" aria-labelledby="cs-social" style="padding-top:0">
+        <div class="container">
+          <div class="cs-social">
+            <div class="cs-social__media" data-reveal>
+              <img src="../assets/img/work/supercupni/supporters.webp" width="1600" height="1101" alt="Young supporters in sunglasses and bucket hats cheering at the opening ceremony" loading="lazy">
+            </div>
+            <div data-reveal>
+              <p class="cs-eyebrow"><i></i>09 &middot; Results: social</p>
+              <h2 class="cs-h2" id="cs-social">The conversation <span>carried on social</span>.</h2>
+              <p class="cs-lead">The campaign ran through to the tournament's social channels, where build-up and tournament week content drove more than 10 million interactions on Instagram alone.</p>
+              <ul class="cs-social__tiles">
+                <li class="cs-social__tile"><b>10M+</b><small>Instagram interactions</small></li>
+                <!-- <li class="cs-social__tile"><b>0</b><small>Facebook ...</small></li> -->
+                <!-- <li class="cs-social__tile"><b>0</b><small>TikTok ...</small></li> -->
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- full-bleed breath -->
+      <div class="cs-bleed" data-reveal style="margin-top:0">
+        <div class="cs-bleed__frame"><img src="../assets/img/work/supercupni/night-final.webp" width="1800" height="1298" alt="A young player celebrates with family in the stand under the floodlights" loading="lazy" data-parallax style="object-position:50% 12%"></div>
+      </div>
+
+      <!-- 11. WHAT'S NEXT =============================================== -->
+      <section class="cs-section cs-next-wrap" aria-labelledby="cs-next">
+        <div class="container" data-reveal>
+          <p class="cs-eyebrow"><i></i>10 &middot; What's next</p>
+          <h2 class="cs-h2" id="cs-next">Built to grow <span>with the tournament</span>.</h2>
+          <p class="cs-lead">Year one set the foundation. The platform, the content and the campaign are all designed to build year on year, and because everything runs from one platform, every improvement reaches the website, both apps and the match board at once.</p>
+        </div>
+      </section>
+
+      <!-- 12. CREDITS + CTA ============================================= -->
+      <section class="cs-section" style="padding-top:0" aria-label="Project credits">
+        <div class="container">
+          <div class="cs-credits" data-reveal>
+            <div>
+              <h3>Digital</h3>
+              <ul>
+                <li>Digital strategy</li>
+                <li>UX &amp; UI design</li>
+                <li>Website</li>
+                <li>iOS &amp; Android apps</li>
+                <li>API, CMS &amp; hosting</li>
+                <li>Push notifications &amp; analytics</li>
+                <li>Live match board</li>
+              </ul>
+            </div>
+            <div>
+              <h3>PR &amp; comms</h3>
+              <ul>
+                <li>PR &amp; press releases</li>
+                <li>Media management &amp; accreditation</li>
+                <li>Photoshoots</li>
+                <li>Articles &amp; news</li>
+                <li>Email campaigns</li>
+                <li>Social</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Get the app</h3>
+              <div class="cs-badges">
+                <a href="https://apps.apple.com/gb/app/supercupni/id6763050914" target="_blank" rel="noopener" aria-label="Download SuperCupNI on the App Store"><img src="../assets/img/work/supercupni/badge-app-store.svg" width="120" height="40" alt=""></a>
+                <a href="https://play.google.com/store/apps/details?id=com.aystudio.supercupni" target="_blank" rel="noopener" aria-label="Get SuperCupNI on Google Play"><img src="../assets/img/work/supercupni/badge-google-play.svg" width="120" height="40" alt=""></a>
+              </div>
+              <h3 style="margin-top:2rem">Visit</h3>
+              <p style="margin:0"><a class="cs-link" href="https://supercupni.com" target="_blank" rel="noopener">supercupni.com</a></p>
+            </div>
+          </div>
+          <p class="cs-credit-photo">Tournament photography courtesy of Budget Energy SuperCupNI.</p>
+        </div>
+
+        <div class="container cs-cta" data-reveal>
+          <p class="cs-eyebrow"><i></i>Work with us</p>
+          <h2 class="cs-h2">Planning something big?</h2>
+          <p class="cs-lead" style="margin-inline:auto">Whether it's an event, a club or a brand with a moment to make the most of, we bring digital and PR together to make it land.</p>
+          <a class="button" href="../contact.html">Get in touch <svg viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M13.2 5.3 19.9 12l-6.7 6.7-1.4-1.4 4.3-4.3H4v-2h12.1l-4.3-4.3z"/></svg></a>
+        </div>
+      </section>
+
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-base">
+          <svg class="footer-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192.84 45.34">
+            <path d="M22.2,12.6v12.76s-8.21.72-8.21.72l8.21-13.48ZM7.46,26.71l-5.35.49,1.13,4.63,1.18-.13-4.42,7.15,4.75,2.48,6.21-10.2,11.23-1.05v7.96s8.36,2.4,8.36,2.4l-.21-32.99-9.63-2.31L7.46,26.71Z"/>
+            <path d="M46.61,17.57c-1.2.04-2.2.31-3.01.81-.8.5-1.2,1.05-1.17,1.67.02.47.36.84,1.03,1.11.67.27,1.53.51,2.58.73,1.05.21,2.16.47,3.33.77,1.17.3,2.28.71,3.34,1.25,1.06.54,1.93,1.25,2.63,2.13.69.89,1.06,2.05,1.11,3.48.05,1.44-.29,2.78-1.03,4.02-.74,1.24-1.77,2.34-3.1,3.3-1.33.96-2.9,1.71-4.7,2.27-1.8.56-3.74.88-5.82.95-2.87.1-5.21-.34-7.02-1.3-1.81-.96-2.74-2.31-2.8-4.04-.04-1.17.33-2.23,1.12-3.18.79-.95,1.91-1.69,3.36-2.21l5.39,2.01c-1.3.6-1.93,1.34-1.9,2.22.02.47.29.86.81,1.18.52.32,1.34.46,2.46.42,1.67-.06,2.98-.46,3.92-1.21.94-.75,1.4-1.49,1.38-2.23-.02-.62-.36-1.08-1.02-1.4-.66-.31-1.49-.56-2.49-.75-1-.19-2.07-.4-3.21-.64-1.14-.24-2.22-.58-3.25-1.03-1.03-.45-1.87-1.09-2.53-1.94-.66-.84-1.01-1.95-1.06-3.33-.06-1.79.46-3.42,1.57-4.89,1.11-1.47,2.62-2.66,4.54-3.54,1.92-.89,4.07-1.37,6.44-1.45,1.79-.06,3.43.12,4.93.56,1.5.43,2.71,1.08,3.63,1.94.92.86,1.41,1.9,1.45,3.1.03.79-.15,1.56-.54,2.31-.39.75-.95,1.4-1.69,1.95l-6.24-2.25c.57-.4.85-.84.83-1.3-.01-.41-.3-.77-.85-1.07-.55-.3-1.36-.44-2.41-.4"/>
+            <path d="M58.61,12.81l6.5-.36,2.35-7.21,7.52,2.38-1.39,4.32,6.89-.32-1.49,4.8-6.98.37-3.98,12.32c.93-1.03,1.89-2.04,2.87-3.02.98-.99,1.98-1.94,3-2.85l3.16,3.59c-2.19,1.92-4.32,3.93-6.37,6.01-2.06,2.08-4.04,4.23-5.96,6.43l-7.52-2.38,6.37-19.58-3.64.21-1.31-4.71Z"/>
+            <path d="M105.54,13.35l-7.99,24.78-7.52-2.38,3.78-11.53c-1.85,2.53-3.74,5-5.66,7.41-1.93,2.41-3.89,4.75-5.9,7.02l-7.39-2.39,7.99-24.78,7.52,2.38-4.58,14.02c2.28-2.72,4.48-5.48,6.58-8.3,2.1-2.81,4.03-5.69,5.78-8.63l7.39,2.39Z"/>
+            <path d="M107.6,11.11l3.67-.26,2.35-7.21,7.52,2.38-1.39,4.32,7.05-.26-1.67,4.74-6.98.37-3.98,12.32c.93-1.03,1.89-2.04,2.87-3.02.98-.99,1.98-1.94,3-2.85l3.16,3.59c-2.19,1.92-4.32,3.93-6.37,6.01-2.06,2.08-4.04,4.22-5.96,6.43l-7.52-2.38,6.37-19.58-3.64.21,1.52-4.8Z"/>
+            <path d="M138.37,14.38c-1.03.04-2.02.66-2.99,1.86-.97,1.21-1.83,2.95-2.57,5.24,1.78-.24,3.22-.66,4.31-1.27,1.09-.61,1.89-1.3,2.39-2.06.5-.77.74-1.47.72-2.11-.04-1.14-.66-1.69-1.86-1.65M145.43,30.07c-1.02,1.94-2.53,3.54-4.52,4.8s-4.21,1.93-6.64,2.01c-2.29.08-4.2-.31-5.74-1.17-1.54-.86-2.71-2.04-3.51-3.55-.8-1.51-1.23-3.22-1.3-5.13-.04-1.08.02-2.12.16-3.11.14-.99.37-1.98.69-2.99.71-2.25,1.79-4.21,3.23-5.88,1.44-1.66,3.1-2.97,4.99-3.91,1.89-.95,3.87-1.45,5.95-1.52,2.7-.09,4.86.46,6.5,1.67,1.64,1.21,2.5,2.88,2.57,5.02.09,2.67-1.09,4.86-3.54,6.57-2.45,1.71-5.98,2.84-10.6,3.38l-1.46-2.9c-.41,1.72-.59,3.23-.55,4.55.04,1.29.32,2.29.83,3.01.51.72,1.25,1.06,2.21,1.02.91-.03,1.76-.43,2.55-1.21.79-.78,1.46-1.94,1.99-3.48l6.17,2.82Z"/>
+            <polygon points="156 0 144.97 33.86 152.49 36.25 163.52 2.38 156 0"/>
+            <path d="M186.96,10.59l-11.35,34.76-7.52-2.38,6.89-21.14c-3.53,4.81-7.29,9.49-11.27,14.03l-7.52-2.38,7.99-24.74,7.52,2.38-4.49,13.93c2.22-2.69,4.37-5.44,6.43-8.25,2.06-2.81,3.96-5.67,5.71-8.58l7.61,2.38Z"/>
+            <polygon points="182.88 32.99 190.29 34.94 192.84 27.15 185.43 25.21 182.88 32.99"/>
+          </svg>
+          <span class="text-uppercase text__pink">STRATEGY. BRAND. DIGITAL. COMMS.</span>
+          <span class="byline">A Creative Marketing Agency</span>
+          <p class="footer-legal">Astutely &amp; AY Studio are trading names of Annett Young Limited, a company registered in Northern Ireland. Company No: NI684765. Registered office: Top Floor, 144 High Street, Holywood, BT18 9HS. VAT No: GB424848086.</p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Smooth scroll (Lenis) + scroll storytelling (GSAP / ScrollTrigger) -->
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.25/dist/lenis.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js"></script>
+    <script>
+      (function () {
+        var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var hasGsap = typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined';
+
+        // Lenis, synced to GSAP's ticker so pinned / scrubbed triggers stay in step.
+        var lenis = null;
+        if (!reduced && typeof Lenis !== 'undefined') {
+          lenis = new Lenis({ duration: 1.05, easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); }, smoothWheel: true, anchors: true });
+          if (hasGsap) {
+            lenis.on('scroll', ScrollTrigger.update);
+            gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
+            gsap.ticker.lagSmoothing(0);
+          } else {
+            var raf = function (time) { lenis.raf(time); requestAnimationFrame(raf); };
+            requestAnimationFrame(raf);
+          }
+        }
+
+        // Without GSAP, or with reduced motion, the page is already complete as authored.
+        if (!hasGsap || reduced) return;
+        gsap.registerPlugin(ScrollTrigger);
+
+        var fmt = function (n) { return Math.round(n).toLocaleString('en-GB'); };
+
+        // Hero: settle the photo in, then stagger the copy up.
+        gsap.from('.cs-hero__media img', { scale: 1.12, duration: 2.2, ease: 'power3.out' });
+        gsap.from('[data-hero]', { y: 40, opacity: 0, duration: 1.1, ease: 'power3.out', stagger: 0.12, delay: 0.15 });
+        gsap.to('.cs-hero__media img', { yPercent: 12, ease: 'none', scrollTrigger: { trigger: '.cs-hero', start: 'top top', end: 'bottom top', scrub: true } });
+
+        // Generic reveal for blocks as they enter.
+        gsap.set('[data-reveal]', { y: 36, opacity: 0 });
+        ScrollTrigger.batch('[data-reveal]', {
+          start: 'top 88%',
+          once: true,
+          onEnter: function (els) { gsap.to(els, { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out', stagger: 0.08, overwrite: true }); }
+        });
+
+        // Parallax inside full-bleed frames.
+        gsap.utils.toArray('[data-parallax]').forEach(function (img) {
+          gsap.fromTo(img, { yPercent: -9 }, { yPercent: 0, ease: 'none', scrollTrigger: { trigger: img.parentNode, start: 'top bottom', end: 'bottom top', scrub: true } });
+        });
+
+        // Count-ups: the real figure is in the markup; animate to it once visible.
+        gsap.utils.toArray('[data-count]').forEach(function (el) {
+          var end = parseFloat(el.getAttribute('data-count'));
+          var from = parseFloat(el.getAttribute('data-from') || '0');
+          var suffix = el.getAttribute('data-suffix') || '';
+          var o = { v: from };
+          el.textContent = fmt(from) + suffix;
+          gsap.to(o, {
+            v: end, duration: end > 1000 ? 2.2 : 1.4, ease: 'power2.out',
+            scrollTrigger: { trigger: el, start: 'top 90%', once: true },
+            onUpdate: function () { el.textContent = fmt(o.v) + suffix; }
+          });
+        });
+
+        // The problem: scattered pieces snap together into one grid as you scroll.
+        var chips = gsap.utils.toArray('[data-chips] li');
+        if (chips.length) {
+          gsap.from(chips, {
+            x: function () { var r = Math.min(260, window.innerWidth * 0.3); return gsap.utils.random(-r, r); },
+            y: function () { return gsap.utils.random(-160, 200); },
+            rotation: function () { return gsap.utils.random(-18, 18); },
+            opacity: 0.25,
+            ease: 'power2.out',
+            stagger: { each: 0.02, from: 'random' },
+            scrollTrigger: { trigger: '[data-chips]', start: 'top 92%', end: 'center 55%', scrub: 0.8 }
+          });
+        }
+
+        // Day one chart: rows tick in, then ours lands with a glow.
+        var chart = document.querySelector('[data-chart]');
+        if (chart) {
+          var rows = chart.querySelectorAll('li:not(.cs-chart__head)');
+          var tl = gsap.timeline({ scrollTrigger: { trigger: chart, start: 'top 78%', once: true } });
+          tl.from(rows, { x: -24, opacity: 0, duration: 0.5, ease: 'power2.out', stagger: 0.09 })
+            .from(chart.querySelector('.is-us'), { scale: 0.94, boxShadow: '0 0 0 0 rgba(243,223,162,0)', duration: 0.6, ease: 'back.out(2.5)' }, '-=0.2')
+            .to(chart.querySelector('.is-us'), { boxShadow: '0 0 60px 0 rgba(243,223,162,0.35)', duration: 0.5, yoyo: true, repeat: 1 });
+        }
+
+        // One day vs the week bar.
+        var fill = document.querySelector('[data-fill]');
+        if (fill) gsap.from(fill, { width: '0%', duration: 1.6, ease: 'power3.out', scrollTrigger: { trigger: fill, start: 'top 85%', once: true } });
+
+        // Venue bars grow to their share of the leader.
+        gsap.utils.toArray('[data-bars] i').forEach(function (bar, i) {
+          gsap.from(bar, { width: '0%', duration: 1.2, ease: 'power3.out', delay: i * 0.08, scrollTrigger: { trigger: '[data-bars]', start: 'top 85%', once: true } });
+        });
+
+        // Phone rail: on wide screens, pin the section and drive the screens sideways with scroll.
+        var mm = gsap.matchMedia();
+        mm.add('(min-width: 992px)', function () {
+          var rail = document.querySelector('[data-rail]');
+          var track = rail && rail.querySelector('.cs-rail__track');
+          if (!track) return;
+          rail.classList.add('is-pinned');
+          var dist = function () { return Math.max(0, track.scrollWidth - window.innerWidth); };
+          gsap.to(track, {
+            x: function () { return -dist(); },
+            ease: 'none',
+            scrollTrigger: { trigger: rail, start: 'top top', end: function () { return '+=' + dist(); }, pin: true, scrub: 0.6, invalidateOnRefresh: true, anticipatePin: 1 }
+          });
+          return function () { rail.classList.remove('is-pinned'); };
+        });
+
+        window.addEventListener('load', function () { ScrollTrigger.refresh(); });
+      })();
+    </script>
+  </body>
+</html>
