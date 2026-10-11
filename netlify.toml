@@ -20,6 +20,20 @@
   status = 301
   force = true
 
+# The branded SuperCupNI case study was reviewed as /work/supercupni2 before it
+# became the main page; keep that shared link working.
+[[redirects]]
+  from = "/work/supercupni2"
+  to = "/work/supercupni"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/work/supercupni2.html"
+  to = "/work/supercupni"
+  status = 301
+  force = true
+
 # --- Sensible default headers ----------------------------------------------
 [[headers]]
   for = "/*"

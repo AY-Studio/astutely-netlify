@@ -1,0 +1,31 @@
+/* Case study "next / previous project" navigation (see assets/js/work-nav.js).
+   Photo cards with white type, so they sit on any case study's colours; the title
+   above inherits the page's text colour and font. */
+.wn { padding-top: clamp(4rem, 8vw, 6rem); padding-bottom: clamp(5rem, 10vw, 8rem); }
+.wn__title { margin: 0 0 clamp(1.4rem, 3vw, 2rem); font-size: clamp(0.85rem, 1vw, 0.95rem); font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.7; }
+.wn__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(1rem, 2vw, 1.5rem); }
+@media (min-width: 992px) { .wn__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); } .wn__grid--single { grid-template-columns: minmax(0, 1fr); } }
+
+.wn-card { position: relative; display: flex; align-items: flex-end; min-height: clamp(320px, 42vw, 520px); border-radius: clamp(18px, 2.4vw, 28px); overflow: hidden; isolation: isolate; color: #FFFFFF; text-decoration: none; box-shadow: 0 30px 70px rgba(0, 0, 0, 0.22); }
+.wn-card:hover, .wn-card:focus-visible { color: #FFFFFF; }
+.wn-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; transition: transform 1.1s cubic-bezier(.2, .7, .2, 1); }
+.wn-card::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(0, 0, 0, 0.05) 20%, rgba(0, 0, 0, 0.78) 100%), linear-gradient(90deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0) 65%); }
+.wn-card:hover img, .wn-card:focus-visible img { transform: scale(1.05); }
+.wn-card:focus-visible { outline: 3px solid currentColor; outline-offset: 4px; }
+
+.wn-card__body { display: block; padding: clamp(1.6rem, 4vw, 3.2rem); padding-right: clamp(5.5rem, 10vw, 8rem); }
+.wn-card__label { display: inline-block; margin-bottom: 1rem; padding: 0.35rem 0.75rem; border-radius: 999px; background: rgba(255, 255, 255, 0.18); -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); font-size: 0.82rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+.wn-card__client { display: block; font-weight: 800; font-size: clamp(1.9rem, 4.4vw, 3.8rem); letter-spacing: -0.03em; line-height: 1.02; text-wrap: balance; }
+.wn-card__line { display: block; margin-top: 0.8rem; max-width: 38ch; font-size: clamp(1.05rem, 1.5vw, 1.3rem); line-height: 1.45; opacity: 0.92; }
+.wn-card__tags { display: block; margin-top: 1rem; font-size: 0.95rem; letter-spacing: 0.04em; opacity: 0.75; }
+.wn-card--prev .wn-card__client { font-size: clamp(1.6rem, 3vw, 2.6rem); }
+
+.wn-card__go { position: absolute; right: clamp(1.4rem, 3vw, 2.6rem); bottom: clamp(1.4rem, 3vw, 2.6rem); width: clamp(3.4rem, 5vw, 4.4rem); height: clamp(3.4rem, 5vw, 4.4rem); border-radius: 50%; background: #FFFFFF; display: grid; place-items: center; transition: transform 0.35s ease; }
+.wn-card__go svg { width: 45%; height: 45%; fill: none; stroke: #111111; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.wn-card--prev .wn-card__go svg { transform: rotate(180deg); }
+.wn-card:hover .wn-card__go { transform: translateX(4px); }
+.wn-card--prev:hover .wn-card__go { transform: translateX(-4px); }
+
+.wn__fallback { font-size: 1.1rem; font-weight: 600; color: inherit; }
+
+@media (prefers-reduced-motion: reduce) { .wn-card img, .wn-card__go { transition: none; } }
