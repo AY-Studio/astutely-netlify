@@ -343,6 +343,72 @@
       .cs-social__tile b { display: block; color: #111111; font-weight: 800; letter-spacing: -0.04em; line-height: 1; font-size: clamp(3rem, 6vw, 4.8rem); }
       .cs-social__tile small { display: block; margin-top: 0.6rem; color: rgba(17,17,17,0.75); font-weight: 600; font-size: 1.05rem; }
 
+
+      /* ---------- Hero CTAs ---------- */
+      .cs-ctas { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem 1.2rem; margin-top: 2rem; }
+      .cs-ctas .button { margin-top: 0; }
+
+      /* ---------- Website showcase ---------- */
+      .cs-web { display: grid; grid-template-columns: minmax(0,1fr); gap: clamp(2.5rem, 5vw, 4rem); align-items: center; margin-top: clamp(5rem, 10vw, 8rem); }
+      @media (min-width: 992px) { .cs-web { grid-template-columns: minmax(0,0.8fr) minmax(0,1.2fr); } }
+      .cs-web__copy .button { margin-top: 2rem; }
+      .cs-web__stage { position: relative; padding: 0 0 3rem 0; }
+      .cs-browser { border-radius: 14px; overflow: hidden; background: #1a1a1d; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 40px 90px rgba(0,0,0,0.55), 0 0 0 1px rgba(var(--hv-rgb),0.08); }
+      .cs-browser__bar { display: flex; align-items: center; gap: 0.4rem; padding: 0.7rem 0.9rem; background: #232327; }
+      .cs-browser__bar i { width: 0.65rem; height: 0.65rem; border-radius: 50%; background: rgba(255,255,255,0.18); }
+      .cs-browser__bar span { margin-left: 0.8rem; flex: 1; max-width: 22rem; padding: 0.3rem 0.8rem; border-radius: 6px; background: #161618; color: var(--muted); font-size: 0.8rem; }
+      .cs-browser__view { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: #fff; }
+      .cs-browser__view img { width: 100%; height: auto; will-change: transform; }
+      .cs-web__phone { position: absolute; right: -1rem; bottom: 0; width: clamp(130px, 24%, 230px); margin: 0; }
+      .cs-web__phone .cs-phone__frame { border-radius: 30px; padding: 6px; }
+      .cs-web__phone .cs-phone__frame img { border-radius: 24px; aspect-ratio: 600 / 1298; }
+      @media (max-width: 767px) { .cs-web__phone { right: -0.25rem; width: 34%; } }
+
+      /* ---------- Screen wall ---------- */
+      .cs-wall { position: relative; height: clamp(520px, 72vw, 920px); overflow: hidden; margin-top: clamp(4rem, 9vw, 7rem); perspective: 1800px; }
+      .cs-wall::before, .cs-wall::after { content: ""; position: absolute; left: 0; right: 0; height: 28%; z-index: 2; pointer-events: none; }
+      .cs-wall::before { top: 0; background: linear-gradient(180deg, var(--ground), rgba(6,6,6,0)); }
+      .cs-wall::after { bottom: 0; background: linear-gradient(0deg, var(--ground), rgba(6,6,6,0)); }
+      .cs-wall__tilt { position: absolute; left: 50%; top: 50%; width: 175%; display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: clamp(0.8rem, 1.6vw, 1.6rem); transform: translate(-50%, -50%) rotateX(32deg) rotateZ(-18deg); transform-style: preserve-3d; }
+      @media (min-width: 992px) { .cs-wall__tilt { width: 135%; } }
+      .cs-wall__col { display: grid; gap: clamp(0.8rem, 1.6vw, 1.6rem); align-content: start; will-change: transform; }
+      .cs-wall__col:nth-child(even) { margin-top: 18%; }
+      .cs-wall__col img { width: 100%; border-radius: 10px; box-shadow: 0 24px 50px rgba(0,0,0,0.55); background: #fff; }
+
+      /* ---------- On the ground ---------- */
+      .cs-ground { display: grid; grid-template-columns: minmax(0,1fr); gap: 1.25rem; margin-top: clamp(4.5rem, 9vw, 7rem); }
+      .cs-ground figure { margin: 0; }
+      .cs-ground .cs-img { border-radius: 16px; overflow: hidden; background: var(--panel-2); }
+      .cs-ground .cs-img img { width: 100%; height: 100%; object-fit: cover; }
+      .cs-ground__a .cs-img, .cs-ground__c .cs-img { aspect-ratio: 3 / 4; }
+      .cs-ground__b .cs-img { aspect-ratio: 4 / 3; }
+      @media (min-width: 768px) {
+        .cs-ground { grid-template-columns: repeat(2, minmax(0,1fr)); }
+        .cs-ground__copy { grid-column: 1 / -1; }
+        .cs-ground__b { grid-column: 1 / -1; }
+      }
+      @media (min-width: 1100px) {
+        .cs-ground { grid-template-columns: minmax(0,1fr) minmax(0,1.35fr) minmax(0,1fr); align-items: end; }
+        .cs-ground__copy { grid-column: 1 / -1; max-width: 760px; }
+        .cs-ground__b { grid-column: auto; }
+      }
+
+      /* ---------- Receipts ---------- */
+      .cs-receipts { display: grid; grid-template-columns: minmax(0,1fr); gap: 1.25rem; margin-top: clamp(2rem, 4vw, 3rem); }
+      @media (min-width: 768px) { .cs-receipts { grid-template-columns: minmax(0,1.3fr) minmax(0,1fr); align-items: start; } }
+      .cs-receipts figure { margin: 0; }
+      .cs-receipt { border-radius: 14px; overflow: hidden; border: 1px solid rgba(255,255,255,0.14); background: #fff; box-shadow: 0 24px 60px rgba(0,0,0,0.45); }
+      .cs-receipt img { width: 100%; }
+      .cs-social__media { margin: 0; aspect-ratio: auto !important; border-radius: 0 !important; overflow: visible !important; background: none !important; max-width: 520px; }
+      .cs-social__media .cs-receipt img { height: auto; object-fit: initial; }
+      @media (max-width: 767px) {
+        .cs-wall { height: 430px; }
+        .cs-wall__tilt { width: 260%; top: 46%; }
+      }
+      .cs-grid--social { margin-top: clamp(2.5rem, 5vw, 3.5rem); }
+      @media (min-width: 992px) { .cs-grid--social { grid-template-columns: repeat(5, minmax(0,1fr)); } }
+      @media (max-width: 991px) { .cs-grid--social li:last-child { grid-column: 1 / -1; } }
+
       /* ---------- What's next ---------- */
       .cs-next-wrap { text-align: center; }
       .cs-next-wrap .cs-lead { margin-inline: auto; }
@@ -438,6 +504,13 @@
             <span class="line gold" data-hero>The first with an app.</span>
           </h1>
           <p class="cs-hero__lead" data-hero>In 2026 we delivered a connected digital and PR campaign for one of the world's leading youth football tournaments. A new website, its first iOS and Android apps and the platform behind them, launched and amplified through PR, media, photography, editorial, email and social. On the first day of matches, the app was <strong>No.6 in the UK App Store's Top Free Sports chart</strong>.</p>
+          <div class="cs-ctas" data-hero>
+            <a class="button" href="https://supercupni.com" target="_blank" rel="noopener">Visit supercupni.com <svg viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M14 3h7v7h-2V6.4l-9.3 9.3-1.4-1.4L17.6 5H14V3zM5 5h6v2H5v12h12v-6h2v8H3V5h2z"/></svg></a>
+            <div class="cs-badges">
+                <a href="https://apps.apple.com/gb/app/supercupni/id6763050914" target="_blank" rel="noopener" aria-label="Download SuperCupNI on the App Store"><img src="../assets/img/work/supercupni/badge-app-store.svg" width="120" height="40" alt=""></a>
+                <a href="https://play.google.com/store/apps/details?id=com.aystudio.supercupni" target="_blank" rel="noopener" aria-label="Get SuperCupNI on Google Play"><img src="../assets/img/work/supercupni/badge-google-play.svg" width="120" height="40" alt=""></a>
+            </div>
+          </div>
           <ul class="cs-meta" data-hero>
             <li><span>Client</span><p>Budget Energy SuperCupNI</p></li>
             <li><span>Digital</span><p>Website, iOS &amp; Android apps, API &amp; CMS, live match board</p></li>
@@ -577,9 +650,69 @@
           </div>
         </div>
 
+        <!-- Website showcase: the live homepage scrolls inside the browser as you scroll the page -->
+        <div class="container">
+          <div class="cs-web">
+            <div class="cs-web__copy" data-reveal>
+              <h3 class="cs-h2" style="font-size:clamp(1.8rem,3.6vw,2.8rem)">A website that works <span>all year round</span>.</h3>
+              <p class="cs-lead">supercupni.com is the tournament's permanent home. Fixtures, results, group tables, team profiles, news, history and alumni stories, all fed by the same platform as the apps, so it's always up to date.</p>
+              <a class="button" href="https://supercupni.com" target="_blank" rel="noopener">Visit supercupni.com <svg viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M14 3h7v7h-2V6.4l-9.3 9.3-1.4-1.4L17.6 5H14V3zM5 5h6v2H5v12h12v-6h2v8H3V5h2z"/></svg></a>
+            </div>
+            <div class="cs-web__stage" data-reveal>
+              <div class="cs-browser" data-scrollshot>
+                <div class="cs-browser__bar" aria-hidden="true"><i></i><i></i><i></i><span>supercupni.com</span></div>
+                <div class="cs-browser__view">
+                  <img src="../assets/img/work/supercupni/site-scroll.webp" width="1100" height="6061" alt="The supercupni.com homepage, from the hero through competitions, app promotion, live streams, history and news" loading="lazy">
+                </div>
+              </div>
+              <figure class="cs-web__phone" aria-hidden="true">
+                <div class="cs-phone__frame"><img src="../assets/img/work/supercupni/mweb-home.webp" width="600" height="1298" alt="" loading="lazy"></div>
+              </figure>
+            </div>
+          </div>
+        </div>
+
+        <!-- Screen wall: a tilted wall of live pages, columns drifting in opposite directions -->
+        <div class="cs-wall" aria-label="Pages from supercupni.com">
+          <div class="cs-wall__tilt">
+            <div class="cs-wall__col" data-wall="-1">
+              <img src="../assets/img/work/supercupni/wall-boys-premier.webp" width="820" height="512" alt="Boys' Premier competition page" loading="lazy">
+              <img src="../assets/img/work/supercupni/wall-pocket.webp" width="820" height="316" alt="Homepage app promotion: Stay connected from your pocket" loading="lazy">
+              <img src="../assets/img/work/supercupni/wall-history.webp" width="820" height="508" alt="Homepage history feature" loading="lazy">
+              <img src="../assets/img/work/supercupni/wall-mainoo.webp" width="820" height="512" alt="Alumni profile of Kobbie Mainoo" loading="lazy">
+            </div>
+            <div class="cs-wall__col" data-wall="1">
+              <img src="../assets/img/work/supercupni/wall-matches.webp" width="820" height="854" alt="Boys' Premier matches with scores and venues" loading="lazy">
+              <img src="../assets/img/work/supercupni/wall-watch.webp" width="820" height="356" alt="Homepage live streaming feature: Watch every moment" loading="lazy">
+              <img src="../assets/img/work/supercupni/wall-quote.webp" width="820" height="537" alt="Homepage alumni quote carousel" loading="lazy">
+            </div>
+            <div class="cs-wall__col" data-wall="-1">
+              <img src="../assets/img/work/supercupni/wall-hero.webp" width="820" height="370" alt="Homepage hero" loading="lazy">
+              <img src="../assets/img/work/supercupni/wall-comps.webp" width="820" height="830" alt="2026 tournament competitions grid" loading="lazy">
+              <img src="../assets/img/work/supercupni/wall-girls-premier.webp" width="820" height="512" alt="Girls' Premier competition page" loading="lazy">
+            </div>
+            <div class="cs-wall__col" data-wall="1">
+              <img src="../assets/img/work/supercupni/wall-stars.webp" width="820" height="582" alt="Homepage feature: More than a tournament" loading="lazy">
+              <img src="../assets/img/work/supercupni/wall-apps.webp" width="820" height="512" alt="The official app page" loading="lazy">
+              <img src="../assets/img/work/supercupni/wall-news.webp" width="820" height="412" alt="Breaking news" loading="lazy">
+              <img src="../assets/img/work/supercupni/wall-ferdinand.webp" width="820" height="512" alt="News feature on Anton Ferdinand" loading="lazy">
+            </div>
+            <div class="cs-wall__col" data-wall="-1">
+              <img src="../assets/img/work/supercupni/wall-about.webp" width="820" height="537" alt="Homepage about section" loading="lazy">
+              <img src="../assets/img/work/supercupni/wall-boys-premier.webp" width="820" height="512" alt="" loading="lazy">
+              <img src="../assets/img/work/supercupni/wall-pocket.webp" width="820" height="316" alt="" loading="lazy">
+              <img src="../assets/img/work/supercupni/wall-matches.webp" width="820" height="854" alt="" loading="lazy">
+            </div>
+          </div>
+        </div>
+
         <div class="cs-rail" data-rail>
           <div class="container cs-rail__head" data-reveal>
-            <h3 class="cs-h2" style="font-size:clamp(1.6rem,3.4vw,2.6rem)">Built for <span>tournament week</span>.</h3>
+            <h3 class="cs-h2" style="font-size:clamp(1.6rem,3.4vw,2.6rem)">And an app built for <span>tournament week</span>.</h3>
+            <div class="cs-badges" style="margin-top:1.4rem">
+                <a href="https://apps.apple.com/gb/app/supercupni/id6763050914" target="_blank" rel="noopener" aria-label="Download SuperCupNI on the App Store"><img src="../assets/img/work/supercupni/badge-app-store.svg" width="120" height="40" alt=""></a>
+                <a href="https://play.google.com/store/apps/details?id=com.aystudio.supercupni" target="_blank" rel="noopener" aria-label="Get SuperCupNI on Google Play"><img src="../assets/img/work/supercupni/badge-google-play.svg" width="120" height="40" alt=""></a>
+            </div>
           </div>
           <div class="cs-rail__viewport" tabindex="0" aria-label="App screens, scroll sideways">
             <div class="cs-rail__track">
@@ -638,6 +771,17 @@
             <li data-reveal><b>Email</b><p>Campaigns to fans, media and partners, from ticket news to tournament week updates.</p></li>
             <li data-reveal><b>Social</b><p>Content for the tournament's channels through the build-up and tournament week.</p></li>
           </ol>
+
+          <div class="cs-ground">
+            <div class="cs-ground__copy" data-reveal>
+              <p class="cs-eyebrow"><i></i>On the ground</p>
+              <h3 class="cs-h2" style="font-size:clamp(1.8rem,3.6vw,2.8rem)">With the tournament team, <span>all week</span>.</h3>
+              <p class="cs-lead">We didn't hand over and walk away. Astutely's Russell was on the ground through tournament week, helping to manage the event from tournament HQ to the touchline, alongside the media team and the organisers.</p>
+            </div>
+            <figure class="cs-ground__a" data-reveal><div class="cs-img"><img src="../assets/img/work/supercupni/ground-hq.webp" width="768" height="1024" alt="Russell working at a bank of screens in the tournament HQ room" loading="lazy"></div><figcaption class="cs-caption">Tournament HQ, late on Wednesday 29 July, the busiest day of the week.</figcaption></figure>
+            <figure class="cs-ground__b" data-reveal><div class="cs-img"><img src="../assets/img/work/supercupni/ground-pitch.webp" width="1024" height="768" alt="Russell pitchside with tournament staff and media photographers" loading="lazy"></div><figcaption class="cs-caption">Pitchside with the media team on boys' finals night, 31 July.</figcaption></figure>
+            <figure class="cs-ground__c" data-reveal><div class="cs-img"><img src="../assets/img/work/supercupni/ground-finals.webp" width="768" height="1024" alt="Russell on the pitch under the SuperCupNI big screen at dusk" loading="lazy"></div><figcaption class="cs-caption">Finals night, under the lights.</figcaption></figure>
+          </div>
 
           <blockquote class="cs-quote cs-quote--wide" data-reveal>
             <p>For the first time, everything people need to follow the tournament is available in one place.</p>
@@ -714,6 +858,10 @@
             <li data-reveal><b data-count="911">911</b><small>people on the website in a single 30 minute window on the opening day</small></li>
             <li data-reveal><b data-count="152">152</b><small>matches, every result live across web and app</small></li>
           </ul>
+          <div class="cs-receipts">
+            <figure data-reveal><div class="cs-receipt"><img src="../assets/img/work/supercupni/proof-ga-realtime.webp" width="1400" height="566" alt="Google Analytics realtime report showing 911 active users and 4,972 views in 30 minutes" loading="lazy"></div><figcaption class="cs-caption">Google Analytics, realtime. Opening day, 27 July 2026.</figcaption></figure>
+            <figure data-reveal><div class="cs-receipt"><img src="../assets/img/work/supercupni/proof-ga-events.webp" width="1206" height="774" alt="Google Analytics events report showing 848,441 page views" loading="lazy"></div><figcaption class="cs-caption">Google Analytics, page views across the season.</figcaption></figure>
+          </div>
           <p class="cs-source">Source: SuperCupNI app analytics (28 April to 29 October 2026) and Google Analytics</p>
         </div>
       </section>
@@ -753,25 +901,26 @@
       </section>
 
       <!-- 10. SOCIAL ==================================================== -->
-      <!-- TO CONFIRM: Instagram figure (10M+ interactions) and add other platforms
-           (Facebook, TikTok, X) by copying a .cs-social__tile once figures are in. -->
       <section class="cs-section" aria-labelledby="cs-social" style="padding-top:0">
         <div class="container">
           <div class="cs-social">
-            <div class="cs-social__media" data-reveal>
-              <img src="../assets/img/work/supercupni/supporters.webp" width="1600" height="1101" alt="Young supporters in sunglasses and bucket hats cheering at the opening ceremony" loading="lazy">
-            </div>
+            <figure class="cs-social__media" data-reveal>
+              <div class="cs-receipt"><img src="../assets/img/work/supercupni/proof-social.webp" width="768" height="886" alt="Instagram insights on a phone showing 10,598,525 views in 7 days, in front of a Facebook dashboard showing 3,455,407 views" loading="lazy"></div>
+              <figcaption class="cs-caption">Instagram and Facebook insights, Friday 31 July 2026.</figcaption>
+            </figure>
             <div data-reveal>
               <p class="cs-eyebrow"><i></i>09 &middot; Results: social</p>
-              <h2 class="cs-h2" id="cs-social">The conversation <span>carried on social</span>.</h2>
-              <p class="cs-lead">The campaign ran through to the tournament's social channels, where build-up and tournament week content drove more than 10 million interactions on Instagram alone.</p>
-              <ul class="cs-social__tiles">
-                <li class="cs-social__tile"><b>10M+</b><small>Instagram interactions</small></li>
-                <!-- <li class="cs-social__tile"><b>0</b><small>Facebook ...</small></li> -->
-                <!-- <li class="cs-social__tile"><b>0</b><small>TikTok ...</small></li> -->
-              </ul>
+              <h2 class="cs-h2" id="cs-social"><span data-count="14" data-suffix=" million">14 million</span> views <span>in one week</span>.</h2>
+              <p class="cs-lead">Tournament week content was viewed more than 14 million times across Instagram and Facebook. Almost half of all Instagram views came from people who didn't yet follow the tournament, and the two channels added more than 5,000 followers between them in seven days.</p>
             </div>
           </div>
+          <ul class="cs-grid cs-grid--social">
+            <li data-reveal class="is-gold"><b>10.6M</b><small>Instagram views in 7 days</small></li>
+            <li data-reveal><b data-count="405679">405,679</b><small>people reached on Instagram</small></li>
+            <li data-reveal><b>3.46M</b><small>Facebook views, up 624%</small></li>
+            <li data-reveal><b data-count="208560">208,560</b><small>Facebook engagements, up 1,022%</small></li>
+            <li data-reveal><b>+<span data-count="5299">5,299</span></b><small>new followers across both channels</small></li>
+          </ul>
         </div>
       </section>
 
@@ -952,6 +1101,23 @@
         // Venue bars grow to their share of the leader.
         gsap.utils.toArray('[data-bars] i').forEach(function (bar, i) {
           gsap.from(bar, { width: '0%', duration: 1.2, ease: 'power3.out', delay: i * 0.08, scrollTrigger: { trigger: '[data-bars]', start: 'top 85%', once: true } });
+        });
+
+        // Website: the homepage scrolls inside the browser frame as the section passes.
+        gsap.utils.toArray('[data-scrollshot]').forEach(function (frame) {
+          var view = frame.querySelector('.cs-browser__view'), img = view && view.querySelector('img');
+          if (!img) return;
+          gsap.to(img, {
+            y: function () { return -(img.offsetHeight - view.offsetHeight); },
+            ease: 'none',
+            scrollTrigger: { trigger: frame, start: 'top 75%', end: 'bottom 5%', scrub: 0.6, invalidateOnRefresh: true }
+          });
+        });
+
+        // Screen wall: neighbouring columns drift in opposite directions.
+        gsap.utils.toArray('[data-wall]').forEach(function (col) {
+          var dir = parseFloat(col.getAttribute('data-wall'));
+          gsap.fromTo(col, { yPercent: dir * -12 }, { yPercent: dir * 12, ease: 'none', scrollTrigger: { trigger: '.cs-wall', start: 'top bottom', end: 'bottom top', scrub: true } });
         });
 
         // Phone rail: on wide screens, pin the section and drive the screens sideways with scroll.
