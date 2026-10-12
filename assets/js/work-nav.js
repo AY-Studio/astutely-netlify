@@ -44,6 +44,14 @@
       line: "Forty years of printmaking. A new home, a bolder brand.",
       tags: "Brand & Web",
       image: '../assets/img/work/seacourt/hero.webp'
+    },
+    {
+      slug: 'glentoran',
+      url: 'glentoran.html',
+      client: "Glentoran FC",
+      line: "Every channel. Every matchday. One team behind the Glens.",
+      tags: "Campaigns, Design, Web & Systems",
+      image: '../assets/img/work/glentoran/hero.webp'
     }
   ];
 
