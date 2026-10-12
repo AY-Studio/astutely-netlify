@@ -164,6 +164,8 @@
       .stats span { display: block; margin-top: 1rem; font-size: clamp(1.25rem, 1.6vw, 1.6rem); font-weight: 700; letter-spacing: -0.015em; }
       .stats em { display: block; margin-top: 0.4rem; font-style: normal; font-size: clamp(1rem, 1.15vw, 1.15rem); color: var(--faint); }
 
+      .credit { margin: 1.6rem 0 0; font-size: clamp(0.95rem, 1.05vw, 1.05rem); color: var(--faint); }
+
       /* ---------- Testimonial ---------- */
       .quote { margin: var(--space) 0 0; }
       .quote__mark { display: block; width: clamp(3rem, 6vw, 5.5rem); height: auto; margin-bottom: clamp(1.5rem, 3vw, 2.5rem); fill: var(--accent); }
@@ -581,10 +583,10 @@
 
         // Key stats count up the first time they're seen (the unit stays put).
         gsap.utils.toArray('[data-count]').forEach(function (el) {
-          var end = parseFloat(el.getAttribute('data-count')), unit = el.querySelector('small'), o = { v: 0 };
-          var num = document.createTextNode('0');
+          var end = parseFloat(el.getAttribute('data-count')), pre = el.getAttribute('data-prefix') || '', unit = el.querySelector('small'), o = { v: 0 };
+          var num = document.createTextNode(pre + '0');
           el.textContent = ''; el.appendChild(num); if (unit) el.appendChild(unit);
-          gsap.to(o, { v: end, duration: 1.8, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%', once: true }, onUpdate: function () { num.nodeValue = Math.round(o.v); } });
+          gsap.to(o, { v: end, duration: 1.8, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%', once: true }, onUpdate: function () { num.nodeValue = pre + Math.round(o.v).toLocaleString('en-GB'); } });
         });
 
       })();
