@@ -2,7 +2,11 @@
    Photo cards with white type, so they sit on any case study's colours; the title
    above inherits the page's text colour and font. */
 .wn { padding-top: clamp(4rem, 8vw, 6rem); padding-bottom: clamp(5rem, 10vw, 8rem); }
-.wn__title { margin: 0 0 clamp(1.4rem, 3vw, 2rem); font-size: clamp(0.85rem, 1vw, 0.95rem); font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.7; }
+.wn__head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin: 0 0 clamp(1.4rem, 3vw, 2rem); }
+.wn__all { display: inline-flex; align-items: center; gap: 0.45rem; color: inherit; font-weight: 700; font-size: 1rem; text-decoration: none; opacity: 0.8; transition: opacity 0.25s ease, gap 0.25s ease; }
+.wn__all:hover, .wn__all:focus-visible { opacity: 1; gap: 0.7rem; color: inherit; }
+.wn__all svg { width: 1.1rem; height: 1.1rem; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.wn__title { margin: 0; font-size: clamp(0.85rem, 1vw, 0.95rem); font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; opacity: 0.7; }
 .wn__grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(1rem, 2vw, 1.5rem); }
 @media (min-width: 992px) { .wn__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); } .wn__grid--single { grid-template-columns: minmax(0, 1fr); } }
 

@@ -89,7 +89,7 @@
     '</a>';
   }
 
-  var html = '<p class="wn__title">More of our work</p><div class="wn__grid' + (prev === next ? ' wn__grid--single' : '') + '">';
+  var html = '<div class="wn__head"><p class="wn__title">More of our work</p><a class="wn__all" href="./">View all work ' + arrow + '</a></div><div class="wn__grid' + (prev === next ? ' wn__grid--single' : '') + '">';
   if (prev !== next) html += card(prev, 'prev');
   html += card(next, 'next') + '</div>';
   nav.innerHTML = html;

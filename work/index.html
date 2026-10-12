@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-47JX6WKEXW"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-47JX6WKEXW');
+    </script>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="icon" type="image/jpeg" href="../assets/img/favicon.jpg">
+    <link rel="apple-touch-icon" href="../assets/img/favicon.jpg">
+    <title>Work | Astutely Agency</title>
+    <meta name="description" content="Selected work from Astutely: strategy, PR and comms, brand, websites, apps and events for clients across Northern Ireland, the UK and Ireland.">
+    <meta property="og:site_name" content="Astutely Agency"/>
+    <meta property="og:title" content="Work | Astutely Agency"/>
+    <meta property="og:type" content="website"/>
+
+    <!-- SEO:begin -->
+    <link rel="canonical" href="https://astutely.agency/work/"/>
+    <!-- Pending approval of the case studies: switch to "index, follow, max-image-preview:large" and add to sitemap.xml once signed off. -->
+    <meta name="robots" content="noindex, nofollow"/>
+    <meta name="author" content="Astutely"/>
+    <meta name="theme-color" content="#060606"/>
+    <meta property="og:url" content="https://astutely.agency/work/"/>
+    <meta property="og:locale" content="en_GB"/>
+    <meta property="og:description" content="Selected work from Astutely: strategy, PR and comms, brand, websites, apps and events."/>
+    <meta property="og:image" content="https://astutely.agency/assets/img/astutely-og.jpg"/>
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="630"/>
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:title" content="Work | Astutely Agency"/>
+    <meta name="twitter:description" content="Selected work from Astutely: strategy, PR and comms, brand, websites, apps and events."/>
+    <meta name="twitter:image" content="https://astutely.agency/assets/img/astutely-og.jpg"/>
+    <!-- SEO:end -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link href="../assets/css/style.css?v=20260716r" rel="stylesheet">
+    <style>
+      html.lenis, html.lenis body { height: auto; }
+      .lenis.lenis-smooth { scroll-behavior: auto !important; }
+      .lenis.lenis-stopped { overflow: hidden; }
+    </style>
+
+    <!-- ============================================================= -->
+    <!--  Work index. An editorial, typographic index: hovering (or    -->
+    <!--  focusing) a project tints the page toward that client's brand  -->
+    <!--  and opens the row on its photo; a discipline filter dims the rest. -->
+    <!--  To add a project: copy a .wk-row and set its data attributes. -->
+    <!-- ============================================================= -->
+    <style>
+      :root { --hv: #F3DFA2; --hv-rgb: 243, 223, 162; --ground: #060606; --tint: #060606; --accent: #F3DFA2; }
+      * { box-sizing: border-box; }
+      * { cursor: auto; }
+      a, button, [role="button"] { cursor: pointer; }
+      body.theme-dark { background: var(--tint); color: #F5F5F5; font-family: "ModernEra", system-ui, -apple-system, sans-serif; -webkit-font-smoothing: antialiased; margin: 0; overflow-x: hidden; transition: background-color 0.7s ease; }
+      html { overflow-x: clip; }
+      .theme-dark .svg-bg { pointer-events: none; }
+      .theme-dark .svg-bg svg { opacity: 1; }
+      .theme-dark .wave-path { fill: rgba(255,255,255,0.03); }
+      .skip-link { position: absolute; left: -9999px; }
+      .skip-link:focus { left: 1rem; top: 1rem; background: var(--hv); color: #111; padding: 0.5rem 1rem; border-radius: 8px; z-index: 100000; }
+      img { max-width: 100%; height: auto; display: block; }
+      :focus-visible { outline: 2px solid var(--hv); outline-offset: 4px; }
+
+      /* Nav: the Astutely pill */
+      .theme-dark .home-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1040; background: transparent; border-bottom: none; padding: 1rem 1rem 0; visibility: visible; opacity: 1; }
+      .theme-dark .home-nav__inner { background: #161618; border: 1px solid rgba(var(--hv-rgb),0.22); border-radius: 16px; padding: 0.5rem 0.5rem 0.5rem 1.6rem; box-shadow: 0 14px 36px rgba(0,0,0,0.4); }
+      .theme-dark .home-nav__brand svg { fill: var(--hv); }
+      .theme-dark .home-nav .site-nav a.site-nav__cta { background-color: var(--hv); color: #333333; }
+      .theme-dark .home-nav .site-nav a.site-nav__cta:hover { background-color: #FFFFFF; color: #333333; }
+      @media (max-width: 460px) { .home-nav__brand svg { width: 104px; } .theme-dark .home-nav__inner { padding: 0.45rem 0.45rem 0.45rem 1.05rem; } .theme-dark .home-nav .site-nav a.site-nav__cta { padding: 0.5rem 0.85rem; } }
+
+      /* ---------- Hero ---------- */
+      .wk-hero { padding-top: clamp(9rem, 16vw, 13rem); padding-bottom: clamp(3rem, 6vw, 5rem); }
+      .wk-hero__top { display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem; flex-wrap: wrap; }
+      .wk-hero h1 { margin: 0; font-weight: 800; letter-spacing: -0.045em; line-height: 0.88; font-size: clamp(4.2rem, 15vw, 14rem); color: #FFFFFF; }
+      .wk-hero h1 sup { font-size: 0.2em; letter-spacing: 0; top: -3.6em; margin-left: 0.15em; color: var(--accent); font-weight: 700; transition: color 0.7s ease; }
+      .wk-hero__lead { margin: 0; max-width: 34ch; color: rgba(245,245,245,0.75); font-weight: 300; font-size: clamp(1.15rem, 1.7vw, 1.45rem); line-height: 1.55; }
+      .wk-hero__lead b { color: #FFFFFF; font-weight: 600; }
+
+      /* one swatch per project, in its brand colour; the active project's swatch lights up */
+      .wk-swatches { display: flex; gap: 0.55rem; margin: 1.6rem 0 0; padding: 0; list-style: none; }
+      .wk-swatches li { width: 0.9rem; height: 0.9rem; border-radius: 50%; background: var(--c); opacity: 0.55; transform: scale(0.85); transition: opacity 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease; }
+      .wk-swatches li.is-on { opacity: 1; transform: scale(1.35); box-shadow: 0 0 0 4px rgba(255,255,255,0.12); }
+
+      /* ---------- Filter ---------- */
+      .wk-filter { display: flex; flex-wrap: wrap; gap: 0.6rem; margin: clamp(2.5rem, 5vw, 4rem) 0 0; padding: 0; list-style: none; }
+      .wk-filter button { font: inherit; font-size: 1rem; font-weight: 600; color: rgba(245,245,245,0.8); background: transparent; border: 1px solid rgba(245,245,245,0.22); border-radius: 999px; padding: 0.6rem 1.15rem; transition: background-color 0.25s, color 0.25s, border-color 0.25s; }
+      .wk-filter button:hover { border-color: var(--hv); color: #FFFFFF; }
+      .wk-filter button[aria-pressed="true"] { background: var(--hv); border-color: var(--hv); color: #111111; }
+      .wk-filter button span { opacity: 0.6; margin-left: 0.35rem; font-weight: 500; }
+
+      /* ---------- Index ---------- */
+      .wk-list { list-style: none; margin: clamp(2rem, 4vw, 3rem) 0 0; padding: 0; border-top: 1px solid rgba(245,245,245,0.14); counter-reset: wk; }
+      .wk-row { counter-increment: wk; border-bottom: 1px solid rgba(245,245,245,0.14); transition: opacity 0.45s ease; }
+      .wk-row.is-dim { opacity: 0.16; }
+      .wk-row.is-dim a { pointer-events: none; }
+      .wk-row a { position: relative; display: grid; grid-template-columns: minmax(0,1fr); gap: 0.6rem 2rem; align-items: center; padding: clamp(1.6rem, 3.2vw, 2.6rem) 0; color: inherit; text-decoration: none; }
+      @media (min-width: 992px) { .wk-row a { grid-template-columns: 4.5rem minmax(0,1fr) minmax(0, 0.9fr) 3.4rem; } }
+      .wk-row__num { font-size: 0.95rem; font-weight: 600; letter-spacing: 0.08em; color: rgba(245,245,245,0.45); font-variant-numeric: tabular-nums; }
+      .wk-row__num::before { content: counter(wk, decimal-leading-zero); }
+      .wk-row__name { display: block; font-weight: 800; letter-spacing: -0.035em; line-height: 0.95; font-size: clamp(2.4rem, 6vw, 5.4rem); color: #FFFFFF; transition: transform 0.5s cubic-bezier(.2,.7,.2,1), color 0.4s ease; }
+      .wk-row__meta { display: grid; gap: 0.45rem; }
+      .wk-row__line { color: rgba(245,245,245,0.82); font-size: clamp(1.05rem, 1.4vw, 1.2rem); line-height: 1.45; }
+      .wk-row__tags { color: rgba(245,245,245,0.5); font-size: 0.95rem; letter-spacing: 0.02em; }
+      .wk-row__go { display: none; width: 3.4rem; height: 3.4rem; border-radius: 50%; border: 1px solid rgba(245,245,245,0.25); place-items: center; transition: background-color 0.35s, border-color 0.35s, transform 0.35s; }
+      @media (min-width: 992px) { .wk-row__go { display: grid; } }
+      .wk-row__go svg { width: 1.3rem; height: 1.3rem; fill: none; stroke: #FFFFFF; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; transition: stroke 0.35s; }
+      .wk-row__thumb { display: block; border-radius: 14px; overflow: hidden; aspect-ratio: 16 / 9; margin-bottom: 0.6rem; }
+      .wk-row__thumb img { width: 100%; height: 100%; object-fit: cover; }
+      @media (min-width: 992px) { .wk-row__thumb { display: none; } }
+      .wk-row a:hover .wk-row__name, .wk-row a:focus-visible .wk-row__name { transform: translateX(0.6rem); color: var(--accent); }
+      .wk-row a:hover .wk-row__go, .wk-row a:focus-visible .wk-row__go { background: var(--accent); border-color: var(--accent); transform: rotate(-45deg); }
+      .wk-row a:hover .wk-row__go svg, .wk-row a:focus-visible .wk-row__go svg { stroke: #111111; }
+      .wk-list.is-hovering .wk-row:not(.is-active):not(.is-dim) { opacity: 0.45; }
+
+      /* hover window: the row opens from the centre to reveal the project's photo behind the text */
+      .wk-row__bg { position: absolute; inset: 0; z-index: -1; border-radius: 18px; overflow: hidden; clip-path: inset(50% 0 50% 0 round 18px); transition: clip-path 0.7s cubic-bezier(.2,.7,.2,1); pointer-events: none; }
+      .wk-row__bg img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.12); transition: transform 1.2s cubic-bezier(.2,.7,.2,1); }
+      .wk-row__bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.62) 50%, rgba(0,0,0,0.78) 100%); }
+      @media (min-width: 992px) {
+        .wk-row a { isolation: isolate; padding-left: 1.5rem; padding-right: 1.5rem; }
+        .wk-row a:hover .wk-row__bg, .wk-row a:focus-visible .wk-row__bg { clip-path: inset(0 0 0 0 round 18px); }
+        .wk-row a:hover .wk-row__bg img, .wk-row a:focus-visible .wk-row__bg img { transform: scale(1); }
+        .wk-row a:hover .wk-row__num, .wk-row a:focus-visible .wk-row__num { color: rgba(255,255,255,0.75); }
+      }
+      @media (max-width: 991px) { .wk-row__bg { display: none; } }
+
+      /* ---------- Outro ---------- */
+      .wk-outro { padding-top: clamp(6rem, 12vw, 10rem); padding-bottom: clamp(6rem, 12vw, 10rem); text-align: center; }
+      .wk-outro h2 { margin: 0; font-weight: 800; letter-spacing: -0.03em; line-height: 1.02; font-size: clamp(2.4rem, 6vw, 5rem); color: #FFFFFF; }
+      .wk-outro h2 span { color: var(--accent); transition: color 0.7s ease; }
+      .wk-outro p { margin: 1.4rem auto 0; max-width: 46ch; color: rgba(245,245,245,0.72); font-weight: 300; font-size: clamp(1.15rem, 1.7vw, 1.4rem); line-height: 1.55; }
+      .button { display: inline-flex; align-items: center; gap: 0.55rem; background: var(--hv); color: #161618; font-weight: 700; border: 0; text-decoration: none; padding: 1.05rem 1.9rem; border-radius: 10px; font-size: 1.1rem; margin-top: 2.2rem; transition: background-color 0.25s ease; }
+      .button:hover { background: #FFFFFF; color: #161618; }
+
+      /* Sign-off footer (as contact page) */
+      .footer { color: #F5F5F5; padding: clamp(4rem, 8vw, 7rem) 0; background: #111111; }
+      .footer svg { fill: var(--hv); }
+      .footer-base { margin-top: 0; text-align: center; }
+      .footer-base .footer-logo { width: 300px; max-width: 80%; height: auto; margin-bottom: 1.75rem; }
+      .footer-base .text__pink { display: block; font-weight: 300; font-size: clamp(0.72rem, 1vw, 0.88rem); letter-spacing: 0.16em; color: #FFFFFF; margin-bottom: 0.55rem; }
+      .theme-dark .footer-base .byline { display: block; font-weight: 300; color: var(--hv); font-size: clamp(0.78rem, 1.1vw, 0.92rem); letter-spacing: 0.08em; }
+      .footer-legal { margin: 2.4rem auto 0; max-width: 62ch; font-size: clamp(0.68rem, 1vw, 0.78rem); font-weight: 300; line-height: 1.55; color: rgba(245,245,245,0.45); }
+
+      @media (prefers-reduced-motion: reduce) { body.theme-dark, .wk-row, .wk-row__name, .wk-row__go, .wk-row__bg, .wk-row__bg img { transition: none; } }
+    </style>
+  </head>
+  <body class="theme-dark">
+    <div class="svg-bg" aria-hidden="true">
+      <svg class="scroll-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192.84 45.34">
+        <g id="Layer_1-2" data-name="Layer 1">
+                  <path class="wave-path" d="M22.2,12.6v12.76s-8.21.72-8.21.72l8.21-13.48ZM7.46,26.71l-5.35.49,1.13,4.63,1.18-.13-4.42,7.15,4.75,2.48,6.21-10.2,11.23-1.05v7.96s8.36,2.4,8.36,2.4l-.21-32.99-9.63-2.31L7.46,26.71Z"/>
+                  <path class="wave-path" d="M46.61,17.57c-1.2.04-2.2.31-3.01.81-.8.5-1.2,1.05-1.17,1.67.02.47.36.84,1.03,1.11.67.27,1.53.51,2.58.73,1.05.21,2.16.47,3.33.77,1.17.3,2.28.71,3.34,1.25,1.06.54,1.93,1.25,2.63,2.13.69.89,1.06,2.05,1.11,3.48.05,1.44-.29,2.78-1.03,4.02-.74,1.24-1.77,2.34-3.1,3.3-1.33.96-2.9,1.71-4.7,2.27-1.8.56-3.74.88-5.82.95-2.87.1-5.21-.34-7.02-1.3-1.81-.96-2.74-2.31-2.8-4.04-.04-1.17.33-2.23,1.12-3.18.79-.95,1.91-1.69,3.36-2.21l5.39,2.01c-1.3.6-1.93,1.34-1.9,2.22.02.47.29.86.81,1.18.52.32,1.34.46,2.46.42,1.67-.06,2.98-.46,3.92-1.21.94-.75,1.4-1.49,1.38-2.23-.02-.62-.36-1.08-1.02-1.4-.66-.31-1.49-.56-2.49-.75-1-.19-2.07-.4-3.21-.64-1.14-.24-2.22-.58-3.25-1.03-1.03-.45-1.87-1.09-2.53-1.94-.66-.84-1.01-1.95-1.06-3.33-.06-1.79.46-3.42,1.57-4.89,1.11-1.47,2.62-2.66,4.54-3.54,1.92-.89,4.07-1.37,6.44-1.45,1.79-.06,3.43.12,4.93.56,1.5.43,2.71,1.08,3.63,1.94.92.86,1.41,1.9,1.45,3.1.03.79-.15,1.56-.54,2.31-.39.75-.95,1.4-1.69,1.95l-6.24-2.25c.57-.4.85-.84.83-1.3-.01-.41-.3-.77-.85-1.07-.55-.3-1.36-.44-2.41-.4"/>
+                  <path class="wave-path" d="M58.61,12.81l6.5-.36,2.35-7.21,7.52,2.38-1.39,4.32,6.89-.32-1.49,4.8-6.98.37-3.98,12.32c.93-1.03,1.89-2.04,2.87-3.02.98-.99,1.98-1.94,3-2.85l3.16,3.59c-2.19,1.92-4.32,3.93-6.37,6.01-2.06,2.08-4.04,4.23-5.96,6.43l-7.52-2.38,6.37-19.58-3.64.21-1.31-4.71Z"/>
+                  <path class="wave-path" d="M105.54,13.35l-7.99,24.78-7.52-2.38,3.78-11.53c-1.85,2.53-3.74,5-5.66,7.41-1.93,2.41-3.89,4.75-5.9,7.02l-7.39-2.39,7.99-24.78,7.52,2.38-4.58,14.02c2.28-2.72,4.48-5.48,6.58-8.3,2.1-2.81,4.03-5.69,5.78-8.63l7.39,2.39Z"/>
+                  <path class="wave-path" d="M107.6,11.11l3.67-.26,2.35-7.21,7.52,2.38-1.39,4.32,7.05-.26-1.67,4.74-6.98.37-3.98,12.32c.93-1.03,1.89-2.04,2.87-3.02.98-.99,1.98-1.94,3-2.85l3.16,3.59c-2.19,1.92-4.32,3.93-6.37,6.01-2.06,2.08-4.04,4.22-5.96,6.43l-7.52-2.38,6.37-19.58-3.64.21,1.52-4.8Z"/>
+                  <path class="wave-path" d="M138.37,14.38c-1.03.04-2.02.66-2.99,1.86-.97,1.21-1.83,2.95-2.57,5.24,1.78-.24,3.22-.66,4.31-1.27,1.09-.61,1.89-1.3,2.39-2.06.5-.77.74-1.47.72-2.11-.04-1.14-.66-1.69-1.86-1.65M145.43,30.07c-1.02,1.94-2.53,3.54-4.52,4.8s-4.21,1.93-6.64,2.01c-2.29.08-4.2-.31-5.74-1.17-1.54-.86-2.71-2.04-3.51-3.55-.8-1.51-1.23-3.22-1.3-5.13-.04-1.08.02-2.12.16-3.11.14-.99.37-1.98.69-2.99.71-2.25,1.79-4.21,3.23-5.88,1.44-1.66,3.1-2.97,4.99-3.91,1.89-.95,3.87-1.45,5.95-1.52,2.7-.09,4.86.46,6.5,1.67,1.64,1.21,2.5,2.88,2.57,5.02.09,2.67-1.09,4.86-3.54,6.57-2.45,1.71-5.98,2.84-10.6,3.38l-1.46-2.9c-.41,1.72-.59,3.23-.55,4.55.04,1.29.32,2.29.83,3.01.51.72,1.25,1.06,2.21,1.02.91-.03,1.76-.43,2.55-1.21.79-.78,1.46-1.94,1.99-3.48l6.17,2.82Z"/>
+                  <polygon class="wave-path" points="156 0 144.97 33.86 152.49 36.25 163.52 2.38 156 0"/>
+                  <path class="wave-path" d="M186.96,10.59l-11.35,34.76-7.52-2.38,6.89-21.14c-3.53,4.81-7.29,9.49-11.27,14.03l-7.52-2.38,7.99-24.74,7.52,2.38-4.49,13.93c2.22-2.69,4.37-5.44,6.43-8.25,2.06-2.81,3.96-5.67,5.71-8.58l7.61,2.38Z"/>
+                  <polygon class="wave-path" points="182.88 32.99 190.29 34.94 192.84 27.15 185.43 25.21 182.88 32.99"/>
+                </g>
+      </svg>
+    </div>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="home-nav">
+      <div class="container home-nav__inner">
+        <a class="home-nav__brand" href="../index.html" aria-label="Astutely Agency home">
+          <svg viewBox="0 0 192.84 45.34" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true" focusable="false">
+            <path d="M22.2,12.6v12.76s-8.21.72-8.21.72l8.21-13.48ZM7.46,26.71l-5.35.49,1.13,4.63,1.18-.13-4.42,7.15,4.75,2.48,6.21-10.2,11.23-1.05v7.96s8.36,2.4,8.36,2.4l-.21-32.99-9.63-2.31L7.46,26.71Z"/>
+            <path d="M46.61,17.57c-1.2.04-2.2.31-3.01.81-.8.5-1.2,1.05-1.17,1.67.02.47.36.84,1.03,1.11.67.27,1.53.51,2.58.73,1.05.21,2.16.47,3.33.77,1.17.3,2.28.71,3.34,1.25,1.06.54,1.93,1.25,2.63,2.13.69.89,1.06,2.05,1.11,3.48.05,1.44-.29,2.78-1.03,4.02-.74,1.24-1.77,2.34-3.1,3.3-1.33.96-2.9,1.71-4.7,2.27-1.8.56-3.74.88-5.82.95-2.87.1-5.21-.34-7.02-1.3-1.81-.96-2.74-2.31-2.8-4.04-.04-1.17.33-2.23,1.12-3.18.79-.95,1.91-1.69,3.36-2.21l5.39,2.01c-1.3.6-1.93,1.34-1.9,2.22.02.47.29.86.81,1.18.52.32,1.34.46,2.46.42,1.67-.06,2.98-.46,3.92-1.21.94-.75,1.4-1.49,1.38-2.23-.02-.62-.36-1.08-1.02-1.4-.66-.31-1.49-.56-2.49-.75-1-.19-2.07-.4-3.21-.64-1.14-.24-2.22-.58-3.25-1.03-1.03-.45-1.87-1.09-2.53-1.94-.66-.84-1.01-1.95-1.06-3.33-.06-1.79.46-3.42,1.57-4.89,1.11-1.47,2.62-2.66,4.54-3.54,1.92-.89,4.07-1.37,6.44-1.45,1.79-.06,3.43.12,4.93.56,1.5.43,2.71,1.08,3.63,1.94.92.86,1.41,1.9,1.45,3.1.03.79-.15,1.56-.54,2.31-.39.75-.95,1.4-1.69,1.95l-6.24-2.25c.57-.4.85-.84.83-1.3-.01-.41-.3-.77-.85-1.07-.55-.3-1.36-.44-2.41-.4"/>
+            <path d="M58.61,12.81l6.5-.36,2.35-7.21,7.52,2.38-1.39,4.32,6.89-.32-1.49,4.8-6.98.37-3.98,12.32c.93-1.03,1.89-2.04,2.87-3.02.98-.99,1.98-1.94,3-2.85l3.16,3.59c-2.19,1.92-4.32,3.93-6.37,6.01-2.06,2.08-4.04,4.23-5.96,6.43l-7.52-2.38,6.37-19.58-3.64.21-1.31-4.71Z"/>
+            <path d="M105.54,13.35l-7.99,24.78-7.52-2.38,3.78-11.53c-1.85,2.53-3.74,5-5.66,7.41-1.93,2.41-3.89,4.75-5.9,7.02l-7.39-2.39,7.99-24.78,7.52,2.38-4.58,14.02c2.28-2.72,4.48-5.48,6.58-8.3,2.1-2.81,4.03-5.69,5.78-8.63l7.39,2.39Z"/>
+            <path d="M107.6,11.11l3.67-.26,2.35-7.21,7.52,2.38-1.39,4.32,7.05-.26-1.67,4.74-6.98.37-3.98,12.32c.93-1.03,1.89-2.04,2.87-3.02.98-.99,1.98-1.94,3-2.85l3.16,3.59c-2.19,1.92-4.32,3.93-6.37,6.01-2.06,2.08-4.04,4.22-5.96,6.43l-7.52-2.38,6.37-19.58-3.64.21,1.52-4.8Z"/>
+            <path d="M138.37,14.38c-1.03.04-2.02.66-2.99,1.86-.97,1.21-1.83,2.95-2.57,5.24,1.78-.24,3.22-.66,4.31-1.27,1.09-.61,1.89-1.3,2.39-2.06.5-.77.74-1.47.72-2.11-.04-1.14-.66-1.69-1.86-1.65M145.43,30.07c-1.02,1.94-2.53,3.54-4.52,4.8s-4.21,1.93-6.64,2.01c-2.29.08-4.2-.31-5.74-1.17-1.54-.86-2.71-2.04-3.51-3.55-.8-1.51-1.23-3.22-1.3-5.13-.04-1.08.02-2.12.16-3.11.14-.99.37-1.98.69-2.99.71-2.25,1.79-4.21,3.23-5.88,1.44-1.66,3.1-2.97,4.99-3.91,1.89-.95,3.87-1.45,5.95-1.52,2.7-.09,4.86.46,6.5,1.67,1.64,1.21,2.5,2.88,2.57,5.02.09,2.67-1.09,4.86-3.54,6.57-2.45,1.71-5.98,2.84-10.6,3.38l-1.46-2.9c-.41,1.72-.59,3.23-.55,4.55.04,1.29.32,2.29.83,3.01.51.72,1.25,1.06,2.21,1.02.91-.03,1.76-.43,2.55-1.21.79-.78,1.46-1.94,1.99-3.48l6.17,2.82Z"/>
+            <polygon points="156 0 144.97 33.86 152.49 36.25 163.52 2.38 156 0"/>
+            <path d="M186.96,10.59l-11.35,34.76-7.52-2.38,6.89-21.14c-3.53,4.81-7.29,9.49-11.27,14.03l-7.52-2.38,7.99-24.74,7.52,2.38-4.49,13.93c2.22-2.69,4.37-5.44,6.43-8.25,2.06-2.81,3.96-5.67,5.71-8.58l7.61,2.38Z"/>
+            <polygon points="182.88 32.99 190.29 34.94 192.84 27.15 185.43 25.21 182.88 32.99"/>
+          </svg>
+        </a>
+        <nav class="site-nav" aria-label="Primary">
+          <ul class="site-nav__list">
+            <li><a class="site-nav__cta" href="../contact.html">Get in touch</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="wk-hero container" aria-labelledby="wk-title">
+        <div class="wk-hero__top">
+          <h1 id="wk-title" data-split>Work<sup data-count-total>00</sup></h1>
+          <div>
+            <p class="wk-hero__lead">Stories we've helped shape, and the <b>strategy, comms, brands, websites and apps</b> built to carry them.</p>
+            <ul class="wk-swatches" aria-hidden="true">
+              <li style="--c:#00FF8A" data-for="wk-supercupni"></li>
+              <li style="--c:#36DB8C" data-for="wk-glentoran"></li>
+              <li style="--c:#FFB600" data-for="wk-braininjurymatters"></li>
+              <li style="--c:#FFB800" data-for="wk-rkings"></li>
+              <li style="--c:#F3FF03" data-for="wk-seacourt"></li>
+              <li style="--c:#FF8200" data-for="wk-shipitcon"></li>
+              <li style="--c:#A9DB00" data-for="wk-uniqueplants"></li>
+            </ul>
+          </div>
+        </div>
+        <ul class="wk-filter" aria-label="Filter by discipline">
+          <li><button type="button" data-filter="all" aria-pressed="true">All</button></li>
+          <li><button type="button" data-filter="strategy" aria-pressed="false">Strategy</button></li>
+          <li><button type="button" data-filter="pr" aria-pressed="false">PR &amp; comms</button></li>
+          <li><button type="button" data-filter="brand" aria-pressed="false">Brand</button></li>
+          <li><button type="button" data-filter="web" aria-pressed="false">Web</button></li>
+          <li><button type="button" data-filter="apps" aria-pressed="false">Apps</button></li>
+          <li><button type="button" data-filter="events" aria-pressed="false">Events</button></li>
+          <li><button type="button" data-filter="systems" aria-pressed="false">Systems</button></li>
+          <li><button type="button" data-filter="support" aria-pressed="false">Support</button></li>
+        </ul>
+      </section>
+
+      <section class="container" aria-label="Case studies">
+        <ol class="wk-list" data-wk-list>
+          <li class="wk-row" id="wk-supercupni" data-tags="strategy pr web apps" data-tint="#1E0033" data-accent="#00FF8A" data-image="../assets/img/work/supercupni/hero.webp">
+            <a href="supercupni.html">
+              <span class="wk-row__bg" aria-hidden="true"><img src="../assets/img/work/supercupni/hero.webp" alt="" loading="lazy"></span>
+              <span class="wk-row__num" aria-hidden="true"></span>
+              <span><span class="wk-row__thumb"><img src="../assets/img/work/supercupni/hero.webp" alt="" loading="lazy"></span><span class="wk-row__name">SuperCupNI</span></span>
+              <span class="wk-row__meta"><span class="wk-row__line">We shaped the story. Then built everything to carry it.</span><span class="wk-row__tags">Strategy, PR &amp; comms, Web &amp; Apps &middot; 2026</span></span>
+              <span class="wk-row__go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+            </a>
+          </li>
+          <li class="wk-row" id="wk-glentoran" data-tags="pr brand web systems" data-tint="#022B19" data-accent="#36DB8C" data-image="../assets/img/work/glentoran/hero.webp">
+            <a href="glentoran.html">
+              <span class="wk-row__bg" aria-hidden="true"><img src="../assets/img/work/glentoran/hero.webp" alt="" loading="lazy"></span>
+              <span class="wk-row__num" aria-hidden="true"></span>
+              <span><span class="wk-row__thumb"><img src="../assets/img/work/glentoran/hero.webp" alt="" loading="lazy"></span><span class="wk-row__name">Glentoran FC</span></span>
+              <span class="wk-row__meta"><span class="wk-row__line">Every channel. Every matchday. One team behind the Glens.</span><span class="wk-row__tags">Campaigns, Design, Web &amp; Systems &middot; 2024 to today</span></span>
+              <span class="wk-row__go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+            </a>
+          </li>
+          <li class="wk-row" id="wk-braininjurymatters" data-tags="web" data-tint="#011B47" data-accent="#FFB600" data-image="../assets/img/work/braininjurymatters/hero.webp">
+            <a href="braininjurymatters.html">
+              <span class="wk-row__bg" aria-hidden="true"><img src="../assets/img/work/braininjurymatters/hero.webp" alt="" loading="lazy"></span>
+              <span class="wk-row__num" aria-hidden="true"></span>
+              <span><span class="wk-row__thumb"><img src="../assets/img/work/braininjurymatters/hero.webp" alt="" loading="lazy"></span><span class="wk-row__name">Brain Injury Matters</span></span>
+              <span class="wk-row__meta"><span class="wk-row__line">A warmer front door for everyone affected by brain injury.</span><span class="wk-row__tags">UX, Design &amp; Web &middot; 2026</span></span>
+              <span class="wk-row__go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+            </a>
+          </li>
+          <li class="wk-row" id="wk-rkings" data-tags="strategy web brand support" data-tint="#1A1400" data-accent="#FFB800" data-image="../assets/img/work/rkings/hero.webp">
+            <a href="rkings.html">
+              <span class="wk-row__bg" aria-hidden="true"><img src="../assets/img/work/rkings/hero.webp" alt="" loading="lazy"></span>
+              <span class="wk-row__num" aria-hidden="true"></span>
+              <span><span class="wk-row__thumb"><img src="../assets/img/work/rkings/hero.webp" alt="" loading="lazy"></span><span class="wk-row__name">R Kings</span></span>
+              <span class="wk-row__meta"><span class="wk-row__line">Strategy first. Support always. Five years beside R Kings.</span><span class="wk-row__tags">Strategy, Platform, Brand &amp; Support &middot; 2021 to today</span></span>
+              <span class="wk-row__go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+            </a>
+          </li>
+          <li class="wk-row" id="wk-seacourt" data-tags="brand web" data-tint="#071A47" data-accent="#F3FF03" data-image="../assets/img/work/seacourt/hero.webp">
+            <a href="seacourt.html">
+              <span class="wk-row__bg" aria-hidden="true"><img src="../assets/img/work/seacourt/hero.webp" alt="" loading="lazy"></span>
+              <span class="wk-row__num" aria-hidden="true"></span>
+              <span><span class="wk-row__thumb"><img src="../assets/img/work/seacourt/hero.webp" alt="" loading="lazy"></span><span class="wk-row__name">Seacourt</span></span>
+              <span class="wk-row__meta"><span class="wk-row__line">Forty years of printmaking. A new home, a bolder brand.</span><span class="wk-row__tags">Brand &amp; Web &middot; 2023</span></span>
+              <span class="wk-row__go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+            </a>
+          </li>
+          <li class="wk-row" id="wk-shipitcon" data-tags="events pr web" data-tint="#2A1205" data-accent="#FF8200" data-image="../assets/img/work/shipitcon/hero.webp">
+            <a href="shipitcon.html">
+              <span class="wk-row__bg" aria-hidden="true"><img src="../assets/img/work/shipitcon/hero.webp" alt="" loading="lazy"></span>
+              <span class="wk-row__num" aria-hidden="true"></span>
+              <span><span class="wk-row__thumb"><img src="../assets/img/work/shipitcon/hero.webp" alt="" loading="lazy"></span><span class="wk-row__name">ShipItCon</span></span>
+              <span class="wk-row__meta"><span class="wk-row__line">Every edition, a new world. One home to launch it from.</span><span class="wk-row__tags">Event Planning, Campaigns &amp; Web &middot; 2022 to today</span></span>
+              <span class="wk-row__go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+            </a>
+          </li>
+          <li class="wk-row" id="wk-uniqueplants" data-tags="web brand" data-tint="#12261C" data-accent="#A9DB00" data-image="../assets/img/work/uniqueplants/hero.webp">
+            <a href="uniqueplants.html">
+              <span class="wk-row__bg" aria-hidden="true"><img src="../assets/img/work/uniqueplants/hero.webp" alt="" loading="lazy"></span>
+              <span class="wk-row__num" aria-hidden="true"></span>
+              <span><span class="wk-row__thumb"><img src="../assets/img/work/uniqueplants/hero.webp" alt="" loading="lazy"></span><span class="wk-row__name">Unique Plants</span></span>
+              <span class="wk-row__meta"><span class="wk-row__line">A practice built on plants. A brand and website to match.</span><span class="wk-row__tags">Web &amp; Brand &middot; 2024</span></span>
+              <span class="wk-row__go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+            </a>
+          </li>
+        </ol>
+      </section>
+
+      <section class="wk-outro container" aria-label="Work with us">
+        <h2>Your story <span>could be next.</span></h2>
+        <p>Tell us what you're planning. We'll bring the strategy, the comms and the craft to make it land.</p>
+        <a class="button" href="../contact.html">Get in touch <svg viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M13.2 5.3 19.9 12l-6.7 6.7-1.4-1.4 4.3-4.3H4v-2h12.1l-4.3-4.3z"/></svg></a>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-base">
+          <svg class="footer-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192.84 45.34">
+            <path d="M22.2,12.6v12.76s-8.21.72-8.21.72l8.21-13.48ZM7.46,26.71l-5.35.49,1.13,4.63,1.18-.13-4.42,7.15,4.75,2.48,6.21-10.2,11.23-1.05v7.96s8.36,2.4,8.36,2.4l-.21-32.99-9.63-2.31L7.46,26.71Z"/>
+            <path d="M46.61,17.57c-1.2.04-2.2.31-3.01.81-.8.5-1.2,1.05-1.17,1.67.02.47.36.84,1.03,1.11.67.27,1.53.51,2.58.73,1.05.21,2.16.47,3.33.77,1.17.3,2.28.71,3.34,1.25,1.06.54,1.93,1.25,2.63,2.13.69.89,1.06,2.05,1.11,3.48.05,1.44-.29,2.78-1.03,4.02-.74,1.24-1.77,2.34-3.1,3.3-1.33.96-2.9,1.71-4.7,2.27-1.8.56-3.74.88-5.82.95-2.87.1-5.21-.34-7.02-1.3-1.81-.96-2.74-2.31-2.8-4.04-.04-1.17.33-2.23,1.12-3.18.79-.95,1.91-1.69,3.36-2.21l5.39,2.01c-1.3.6-1.93,1.34-1.9,2.22.02.47.29.86.81,1.18.52.32,1.34.46,2.46.42,1.67-.06,2.98-.46,3.92-1.21.94-.75,1.4-1.49,1.38-2.23-.02-.62-.36-1.08-1.02-1.4-.66-.31-1.49-.56-2.49-.75-1-.19-2.07-.4-3.21-.64-1.14-.24-2.22-.58-3.25-1.03-1.03-.45-1.87-1.09-2.53-1.94-.66-.84-1.01-1.95-1.06-3.33-.06-1.79.46-3.42,1.57-4.89,1.11-1.47,2.62-2.66,4.54-3.54,1.92-.89,4.07-1.37,6.44-1.45,1.79-.06,3.43.12,4.93.56,1.5.43,2.71,1.08,3.63,1.94.92.86,1.41,1.9,1.45,3.1.03.79-.15,1.56-.54,2.31-.39.75-.95,1.4-1.69,1.95l-6.24-2.25c.57-.4.85-.84.83-1.3-.01-.41-.3-.77-.85-1.07-.55-.3-1.36-.44-2.41-.4"/>
+            <path d="M58.61,12.81l6.5-.36,2.35-7.21,7.52,2.38-1.39,4.32,6.89-.32-1.49,4.8-6.98.37-3.98,12.32c.93-1.03,1.89-2.04,2.87-3.02.98-.99,1.98-1.94,3-2.85l3.16,3.59c-2.19,1.92-4.32,3.93-6.37,6.01-2.06,2.08-4.04,4.23-5.96,6.43l-7.52-2.38,6.37-19.58-3.64.21-1.31-4.71Z"/>
+            <path d="M105.54,13.35l-7.99,24.78-7.52-2.38,3.78-11.53c-1.85,2.53-3.74,5-5.66,7.41-1.93,2.41-3.89,4.75-5.9,7.02l-7.39-2.39,7.99-24.78,7.52,2.38-4.58,14.02c2.28-2.72,4.48-5.48,6.58-8.3,2.1-2.81,4.03-5.69,5.78-8.63l7.39,2.39Z"/>
+            <path d="M107.6,11.11l3.67-.26,2.35-7.21,7.52,2.38-1.39,4.32,7.05-.26-1.67,4.74-6.98.37-3.98,12.32c.93-1.03,1.89-2.04,2.87-3.02.98-.99,1.98-1.94,3-2.85l3.16,3.59c-2.19,1.92-4.32,3.93-6.37,6.01-2.06,2.08-4.04,4.22-5.96,6.43l-7.52-2.38,6.37-19.58-3.64.21,1.52-4.8Z"/>
+            <path d="M138.37,14.38c-1.03.04-2.02.66-2.99,1.86-.97,1.21-1.83,2.95-2.57,5.24,1.78-.24,3.22-.66,4.31-1.27,1.09-.61,1.89-1.3,2.39-2.06.5-.77.74-1.47.72-2.11-.04-1.14-.66-1.69-1.86-1.65M145.43,30.07c-1.02,1.94-2.53,3.54-4.52,4.8s-4.21,1.93-6.64,2.01c-2.29.08-4.2-.31-5.74-1.17-1.54-.86-2.71-2.04-3.51-3.55-.8-1.51-1.23-3.22-1.3-5.13-.04-1.08.02-2.12.16-3.11.14-.99.37-1.98.69-2.99.71-2.25,1.79-4.21,3.23-5.88,1.44-1.66,3.1-2.97,4.99-3.91,1.89-.95,3.87-1.45,5.95-1.52,2.7-.09,4.86.46,6.5,1.67,1.64,1.21,2.5,2.88,2.57,5.02.09,2.67-1.09,4.86-3.54,6.57-2.45,1.71-5.98,2.84-10.6,3.38l-1.46-2.9c-.41,1.72-.59,3.23-.55,4.55.04,1.29.32,2.29.83,3.01.51.72,1.25,1.06,2.21,1.02.91-.03,1.76-.43,2.55-1.21.79-.78,1.46-1.94,1.99-3.48l6.17,2.82Z"/>
+            <polygon points="156 0 144.97 33.86 152.49 36.25 163.52 2.38 156 0"/>
+            <path d="M186.96,10.59l-11.35,34.76-7.52-2.38,6.89-21.14c-3.53,4.81-7.29,9.49-11.27,14.03l-7.52-2.38,7.99-24.74,7.52,2.38-4.49,13.93c2.22-2.69,4.37-5.44,6.43-8.25,2.06-2.81,3.96-5.67,5.71-8.58l7.61,2.38Z"/>
+            <polygon points="182.88 32.99 190.29 34.94 192.84 27.15 185.43 25.21 182.88 32.99"/>
+          </svg>
+          <span class="text-uppercase text__pink">STRATEGY. BRAND. DIGITAL. COMMS.</span>
+          <span class="byline">A Creative Marketing Agency</span>
+          <p class="footer-legal">Astutely &amp; AY Studio are trading names of Annett Young Limited, a company registered in Northern Ireland. Company No: NI684765. Registered office: Top Floor, 144 High Street, Holywood, BT18 9HS. VAT No: GB424848086.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.25/dist/lenis.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js"></script>
+    <script>
+      (function () {
+        var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var root = document.documentElement, body = document.body;
+        var list = document.querySelector('[data-wk-list]');
+        var rows = [].slice.call(list.querySelectorAll('.wk-row'));
+        var total = document.querySelector('[data-count-total]');
+        if (total) total.textContent = String(rows.length).padStart(2, '0');
+
+        // Smooth scroll
+        var lenis = null;
+        if (!reduced && typeof Lenis !== 'undefined') {
+          lenis = new Lenis({ duration: 1.05, easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); }, smoothWheel: true });
+          var raf = function (t) { lenis.raf(t); requestAnimationFrame(raf); }; requestAnimationFrame(raf);
+        }
+
+        // Mood: tint the page toward the active client's brand
+        function activate(r) {
+          rows.forEach(function (x) { x.classList.toggle('is-active', x === r); });
+          [].forEach.call(document.querySelectorAll('.wk-swatches li'), function (s) { s.classList.toggle('is-on', !!r && s.getAttribute('data-for') === r.id); });
+          list.classList.toggle('is-hovering', !!r);
+          if (r) {
+            root.style.setProperty('--tint', r.getAttribute('data-tint'));
+            root.style.setProperty('--accent', r.getAttribute('data-accent'));
+          } else {
+            root.style.setProperty('--tint', '#060606');
+            root.style.setProperty('--accent', '#F3DFA2');
+          }
+        }
+        rows.forEach(function (r) {
+          var a = r.querySelector('a');
+          a.addEventListener('mouseenter', function () { if (!r.classList.contains('is-dim')) activate(r); });
+          a.addEventListener('focus', function () { activate(r); });
+          a.addEventListener('blur', function () { activate(null); });
+        });
+        list.addEventListener('mouseleave', function () { activate(null); });
+
+        // Discipline filter: dims non-matching projects (keeps the list's shape, so nothing jumps)
+        var btns = [].slice.call(document.querySelectorAll('.wk-filter button'));
+        btns.forEach(function (b) {
+          var f = b.getAttribute('data-filter');
+          if (f !== 'all') { var n = rows.filter(function (r) { return (' ' + r.getAttribute('data-tags') + ' ').indexOf(' ' + f + ' ') > -1; }).length; b.insertAdjacentHTML('beforeend', '<span>' + n + '</span>'); }
+          b.addEventListener('click', function () {
+            btns.forEach(function (o) { o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
+            rows.forEach(function (r) { r.classList.toggle('is-dim', f !== 'all' && (' ' + r.getAttribute('data-tags') + ' ').indexOf(' ' + f + ' ') < 0); });
+          });
+        });
+
+        // Entrance: the index reveals row by row
+        if (typeof gsap === 'undefined' || reduced) return;
+        gsap.registerPlugin(ScrollTrigger);
+        gsap.from('.wk-hero h1, .wk-hero__lead, .wk-filter li', { y: 40, opacity: 0, duration: 1, ease: 'power3.out', stagger: 0.06 });
+        rows.forEach(function (r) {
+          gsap.from(r.querySelector('a'), { y: 50, opacity: 0, duration: 0.9, ease: 'power3.out', scrollTrigger: { trigger: r, start: 'top 92%', once: true } });
+        });
+        gsap.from('.wk-outro > *', { y: 30, opacity: 0, duration: 0.9, ease: 'power3.out', stagger: 0.1, scrollTrigger: { trigger: '.wk-outro', start: 'top 85%', once: true } });
+      })();
+    </script>
+  </body>
+</html>
