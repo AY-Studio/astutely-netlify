@@ -28,6 +28,14 @@
       line: "A practice built on plants. A brand and website to match.",
       tags: "Web & Brand",
       image: '../assets/img/work/uniqueplants/hero.webp'
+    },
+    {
+      slug: 'rkings',
+      url: 'rkings.html',
+      client: "R Kings Competitions",
+      line: "Strategy first. Support always. Five years beside R Kings.",
+      tags: "Strategy, Platform, Brand & Support",
+      image: '../assets/img/work/rkings/hero.webp'
     }
   ];
 
