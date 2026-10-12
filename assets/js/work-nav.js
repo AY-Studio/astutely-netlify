@@ -8,18 +8,26 @@
     {
       slug: 'supercupni',
       url: 'supercupni.html',
-      client: 'Budget Energy SuperCupNI',
-      line: 'We shaped the story. Then built everything to carry it.',
-      tags: 'Strategy, PR & comms, Web & Apps',
+      client: "Budget Energy SuperCupNI",
+      line: "We shaped the story. Then built everything to carry it.",
+      tags: "Strategy, PR & comms, Web & Apps",
       image: '../assets/img/work/supercupni/hero.webp'
     },
     {
       slug: 'braininjurymatters',
       url: 'braininjurymatters.html',
-      client: 'Brain Injury Matters',
-      line: 'A warmer front door for everyone affected by brain injury.',
-      tags: 'UX, Design & Web',
+      client: "Brain Injury Matters",
+      line: "A warmer front door for everyone affected by brain injury.",
+      tags: "UX, Design & Web",
       image: '../assets/img/work/braininjurymatters/hero.webp'
+    },
+    {
+      slug: 'uniqueplants',
+      url: 'uniqueplants.html',
+      client: "Unique Plants",
+      line: "A practice built on plants. A brand and website to match.",
+      tags: "Web & Brand",
+      image: '../assets/img/work/uniqueplants/hero.webp'
     }
   ];
 
