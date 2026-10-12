@@ -107,14 +107,11 @@
 
       /* ---------- Acts ---------- */
       .act { padding-top: var(--space); }
-      .act__head { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.5rem 3rem; align-items: end; padding-bottom: clamp(2rem, 4vw, 3.5rem); border-bottom: 1px solid var(--ink); }
-      @media (min-width: 992px) { .act__head { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); } .act__head > :first-child { grid-column: 1 / -1; } .act__head .statement { grid-column: 2; } }
-      .act__num { display: block; font-size: clamp(1rem, 1.2vw, 1.2rem); font-weight: 700; letter-spacing: 0.16em; margin-bottom: 0.4rem; }
-      .act__word { margin: 0; font-weight: 800; font-size: clamp(4.4rem, 17vw, 19rem); line-height: 0.82; letter-spacing: -0.06em; }
-      .act__head .statement { font-size: clamp(2rem, 3.8vw, 4rem); }
-      .act__body { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2rem 3rem; padding-top: clamp(2.5rem, 5vw, 4.5rem); }
-      @media (min-width: 992px) { .act__body { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); } .act__body > .body { grid-column: 2; max-width: 40ch; } }
-      .act__body .eyebrow { color: var(--faint); }
+      .act__head { padding-bottom: clamp(1.6rem, 3vw, 2.8rem); border-bottom: 1px solid var(--ink); }
+      .act__word { margin: 0; font-weight: 800; font-size: clamp(3.1rem, 14.5vw, 17rem); line-height: 0.86; letter-spacing: -0.06em; }
+      .act__word span { color: var(--faint); }
+      .act__body { padding-top: clamp(2.5rem, 5vw, 4.5rem); }
+      .act__body > .body { max-width: 40ch; }
 
       /* ---------- Media: one key visual, or a pair. Never more. ---------- */
       .media { margin: 0; }
@@ -280,7 +277,6 @@
         <div class="w">
           <div class="cst-hero__kicker" data-hero>
             <p class="eyebrow">Case study</p>
-            <p class="eyebrow">Client name &middot; 2026</p>
           </div>
           <h1 id="cst-title" class="display">
             <span class="line" data-hero>Lorem ipsum dolor sit.</span>
@@ -320,14 +316,9 @@
       <section class="act" id="problem" aria-labelledby="problem-title" data-chapter="01 Problem">
         <div class="w">
           <header class="act__head">
-            <div data-reveal>
-              <span class="act__num">01</span>
-              <h2 class="act__word" id="problem-title">Problem</h2>
-            </div>
-            <p class="statement" data-reveal data-wm="lines">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod.</p>
+            <h2 class="act__word" id="problem-title" data-reveal><span>01</span> Problem</h2>
           </header>
           <div class="act__body">
-            <p class="eyebrow" data-reveal>The situation</p>
             <div class="body" data-reveal>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Sed do eiusmod tempor incididunt</strong> ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
               <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
@@ -353,14 +344,9 @@
       <section class="act" id="process" aria-labelledby="process-title" data-chapter="02 Process">
         <div class="w">
           <header class="act__head">
-            <div data-reveal>
-              <span class="act__num">02</span>
-              <h2 class="act__word" id="process-title">Process</h2>
-            </div>
-            <p class="statement" data-reveal data-wm="lines">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+            <h2 class="act__word" id="process-title" data-reveal><span>02</span> Process</h2>
           </header>
           <div class="act__body">
-            <p class="eyebrow" data-reveal>How we approached it</p>
             <div class="body" data-reveal>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <strong>Ut enim ad minim veniam</strong>, quis nostrud exercitation ullamco laboris.</p>
             </div>
@@ -411,14 +397,9 @@
       <section class="act" id="outcome" aria-labelledby="outcome-title" data-chapter="03 Outcome">
         <div class="w">
           <header class="act__head">
-            <div data-reveal>
-              <span class="act__num">03</span>
-              <h2 class="act__word" id="outcome-title">Outcome</h2>
-            </div>
-            <p class="statement" data-reveal data-wm="lines">Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
+            <h2 class="act__word" id="outcome-title" data-reveal><span>03</span> Outcome</h2>
           </header>
           <div class="act__body">
-            <p class="eyebrow" data-reveal>What changed</p>
             <div class="body" data-reveal>
               <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <strong>Excepteur sint occaecat cupidatat</strong> non proident, sunt in culpa qui officia.</p>
             </div>
