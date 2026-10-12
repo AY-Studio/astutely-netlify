@@ -36,6 +36,14 @@
       line: "Strategy first. Support always. Five years beside R Kings.",
       tags: "Strategy, Platform, Brand & Support",
       image: '../assets/img/work/rkings/hero.webp'
+    },
+    {
+      slug: 'seacourt',
+      url: 'seacourt.html',
+      client: "Seacourt Print Workshop",
+      line: "Forty years of printmaking. A new home, a bolder brand.",
+      tags: "Brand & Web",
+      image: '../assets/img/work/seacourt/hero.webp'
     }
   ];
 
