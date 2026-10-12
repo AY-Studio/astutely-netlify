@@ -323,6 +323,9 @@
       .to-top:hover .to-top__arrow { transform: translateY(-2px); }
       @media (prefers-reduced-motion: reduce) { .to-top, .to-top__arrow, .u-world img, .u-palette__stage, .u-swatches button { transition: none; } }
     </style>
+    <!-- Entrance motion: animated content starts hidden from first paint; assets/js/work-motion.js reveals it -->
+    <script>if (!matchMedia('(prefers-reduced-motion: reduce)').matches) { document.documentElement.classList.add('wm'); setTimeout(function () { if (!window.__wmReady) document.documentElement.classList.remove('wm'); }, 4000); }</script>
+    <style>html.wm [data-hero], html.wm [data-reveal], html.wm [data-stagger] > *, html.wm [class*="hero__media"] img { opacity: 0; } .wm-line-mask { padding: 0.08em 0 0.14em; margin: -0.08em 0 -0.14em; }</style>
   </head>
   <body class="up">
     <a class="skip-link" href="#main">Skip to content</a>
@@ -658,6 +661,7 @@
     <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.25/dist/lenis.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/SplitText.min.js"></script>
     <script>
       (function () {
         var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -732,17 +736,9 @@
         if (!hasGsap || reduced) return;
         gsap.registerPlugin(ScrollTrigger);
 
-        gsap.from('.u-hero__media img', { scale: 1.1, duration: 2.4, ease: 'power3.out' });
-        gsap.from('[data-hero]', { y: 34, opacity: 0, duration: 1.2, ease: 'power3.out', stagger: 0.14, delay: 0.2 });
         gsap.to('.u-hero__media img', { yPercent: 10, ease: 'none', scrollTrigger: { trigger: '.u-hero', start: 'top top', end: 'bottom top', scrub: true } });
 
-        gsap.set('[data-reveal]', { y: 36, opacity: 0 });
-        ScrollTrigger.batch('[data-reveal]', { start: 'top 88%', once: true, onEnter: function (els) { gsap.to(els, { y: 0, opacity: 1, duration: 1, ease: 'power3.out', stagger: 0.08, overwrite: true }); } });
 
-        gsap.utils.toArray('[data-stagger]').forEach(function (row) {
-          var kids = row.children; gsap.set(kids, { y: 26, opacity: 0 });
-          ScrollTrigger.create({ trigger: row, start: 'top 88%', once: true, onEnter: function () { gsap.to(kids, { y: 0, opacity: 1, duration: 0.85, ease: 'power3.out', stagger: 0.1 }); } });
-        });
 
         // Before / after: a gentle sweep the first time it's seen, inviting a drag.
         var cmp = document.querySelector('[data-compare]');
@@ -763,5 +759,6 @@
       })();
     </script>
     <script src="../assets/js/work-nav.js?v=20261013" defer></script>
+    <script src="../assets/js/work-motion.js?v=20261012" defer></script>
   </body>
 </html>

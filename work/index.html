@@ -149,6 +149,9 @@
 
       @media (prefers-reduced-motion: reduce) { body.theme-dark, .wk-row, .wk-row__name, .wk-row__go, .wk-row__bg, .wk-row__bg img { transition: none; } }
     </style>
+    <!-- Entrance motion: animated content starts hidden from first paint; assets/js/work-motion.js reveals it -->
+    <script>if (!matchMedia('(prefers-reduced-motion: reduce)').matches) { document.documentElement.classList.add('wm'); setTimeout(function () { if (!window.__wmReady) document.documentElement.classList.remove('wm'); }, 4000); }</script>
+    <style>html.wm [data-hero], html.wm [data-reveal], html.wm [data-stagger] > *, html.wm [class*="hero__media"] img { opacity: 0; } .wm-line-mask { padding: 0.08em 0 0.14em; margin: -0.08em 0 -0.14em; } #wk-title .wm-line-mask { padding-top: 0.4em; margin-top: -0.4em; }</style>
   </head>
   <body class="theme-dark">
     <div class="svg-bg" aria-hidden="true">
@@ -194,10 +197,10 @@
     <main id="main">
       <section class="wk-hero container" aria-labelledby="wk-title">
         <div class="wk-hero__top">
-          <h1 id="wk-title" data-split>Work<sup data-count-total>00</sup></h1>
+          <h1 id="wk-title" data-hero>Work<sup data-count-total>00</sup></h1>
           <div>
-            <p class="wk-hero__lead">Stories we've helped shape, and the <b>strategy, comms, brands, websites and apps</b> built to carry them.</p>
-            <ul class="wk-swatches" aria-hidden="true">
+            <p class="wk-hero__lead" data-hero>Stories we've helped shape, and the <b>strategy, comms, brands, websites and apps</b> built to carry them.</p>
+            <ul class="wk-swatches" aria-hidden="true" data-stagger>
               <li style="--c:#00FF8A" data-for="wk-supercupni"></li>
               <li style="--c:#36DB8C" data-for="wk-glentoran"></li>
               <li style="--c:#FFB600" data-for="wk-braininjurymatters"></li>
@@ -208,7 +211,7 @@
             </ul>
           </div>
         </div>
-        <ul class="wk-filter" aria-label="Filter by discipline">
+        <ul class="wk-filter" aria-label="Filter by discipline" data-stagger>
           <li><button type="button" data-filter="all" aria-pressed="true">All</button></li>
           <li><button type="button" data-filter="strategy" aria-pressed="false">Strategy</button></li>
           <li><button type="button" data-filter="pr" aria-pressed="false">PR &amp; comms</button></li>
@@ -227,8 +230,8 @@
             <a href="supercupni.html">
               <span class="wk-row__bg" aria-hidden="true"><img src="../assets/img/work/supercupni/hero.webp" alt="" loading="lazy"></span>
               <span class="wk-row__num" aria-hidden="true"></span>
-              <span><span class="wk-row__thumb"><img src="../assets/img/work/supercupni/hero.webp" alt="" loading="lazy"></span><span class="wk-row__name">SuperCupNI</span></span>
-              <span class="wk-row__meta"><span class="wk-row__line">We shaped the story. Then built everything to carry it.</span><span class="wk-row__tags">Strategy, PR &amp; comms, Web &amp; Apps &middot; 2026</span></span>
+              <span><span class="wk-row__thumb"><img src="../assets/img/work/supercupni/hero.webp" alt="" loading="lazy"></span><span class="wk-row__name" data-reveal data-wm="lines">SuperCupNI</span></span>
+              <span class="wk-row__meta" data-reveal><span class="wk-row__line">We shaped the story. Then built everything to carry it.</span><span class="wk-row__tags">Strategy, PR &amp; comms, Web &amp; Apps &middot; 2026</span></span>
               <span class="wk-row__go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             </a>
           </li>
@@ -236,8 +239,8 @@
             <a href="glentoran.html">
               <span class="wk-row__bg" aria-hidden="true"><img src="../assets/img/work/glentoran/hero.webp" alt="" loading="lazy"></span>
               <span class="wk-row__num" aria-hidden="true"></span>
-              <span><span class="wk-row__thumb"><img src="../assets/img/work/glentoran/hero.webp" alt="" loading="lazy"></span><span class="wk-row__name">Glentoran FC</span></span>
-              <span class="wk-row__meta"><span class="wk-row__line">Every channel. Every matchday. One team behind the Glens.</span><span class="wk-row__tags">Campaigns, Design, Web &amp; Systems &middot; 2024 to today</span></span>
+              <span><span class="wk-row__thumb"><img src="../assets/img/work/glentoran/hero.webp" alt="" loading="lazy"></span><span class="wk-row__name" data-reveal data-wm="lines">Glentoran FC</span></span>
+              <span class="wk-row__meta" data-reveal><span class="wk-row__line">Every channel. Every matchday. One team behind the Glens.</span><span class="wk-row__tags">Campaigns, Design, Web &amp; Systems &middot; 2024 to today</span></span>
               <span class="wk-row__go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             </a>
           </li>
@@ -245,8 +248,8 @@
             <a href="braininjurymatters.html">
               <span class="wk-row__bg" aria-hidden="true"><img src="../assets/img/work/braininjurymatters/hero.webp" alt="" loading="lazy"></span>
               <span class="wk-row__num" aria-hidden="true"></span>
-              <span><span class="wk-row__thumb"><img src="../assets/img/work/braininjurymatters/hero.webp" alt="" loading="lazy"></span><span class="wk-row__name">Brain Injury Matters</span></span>
-              <span class="wk-row__meta"><span class="wk-row__line">A warmer front door for everyone affected by brain injury.</span><span class="wk-row__tags">UX, Design &amp; Web &middot; 2026</span></span>
+              <span><span class="wk-row__thumb"><img src="../assets/img/work/braininjurymatters/hero.webp" alt="" loading="lazy"></span><span class="wk-row__name" data-reveal data-wm="lines">Brain Injury Matters</span></span>
+              <span class="wk-row__meta" data-reveal><span class="wk-row__line">A warmer front door for everyone affected by brain injury.</span><span class="wk-row__tags">UX, Design &amp; Web &middot; 2026</span></span>
               <span class="wk-row__go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             </a>
           </li>
@@ -254,8 +257,8 @@
             <a href="rkings.html">
               <span class="wk-row__bg" aria-hidden="true"><img src="../assets/img/work/rkings/hero.webp" alt="" loading="lazy"></span>
               <span class="wk-row__num" aria-hidden="true"></span>
-              <span><span class="wk-row__thumb"><img src="../assets/img/work/rkings/hero.webp" alt="" loading="lazy"></span><span class="wk-row__name">R Kings</span></span>
-              <span class="wk-row__meta"><span class="wk-row__line">Strategy first. Support always. Five years beside R Kings.</span><span class="wk-row__tags">Strategy, Platform, Brand &amp; Support &middot; 2021 to today</span></span>
+              <span><span class="wk-row__thumb"><img src="../assets/img/work/rkings/hero.webp" alt="" loading="lazy"></span><span class="wk-row__name" data-reveal data-wm="lines">R Kings</span></span>
+              <span class="wk-row__meta" data-reveal><span class="wk-row__line">Strategy first. Support always. Five years beside R Kings.</span><span class="wk-row__tags">Strategy, Platform, Brand &amp; Support &middot; 2021 to today</span></span>
               <span class="wk-row__go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             </a>
           </li>
@@ -263,8 +266,8 @@
             <a href="seacourt.html">
               <span class="wk-row__bg" aria-hidden="true"><img src="../assets/img/work/seacourt/hero.webp" alt="" loading="lazy"></span>
               <span class="wk-row__num" aria-hidden="true"></span>
-              <span><span class="wk-row__thumb"><img src="../assets/img/work/seacourt/hero.webp" alt="" loading="lazy"></span><span class="wk-row__name">Seacourt</span></span>
-              <span class="wk-row__meta"><span class="wk-row__line">Forty years of printmaking. A new home, a bolder brand.</span><span class="wk-row__tags">Brand &amp; Web &middot; 2023</span></span>
+              <span><span class="wk-row__thumb"><img src="../assets/img/work/seacourt/hero.webp" alt="" loading="lazy"></span><span class="wk-row__name" data-reveal data-wm="lines">Seacourt</span></span>
+              <span class="wk-row__meta" data-reveal><span class="wk-row__line">Forty years of printmaking. A new home, a bolder brand.</span><span class="wk-row__tags">Brand &amp; Web &middot; 2023</span></span>
               <span class="wk-row__go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             </a>
           </li>
@@ -272,8 +275,8 @@
             <a href="shipitcon.html">
               <span class="wk-row__bg" aria-hidden="true"><img src="../assets/img/work/shipitcon/hero.webp" alt="" loading="lazy"></span>
               <span class="wk-row__num" aria-hidden="true"></span>
-              <span><span class="wk-row__thumb"><img src="../assets/img/work/shipitcon/hero.webp" alt="" loading="lazy"></span><span class="wk-row__name">ShipItCon</span></span>
-              <span class="wk-row__meta"><span class="wk-row__line">Every edition, a new world. One home to launch it from.</span><span class="wk-row__tags">Event Planning, Campaigns &amp; Web &middot; 2022 to today</span></span>
+              <span><span class="wk-row__thumb"><img src="../assets/img/work/shipitcon/hero.webp" alt="" loading="lazy"></span><span class="wk-row__name" data-reveal data-wm="lines">ShipItCon</span></span>
+              <span class="wk-row__meta" data-reveal><span class="wk-row__line">Every edition, a new world. One home to launch it from.</span><span class="wk-row__tags">Event Planning, Campaigns &amp; Web &middot; 2022 to today</span></span>
               <span class="wk-row__go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             </a>
           </li>
@@ -281,15 +284,15 @@
             <a href="uniqueplants.html">
               <span class="wk-row__bg" aria-hidden="true"><img src="../assets/img/work/uniqueplants/hero.webp" alt="" loading="lazy"></span>
               <span class="wk-row__num" aria-hidden="true"></span>
-              <span><span class="wk-row__thumb"><img src="../assets/img/work/uniqueplants/hero.webp" alt="" loading="lazy"></span><span class="wk-row__name">Unique Plants</span></span>
-              <span class="wk-row__meta"><span class="wk-row__line">A practice built on plants. A brand and website to match.</span><span class="wk-row__tags">Web &amp; Brand &middot; 2024</span></span>
+              <span><span class="wk-row__thumb"><img src="../assets/img/work/uniqueplants/hero.webp" alt="" loading="lazy"></span><span class="wk-row__name" data-reveal data-wm="lines">Unique Plants</span></span>
+              <span class="wk-row__meta" data-reveal><span class="wk-row__line">A practice built on plants. A brand and website to match.</span><span class="wk-row__tags">Web &amp; Brand &middot; 2024</span></span>
               <span class="wk-row__go"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
             </a>
           </li>
         </ol>
       </section>
 
-      <section class="wk-outro container" aria-label="Work with us">
+      <section class="wk-outro container" aria-label="Work with us" data-reveal>
         <h2>Your story <span>could be next.</span></h2>
         <p>Tell us what you're planning. We'll bring the strategy, the comms and the craft to make it land.</p>
         <a class="button" href="../contact.html">Get in touch <svg viewBox="0 0 24 24" width="1em" height="1em" fill="currentColor" aria-hidden="true"><path d="M13.2 5.3 19.9 12l-6.7 6.7-1.4-1.4 4.3-4.3H4v-2h12.1l-4.3-4.3z"/></svg></a>
@@ -320,6 +323,7 @@
     <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.25/dist/lenis.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/SplitText.min.js"></script>
     <script>
       (function () {
         var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -368,15 +372,8 @@
           });
         });
 
-        // Entrance: the index reveals row by row
-        if (typeof gsap === 'undefined' || reduced) return;
-        gsap.registerPlugin(ScrollTrigger);
-        gsap.from('.wk-hero h1, .wk-hero__lead, .wk-filter li', { y: 40, opacity: 0, duration: 1, ease: 'power3.out', stagger: 0.06 });
-        rows.forEach(function (r) {
-          gsap.from(r.querySelector('a'), { y: 50, opacity: 0, duration: 0.9, ease: 'power3.out', scrollTrigger: { trigger: r, start: 'top 92%', once: true } });
-        });
-        gsap.from('.wk-outro > *', { y: 30, opacity: 0, duration: 0.9, ease: 'power3.out', stagger: 0.1, scrollTrigger: { trigger: '.wk-outro', start: 'top 85%', once: true } });
       })();
     </script>
+    <script src="../assets/js/work-motion.js?v=20261012" defer></script>
   </body>
 </html>

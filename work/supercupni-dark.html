@@ -522,6 +522,9 @@
          hasn't asked for reduced motion, so the page is always complete without it. */
       @media (prefers-reduced-motion: reduce) { .cs-clock::before { animation: none; } }
     </style>
+    <!-- Entrance motion: animated content starts hidden from first paint; assets/js/work-motion.js reveals it -->
+    <script>if (!matchMedia('(prefers-reduced-motion: reduce)').matches) { document.documentElement.classList.add('wm'); setTimeout(function () { if (!window.__wmReady) document.documentElement.classList.remove('wm'); }, 4000); }</script>
+    <style>html.wm [data-hero], html.wm [data-reveal], html.wm [data-stagger] > *, html.wm [class*="hero__media"] img { opacity: 0; } .wm-line-mask { padding: 0.08em 0 0.14em; margin: -0.08em 0 -0.14em; }</style>
   </head>
   <body class="theme-dark news-body">
     <div class="svg-bg" aria-hidden="true">
@@ -1116,6 +1119,7 @@
     <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.25/dist/lenis.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/SplitText.min.js"></script>
     <script>
       (function () {
         var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1166,27 +1170,9 @@
 
         var fmt = function (n) { return Math.round(n).toLocaleString('en-GB'); };
 
-        // Hero: settle the photo in, then stagger the copy up.
-        gsap.from('.cs-hero__media img', { scale: 1.12, duration: 2.2, ease: 'power3.out' });
-        gsap.from('[data-hero]', { y: 40, opacity: 0, duration: 1.1, ease: 'power3.out', stagger: 0.12, delay: 0.15 });
         gsap.to('.cs-hero__media img', { yPercent: 12, ease: 'none', scrollTrigger: { trigger: '.cs-hero', start: 'top top', end: 'bottom top', scrub: true } });
 
-        // Generic reveal for blocks as they enter.
-        gsap.set('[data-reveal]', { y: 36, opacity: 0 });
-        ScrollTrigger.batch('[data-reveal]', {
-          start: 'top 88%',
-          once: true,
-          onEnter: function (els) { gsap.to(els, { y: 0, opacity: 1, duration: 0.9, ease: 'power3.out', stagger: 0.08, overwrite: true }); }
-        });
 
-        // Content rows: children of [data-stagger] fade up one after another.
-        gsap.utils.toArray('[data-stagger]').forEach(function (row) {
-          var kids = row.children;
-          gsap.set(kids, { y: 28, opacity: 0 });
-          ScrollTrigger.create({ trigger: row, start: 'top 88%', once: true, onEnter: function () {
-            gsap.to(kids, { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', stagger: 0.09 });
-          } });
-        });
 
         // Parallax inside full-bleed frames.
         gsap.utils.toArray('[data-parallax]').forEach(function (img) {
@@ -1277,5 +1263,6 @@
       })();
     </script>
     <script src="../assets/js/work-nav.js?v=20261013" defer></script>
+    <script src="../assets/js/work-motion.js?v=20261012" defer></script>
   </body>
 </html>

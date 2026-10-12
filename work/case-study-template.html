@@ -1,0 +1,609 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="icon" type="image/jpeg" href="../assets/img/favicon.jpg">
+    <link rel="apple-touch-icon" href="../assets/img/favicon.jpg">
+    <title>Case Study Template | Astutely Agency</title>
+    <meta name="description" content="Lorem ipsum case study template: problem, process, outcome.">
+    <!-- Internal template: never index. Copy this file to start a new case study. -->
+    <meta name="robots" content="noindex, nofollow"/>
+    <meta name="theme-color" content="#FFFFFF"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link href="../assets/css/style.css?v=20260716r" rel="stylesheet">
+    <link rel="preload" as="image" href="../assets/img/work/_template/hero.webp" fetchpriority="high">
+
+    <!-- ============================================================= -->
+    <!--  CASE STUDY TEMPLATE                                          -->
+    <!--  One story in three acts: Problem, Process, Outcome.          -->
+    <!--  Black on white, big type, big pictures. Image rule: never    -->
+    <!--  more than two in a row; a key visual always runs alone.      -->
+    <!--  To brand a case study, change --accent (one colour only).    -->
+    <!-- ============================================================= -->
+    <style>
+      html.lenis, html.lenis body { height: auto; }
+      .lenis.lenis-smooth { scroll-behavior: auto !important; }
+      .lenis.lenis-stopped { overflow: hidden; }
+
+      :root {
+        --ay: #F3DFA2; --ay-rgb: 243, 223, 162;
+        --ink: #0A0A0A; --paper: #FFFFFF; --soft: #F4F4F2;
+        --muted: rgba(10, 10, 10, 0.64); --faint: rgba(10, 10, 10, 0.45); --line: rgba(10, 10, 10, 0.14);
+        --accent: #0A0A0A;            /* the one client colour, used sparingly */
+        --gutter: clamp(1.25rem, 4vw, 4rem);
+        --max: 1720px;
+        --radius: clamp(10px, 1.2vw, 18px);
+        --gap: clamp(1rem, 2vw, 2rem);
+        --space: clamp(6rem, 13vw, 14rem);       /* between acts */
+        --space-sm: clamp(3.5rem, 7vw, 7.5rem);  /* between blocks */
+      }
+      * { box-sizing: border-box; cursor: auto; }
+      a, button, .site-nav__cta { cursor: pointer; }
+      html { overflow-x: clip; }
+      body.cst { margin: 0; background: var(--paper); color: var(--ink); font-family: "ModernEra", system-ui, -apple-system, sans-serif; font-weight: 400; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+      img { max-width: 100%; height: auto; display: block; }
+      main { position: relative; z-index: 0; isolation: isolate; }
+      a { color: inherit; }
+      :focus-visible { outline: 3px solid var(--ink); outline-offset: 4px; border-radius: 4px; }
+      .skip-link { position: absolute; left: -9999px; }
+      .skip-link:focus { left: 1rem; top: 1rem; background: var(--ink); color: #FFFFFF; padding: 0.5rem 1rem; border-radius: 8px; z-index: 100000; }
+      .w { width: min(100% - var(--gutter) * 2, var(--max)); margin-inline: auto; }
+
+      /* Nav: the Astutely pill */
+      .home-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1040; background: transparent; border-bottom: none; padding: 1rem 1rem 0; visibility: visible; opacity: 1; }
+      .home-nav__inner { background: #161618; border: 1px solid rgba(var(--ay-rgb), 0.22); border-radius: 16px; padding: 0.5rem 0.5rem 0.5rem 1.6rem; box-shadow: 0 14px 36px rgba(0, 0, 0, 0.14); }
+      .home-nav__brand svg { fill: var(--ay); }
+      .home-nav .site-nav a.site-nav__cta { background-color: var(--ay); color: #333333; }
+      .home-nav .site-nav a.site-nav__cta:hover { background-color: #FFFFFF; color: #333333; }
+      @media (max-width: 460px) {
+        .home-nav__brand svg { width: 104px; }
+        .home-nav__inner { padding: 0.45rem 0.45rem 0.45rem 1.05rem; }
+        .home-nav .site-nav a.site-nav__cta { padding: 0.5rem 0.85rem; }
+      }
+
+      /* ---------- Type: deliberately oversized ---------- */
+      .eyebrow { margin: 0; font-size: clamp(0.9rem, 1vw, 1.05rem); font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; }
+      .display { margin: 0; font-weight: 800; font-size: clamp(3.4rem, 9.2vw, 10.5rem); line-height: 0.94; letter-spacing: -0.045em; text-wrap: balance; }
+      .statement { margin: 0; font-weight: 700; font-size: clamp(2.4rem, 5.6vw, 6rem); line-height: 1.02; letter-spacing: -0.035em; text-wrap: balance; }
+      .lead { margin: 0; font-weight: 400; font-size: clamp(1.6rem, 2.9vw, 3rem); line-height: 1.22; letter-spacing: -0.02em; text-wrap: pretty; }
+      .body { font-size: clamp(1.35rem, 2.05vw, 2.2rem); line-height: 1.5; letter-spacing: -0.005em; color: var(--muted); }
+      .body p { margin: 0 0 1.1em; text-wrap: pretty; }
+      .body p:last-child { margin-bottom: 0; }
+      .body strong { color: var(--ink); font-weight: 700; }
+      .muted { color: var(--muted); }
+
+      /* ---------- Hero ---------- */
+      .cst-hero { padding-top: clamp(8.5rem, 15vw, 13rem); }
+      .cst-hero__kicker { display: flex; flex-wrap: wrap; gap: 0.6rem 1.6rem; align-items: center; margin-bottom: clamp(1.6rem, 3vw, 2.8rem); }
+      .cst-hero__kicker .eyebrow + .eyebrow { color: var(--faint); }
+      .cst-hero__kicker a { text-decoration: none; }
+      .cst-hero__kicker a:hover { text-decoration: underline; text-underline-offset: 0.3em; }
+      .cst-hero h1 .line { display: block; }
+      .cst-hero h1 .line + .line { color: var(--faint); }
+      .cst-hero__intro { display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(2.5rem, 5vw, 5rem); margin-top: clamp(2.8rem, 6vw, 6rem); }
+      @media (min-width: 992px) { .cst-hero__intro { grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); align-items: end; } }
+      .cst-facts { margin: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.6rem 2rem; }
+      .cst-facts div { border-top: 1px solid var(--line); padding-top: 0.9rem; }
+      .cst-facts dt { font-size: 0.9rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); margin-bottom: 0.4rem; }
+      .cst-facts dd { margin: 0; font-size: clamp(1.15rem, 1.4vw, 1.4rem); line-height: 1.35; font-weight: 500; }
+      .cst-facts dd a { text-decoration: underline; text-decoration-color: var(--line); text-underline-offset: 0.25em; transition: text-decoration-color 0.25s ease; }
+      .cst-facts dd a:hover { text-decoration-color: currentColor; }
+      .cst-hero__media { margin: clamp(3.5rem, 7vw, 7rem) clamp(0.5rem, 1.2vw, 1.25rem) 0; border-radius: var(--radius); overflow: hidden; background: var(--soft); }
+      .cst-hero__media img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+
+      /* Chapter index under the hero */
+      .cst-chapters { list-style: none; margin: clamp(3rem, 6vw, 5.5rem) auto 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: 1px solid var(--ink); }
+      .cst-chapters a { display: flex; flex-direction: column; gap: 0.3rem; padding: 1.1rem 0 0; text-decoration: none; }
+      .cst-chapters span { font-size: 0.95rem; font-weight: 700; letter-spacing: 0.14em; color: var(--faint); }
+      .cst-chapters b { font-size: clamp(1.5rem, 3.2vw, 3.2rem); font-weight: 800; letter-spacing: -0.03em; line-height: 1; transition: transform 0.35s ease; }
+      .cst-chapters a:hover b { transform: translateX(0.4rem); }
+
+      /* ---------- Content block: the story in brief ---------- */
+      .cst-brief { padding-top: var(--space); }
+      .cst-brief .lead { max-width: 30ch; font-size: clamp(2rem, 4.2vw, 4.4rem); line-height: 1.12; font-weight: 500; letter-spacing: -0.03em; }
+      .cst-brief .lead span { color: var(--faint); }
+
+      /* ---------- Acts ---------- */
+      .act { padding-top: var(--space); }
+      .act__head { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.5rem 3rem; align-items: end; padding-bottom: clamp(2rem, 4vw, 3.5rem); border-bottom: 1px solid var(--ink); }
+      @media (min-width: 992px) { .act__head { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); } .act__head > :first-child { grid-column: 1 / -1; } .act__head .statement { grid-column: 2; } }
+      .act__num { display: block; font-size: clamp(1rem, 1.2vw, 1.2rem); font-weight: 700; letter-spacing: 0.16em; margin-bottom: 0.4rem; }
+      .act__word { margin: 0; font-weight: 800; font-size: clamp(4.4rem, 17vw, 19rem); line-height: 0.82; letter-spacing: -0.06em; }
+      .act__head .statement { font-size: clamp(2rem, 3.8vw, 4rem); }
+      .act__body { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2rem 3rem; padding-top: clamp(2.5rem, 5vw, 4.5rem); }
+      @media (min-width: 992px) { .act__body { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); } .act__body > .body { grid-column: 2; max-width: 40ch; } }
+      .act__body .eyebrow { color: var(--faint); }
+
+      /* ---------- Media: one key visual, or a pair. Never more. ---------- */
+      .media { margin: 0; }
+      .media img { width: 100%; border-radius: var(--radius); background: var(--soft); object-fit: cover; }
+      .media figcaption { margin-top: 0.9rem; font-size: clamp(0.95rem, 1.05vw, 1.05rem); color: var(--faint); }
+      .media--key { margin-top: var(--space-sm); padding-inline: clamp(0.5rem, 1.2vw, 1.25rem); }
+      .media--key figcaption { width: min(100% - var(--gutter) * 2 + 2.5rem, var(--max)); margin-inline: auto; }
+      .media--key img { aspect-ratio: 16 / 9; }
+      .media--cinema img { aspect-ratio: 21 / 9; }
+      @media (max-width: 767px) { .cst-hero__media img, .media--key img, .media--cinema img { aspect-ratio: 4 / 5; } }
+      .media-pair { margin-top: var(--space-sm); display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--gap); }
+      @media (min-width: 768px) { .media-pair { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+      .media-pair--portrait img { aspect-ratio: 4 / 5; }
+      .media-pair--landscape img { aspect-ratio: 3 / 2; }
+      @media (min-width: 768px) { .media-pair--offset > :nth-child(2) { margin-top: clamp(4rem, 12vw, 12rem); } }
+
+      /* ---------- Content block: three numbered points ---------- */
+      .points { list-style: none; margin: var(--space-sm) 0 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 0 var(--gap); counter-reset: pt; }
+      @media (min-width: 992px) { .points { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+      .points li { counter-increment: pt; border-top: 1px solid var(--line); padding: 1.6rem 0 2.4rem; }
+      .points li::before { content: counter(pt, decimal-leading-zero); display: block; font-size: 1rem; font-weight: 700; letter-spacing: 0.14em; color: var(--faint); margin-bottom: 1.4rem; }
+      .points h3 { margin: 0 0 0.8rem; font-size: clamp(1.7rem, 2.6vw, 2.6rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.08; }
+      .points p { margin: 0; font-size: clamp(1.25rem, 1.75vw, 1.8rem); line-height: 1.5; color: var(--muted); }
+
+      /* ---------- Content block: process steps ---------- */
+      .steps { list-style: none; margin: var(--space-sm) 0 0; padding: 0; }
+      .steps li { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.6rem 3rem; padding: clamp(1.8rem, 3vw, 2.8rem) 0; border-top: 1px solid var(--line); }
+      .steps li:last-child { border-bottom: 1px solid var(--line); }
+      @media (min-width: 992px) { .steps li { grid-template-columns: minmax(0, 1fr) minmax(0, 4fr) minmax(0, 7fr); align-items: baseline; } }
+      .steps__n { font-size: 1rem; font-weight: 700; letter-spacing: 0.14em; color: var(--faint); }
+      .steps h3 { margin: 0; font-size: clamp(2rem, 3.6vw, 3.8rem); font-weight: 800; letter-spacing: -0.04em; line-height: 1; }
+      .steps p { margin: 0; font-size: clamp(1.25rem, 1.85vw, 1.95rem); line-height: 1.5; color: var(--muted); max-width: 44ch; }
+
+      /* ---------- Content block: picture and words side by side (one image) ---------- */
+      .split { margin-top: var(--space-sm); display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(2rem, 5vw, 6rem); align-items: center; }
+      @media (min-width: 992px) { .split { grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); } .split--flip > :first-child { order: 2; } }
+      .split .media img { aspect-ratio: 4 / 5; }
+      .split h3 { margin: 1.2rem 0 1.4rem; font-size: clamp(2.2rem, 4vw, 4.2rem); font-weight: 800; letter-spacing: -0.04em; line-height: 1; text-wrap: balance; }
+      .ticks { list-style: none; margin: 2rem 0 0; padding: 0; }
+      .ticks li { position: relative; padding: 1rem 0 1rem 2.4rem; border-top: 1px solid var(--line); font-size: clamp(1.2rem, 1.65vw, 1.7rem); line-height: 1.4; }
+      .ticks li::before { content: ""; position: absolute; left: 0.2rem; top: 1.45rem; width: 1rem; height: 0.55rem; border-left: 2.5px solid var(--ink); border-bottom: 2.5px solid var(--ink); transform: rotate(-45deg); }
+
+      /* ---------- Key stats: three, never more ---------- */
+      .stats { list-style: none; margin: var(--space-sm) 0 0; padding: 0; display: grid; grid-template-columns: minmax(0, 1fr); gap: 0 var(--gap); }
+      @media (min-width: 768px) { .stats { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+      .stats li { border-top: 2px solid var(--ink); padding: 1.4rem 0 2.6rem; }
+      .stats b { display: block; font-weight: 800; font-size: clamp(4.6rem, 10vw, 10.5rem); line-height: 0.9; letter-spacing: -0.06em; font-variant-numeric: tabular-nums; }
+      .stats b small { font-size: 0.5em; letter-spacing: -0.03em; margin-left: 0.04em; }
+      .stats span { display: block; margin-top: 1rem; font-size: clamp(1.25rem, 1.6vw, 1.6rem); font-weight: 700; letter-spacing: -0.015em; }
+      .stats em { display: block; margin-top: 0.4rem; font-style: normal; font-size: clamp(1rem, 1.15vw, 1.15rem); color: var(--faint); }
+
+      /* ---------- Testimonial ---------- */
+      .quote { margin: var(--space) 0 0; }
+      .quote__mark { display: block; width: clamp(3rem, 6vw, 5.5rem); height: auto; margin-bottom: clamp(1.5rem, 3vw, 2.5rem); fill: var(--accent); }
+      .quote blockquote { margin: 0; }
+      .quote blockquote p { margin: 0; font-weight: 700; font-size: clamp(2.2rem, 5.2vw, 5.6rem); line-height: 1.04; letter-spacing: -0.04em; text-wrap: balance; max-width: 22ch; }
+      .quote figcaption { display: flex; align-items: center; gap: 1.2rem; margin-top: clamp(2rem, 4vw, 3.5rem); }
+      .quote figcaption img { width: clamp(3.8rem, 5vw, 5rem); height: clamp(3.8rem, 5vw, 5rem); border-radius: 50%; object-fit: cover; background: var(--soft); }
+      .quote figcaption b { display: block; font-size: clamp(1.2rem, 1.5vw, 1.5rem); }
+      .quote figcaption span { display: block; color: var(--muted); font-size: clamp(1rem, 1.2vw, 1.2rem); }
+
+      /* ---------- Review: the short public one ---------- */
+      .review { margin-top: var(--space-sm); display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.5rem 3rem; padding: clamp(2rem, 4.5vw, 4.5rem); background: var(--soft); border-radius: var(--radius); }
+      @media (min-width: 992px) { .review { grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); align-items: start; } }
+      .review__stars { display: flex; gap: 0.3rem; }
+      .review__stars svg { width: clamp(1.5rem, 2vw, 2rem); height: clamp(1.5rem, 2vw, 2rem); fill: var(--ink); }
+      .review__src { margin: 1rem 0 0; font-size: 1rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--faint); }
+      .review__text { margin: 0; font-size: clamp(1.5rem, 2.4vw, 2.5rem); line-height: 1.3; letter-spacing: -0.02em; font-weight: 500; }
+      .review cite { display: block; margin-top: 1.4rem; font-style: normal; font-size: clamp(1.05rem, 1.25vw, 1.25rem); color: var(--muted); }
+
+      /* ---------- Project services: each links to the work page, filtered ---------- */
+      .services { padding-top: var(--space); }
+      .services__head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 1rem 2rem; padding-bottom: clamp(1.6rem, 3vw, 2.4rem); }
+      .services__head .statement { font-size: clamp(2.4rem, 5vw, 5.4rem); }
+      .services__list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--ink); }
+      .services__list a { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0.4rem 2rem; align-items: center; padding: clamp(1.5rem, 3vw, 2.6rem) clamp(0rem, 1vw, 1rem); border-bottom: 1px solid var(--ink); text-decoration: none; isolation: isolate; overflow: hidden; transition: color 0.45s ease; }
+      @media (min-width: 992px) { .services__list a { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr) auto; } }
+      .services__list a::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--ink); transform: scaleY(0); transform-origin: bottom; transition: transform 0.5s cubic-bezier(.2, .7, .2, 1); }
+      .services__list a:hover, .services__list a:focus-visible { color: #FFFFFF; }
+      .services__list a:hover::before, .services__list a:focus-visible::before { transform: scaleY(1); }
+      .services__name { font-size: clamp(2.2rem, 5vw, 5.4rem); font-weight: 800; letter-spacing: -0.045em; line-height: 1; }
+      .services__what { grid-column: 1 / -1; font-size: clamp(1.15rem, 1.6vw, 1.65rem); line-height: 1.45; opacity: 0.7; }
+      @media (min-width: 992px) { .services__what { grid-column: auto; } }
+      .services__go { grid-row: 1; grid-column: 2; display: inline-flex; align-items: center; gap: 0.6rem; font-size: 1rem; font-weight: 700; letter-spacing: 0.06em; white-space: nowrap; }
+      @media (min-width: 992px) { .services__go { grid-column: 3; } }
+      .services__go svg { width: clamp(2.6rem, 3.6vw, 3.6rem); height: clamp(2.6rem, 3.6vw, 3.6rem); padding: 0.75rem; border-radius: 50%; border: 1.5px solid currentColor; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.35s ease; }
+      .services__go span { display: none; }
+      @media (min-width: 768px) { .services__go span { display: inline; } }
+      .services__list a:hover .services__go svg { transform: translateX(6px); }
+
+      /* ---------- Close ---------- */
+      .cst-cta { padding: var(--space) 0 clamp(6rem, 12vw, 11rem); }
+      .cst-cta .display { font-size: clamp(3rem, 8vw, 8.8rem); }
+      .cst-cta .display span { color: var(--faint); }
+      .cst-cta__row { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: clamp(2rem, 4vw, 3.5rem); }
+      .btn-ink { display: inline-flex; align-items: center; gap: 0.7rem; padding: 1.15rem 1.9rem; border-radius: 999px; background: var(--ink); color: #FFFFFF; font-weight: 700; font-size: clamp(1.05rem, 1.25vw, 1.25rem); text-decoration: none; border: 1.5px solid var(--ink); transition: background 0.3s ease, color 0.3s ease; }
+      .btn-ink:hover { background: transparent; color: var(--ink); }
+      .btn-ink--line { background: transparent; color: var(--ink); }
+      .btn-ink--line:hover { background: var(--ink); color: #FFFFFF; }
+      .btn-ink svg { width: 1.1em; height: 1.1em; fill: none; stroke: currentColor; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+
+      /* ---------- Chapter marker: where you are in the story ---------- */
+      .chapter-pill { position: fixed; left: max(1rem, env(safe-area-inset-left)); bottom: max(1rem, env(safe-area-inset-bottom)); z-index: 1030; display: inline-flex; align-items: center; gap: 0.7rem; padding: 0.7rem 1.1rem 0.7rem 0.8rem; border-radius: 999px; background: var(--ink); color: #FFFFFF; font-size: 0.95rem; font-weight: 700; letter-spacing: 0.02em; opacity: 0; transform: translateY(12px); pointer-events: none; transition: opacity 0.35s ease, transform 0.35s ease; }
+      .chapter-pill.is-on { opacity: 1; transform: none; }
+      .chapter-pill i { display: flex; gap: 4px; }
+      .chapter-pill i span { width: 18px; height: 3px; border-radius: 2px; background: rgba(255, 255, 255, 0.25); transition: background 0.35s ease; }
+      .chapter-pill i span.is-done { background: #FFFFFF; }
+
+      /* Back to top */
+      .to-top { position: fixed; right: max(1rem, env(safe-area-inset-right)); bottom: max(1rem, env(safe-area-inset-bottom)); z-index: 1030; width: 3.25rem; height: 3.25rem; padding: 0; border: 0; border-radius: 50%; background: var(--ink); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); opacity: 0; transform: translateY(12px) scale(0.9); pointer-events: none; transition: opacity 0.3s ease, transform 0.3s ease; }
+      .to-top.is-on { opacity: 1; transform: none; pointer-events: auto; }
+      .to-top svg { display: block; width: 100%; height: 100%; }
+      .to-top__track { fill: none; stroke: rgba(255, 255, 255, 0.2); stroke-width: 2.5; }
+      .to-top__ring { fill: none; stroke: var(--ay); stroke-width: 2.5; stroke-linecap: round; transform: rotate(-90deg); transform-origin: 50% 50%; stroke-dasharray: 131.95; stroke-dashoffset: 131.95; }
+      .to-top__arrow { fill: none; stroke: #FFFFFF; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; transition: transform 0.25s ease; }
+      .to-top:hover .to-top__arrow { transform: translateY(-2px); }
+
+      /* Footer: the Astutely sign-off */
+      .footer { color: #F5F5F5; padding: clamp(4rem, 8vw, 7rem) 0; background: #111111; font-family: "ModernEra", system-ui, sans-serif; }
+      .footer svg { fill: var(--ay); }
+      .footer-base { margin-top: 0; text-align: center; }
+      .footer-base .footer-logo { width: 300px; max-width: 80%; height: auto; margin-bottom: 1.75rem; }
+      .footer-base .text__pink { display: block; font-weight: 300; font-size: clamp(0.72rem, 1vw, 0.88rem); letter-spacing: 0.16em; color: #FFFFFF; margin-bottom: 0.55rem; }
+      .footer-base .byline { display: block; font-weight: 300; color: var(--ay); font-size: clamp(0.78rem, 1.1vw, 0.92rem); letter-spacing: 0.08em; }
+      .footer-legal { margin: 2.4rem auto 0; max-width: 62ch; font-size: clamp(0.68rem, 1vw, 0.78rem); font-weight: 300; line-height: 1.55; color: rgba(245, 245, 245, 0.45); }
+
+      @media (prefers-reduced-motion: reduce) { .services__list a::before, .services__go svg, .chapter-pill, .to-top, .cst-chapters b { transition: none; } }
+    </style>
+    <!-- Entrance motion: animated content starts hidden from first paint; assets/js/work-motion.js reveals it -->
+    <script>if (!matchMedia('(prefers-reduced-motion: reduce)').matches) { document.documentElement.classList.add('wm'); setTimeout(function () { if (!window.__wmReady) document.documentElement.classList.remove('wm'); }, 4000); }</script>
+    <style>html.wm [data-hero], html.wm [data-reveal], html.wm [data-stagger] > *, html.wm [class*="hero__media"] img { opacity: 0; } .wm-line-mask { padding: 0.08em 0 0.14em; margin: -0.08em 0 -0.14em; }</style>
+  </head>
+  <body class="cst">
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="home-nav">
+      <div class="container home-nav__inner">
+        <a class="home-nav__brand" href="../index.html" aria-label="Astutely Agency home">
+          <svg viewBox="0 0 192.84 45.34" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true" focusable="false">
+            <path d="M22.2,12.6v12.76s-8.21.72-8.21.72l8.21-13.48ZM7.46,26.71l-5.35.49,1.13,4.63,1.18-.13-4.42,7.15,4.75,2.48,6.21-10.2,11.23-1.05v7.96s8.36,2.4,8.36,2.4l-.21-32.99-9.63-2.31L7.46,26.71Z"/>
+            <path d="M46.61,17.57c-1.2.04-2.2.31-3.01.81-.8.5-1.2,1.05-1.17,1.67.02.47.36.84,1.03,1.11.67.27,1.53.51,2.58.73,1.05.21,2.16.47,3.33.77,1.17.3,2.28.71,3.34,1.25,1.06.54,1.93,1.25,2.63,2.13.69.89,1.06,2.05,1.11,3.48.05,1.44-.29,2.78-1.03,4.02-.74,1.24-1.77,2.34-3.1,3.3-1.33.96-2.9,1.71-4.7,2.27-1.8.56-3.74.88-5.82.95-2.87.1-5.21-.34-7.02-1.3-1.81-.96-2.74-2.31-2.8-4.04-.04-1.17.33-2.23,1.12-3.18.79-.95,1.91-1.69,3.36-2.21l5.39,2.01c-1.3.6-1.93,1.34-1.9,2.22.02.47.29.86.81,1.18.52.32,1.34.46,2.46.42,1.67-.06,2.98-.46,3.92-1.21.94-.75,1.4-1.49,1.38-2.23-.02-.62-.36-1.08-1.02-1.4-.66-.31-1.49-.56-2.49-.75-1-.19-2.07-.4-3.21-.64-1.14-.24-2.22-.58-3.25-1.03-1.03-.45-1.87-1.09-2.53-1.94-.66-.84-1.01-1.95-1.06-3.33-.06-1.79.46-3.42,1.57-4.89,1.11-1.47,2.62-2.66,4.54-3.54,1.92-.89,4.07-1.37,6.44-1.45,1.79-.06,3.43.12,4.93.56,1.5.43,2.71,1.08,3.63,1.94.92.86,1.41,1.9,1.45,3.1.03.79-.15,1.56-.54,2.31-.39.75-.95,1.4-1.69,1.95l-6.24-2.25c.57-.4.85-.84.83-1.3-.01-.41-.3-.77-.85-1.07-.55-.3-1.36-.44-2.41-.4"/>
+            <path d="M58.61,12.81l6.5-.36,2.35-7.21,7.52,2.38-1.39,4.32,6.89-.32-1.49,4.8-6.98.37-3.98,12.32c.93-1.03,1.89-2.04,2.87-3.02.98-.99,1.98-1.94,3-2.85l3.16,3.59c-2.19,1.92-4.32,3.93-6.37,6.01-2.06,2.08-4.04,4.23-5.96,6.43l-7.52-2.38,6.37-19.58-3.64.21-1.31-4.71Z"/>
+            <path d="M105.54,13.35l-7.99,24.78-7.52-2.38,3.78-11.53c-1.85,2.53-3.74,5-5.66,7.41-1.93,2.41-3.89,4.75-5.9,7.02l-7.39-2.39,7.99-24.78,7.52,2.38-4.58,14.02c2.28-2.72,4.48-5.48,6.58-8.3,2.1-2.81,4.03-5.69,5.78-8.63l7.39,2.39Z"/>
+            <path d="M107.6,11.11l3.67-.26,2.35-7.21,7.52,2.38-1.39,4.32,7.05-.26-1.67,4.74-6.98.37-3.98,12.32c.93-1.03,1.89-2.04,2.87-3.02.98-.99,1.98-1.94,3-2.85l3.16,3.59c-2.19,1.92-4.32,3.93-6.37,6.01-2.06,2.08-4.04,4.22-5.96,6.43l-7.52-2.38,6.37-19.58-3.64.21,1.52-4.8Z"/>
+            <path d="M138.37,14.38c-1.03.04-2.02.66-2.99,1.86-.97,1.21-1.83,2.95-2.57,5.24,1.78-.24,3.22-.66,4.31-1.27,1.09-.61,1.89-1.3,2.39-2.06.5-.77.74-1.47.72-2.11-.04-1.14-.66-1.69-1.86-1.65M145.43,30.07c-1.02,1.94-2.53,3.54-4.52,4.8s-4.21,1.93-6.64,2.01c-2.29.08-4.2-.31-5.74-1.17-1.54-.86-2.71-2.04-3.51-3.55-.8-1.51-1.23-3.22-1.3-5.13-.04-1.08.02-2.12.16-3.11.14-.99.37-1.98.69-2.99.71-2.25,1.79-4.21,3.23-5.88,1.44-1.66,3.1-2.97,4.99-3.91,1.89-.95,3.87-1.45,5.95-1.52,2.7-.09,4.86.46,6.5,1.67,1.64,1.21,2.5,2.88,2.57,5.02.09,2.67-1.09,4.86-3.54,6.57-2.45,1.71-5.98,2.84-10.6,3.38l-1.46-2.9c-.41,1.72-.59,3.23-.55,4.55.04,1.29.32,2.29.83,3.01.51.72,1.25,1.06,2.21,1.02.91-.03,1.76-.43,2.55-1.21.79-.78,1.46-1.94,1.99-3.48l6.17,2.82Z"/>
+            <polygon points="156 0 144.97 33.86 152.49 36.25 163.52 2.38 156 0"/>
+            <path d="M186.96,10.59l-11.35,34.76-7.52-2.38,6.89-21.14c-3.53,4.81-7.29,9.49-11.27,14.03l-7.52-2.38,7.99-24.74,7.52,2.38-4.49,13.93c2.22-2.69,4.37-5.44,6.43-8.25,2.06-2.81,3.96-5.67,5.71-8.58l7.61,2.38Z"/>
+            <polygon points="182.88 32.99 190.29 34.94 192.84 27.15 185.43 25.21 182.88 32.99"/>
+          </svg>
+        </a>
+        <nav class="site-nav" aria-label="Primary">
+          <ul class="site-nav__list">
+            <li><a class="site-nav__cta" href="../contact.html">Get in touch</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+
+      <!-- ===================== HERO: who, what, the headline ===================== -->
+      <section class="cst-hero" aria-labelledby="cst-title">
+        <div class="w">
+          <div class="cst-hero__kicker" data-hero>
+            <p class="eyebrow">Case study</p>
+            <p class="eyebrow">Client name &middot; 2026</p>
+          </div>
+          <h1 id="cst-title" class="display">
+            <span class="line" data-hero>Lorem ipsum dolor sit.</span>
+            <span class="line" data-hero>Consectetur adipiscing elit.</span>
+          </h1>
+          <div class="cst-hero__intro">
+            <p class="lead" data-hero>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua, ut enim ad minim veniam.</p>
+            <dl class="cst-facts" data-stagger>
+              <div><dt>Client</dt><dd>Client name</dd></div>
+              <div><dt>Sector</dt><dd>Lorem ipsum</dd></div>
+              <div><dt>Timeline</dt><dd>2025 to 2026</dd></div>
+              <div><dt>Services</dt><dd><a href="./?filter=strategy">Strategy</a>, <a href="./?filter=brand">Brand</a>, <a href="./?filter=web">Web</a></dd></div>
+            </dl>
+          </div>
+        </div>
+        <!-- KEY VISUAL: always on its own -->
+        <figure class="cst-hero__media">
+          <img src="../assets/img/work/_template/hero.webp" alt="Key visual: describe the image" width="2400" height="1350" fetchpriority="high">
+        </figure>
+        <div class="w">
+          <ol class="cst-chapters" aria-label="Chapters" data-stagger>
+            <li><a href="#problem"><span>01</span><b>Problem</b></a></li>
+            <li><a href="#process"><span>02</span><b>Process</b></a></li>
+            <li><a href="#outcome"><span>03</span><b>Outcome</b></a></li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ===================== CONTENT BLOCK: the story in one breath ===================== -->
+      <section class="cst-brief" aria-label="The story in brief">
+        <div class="w">
+          <p class="lead" data-reveal data-wm="lines">Lorem ipsum dolor sit amet, consectetur adipiscing elit. <span>Sed do eiusmod tempor incididunt ut labore,</span> ut enim ad minim veniam quis nostrud exercitation.</p>
+        </div>
+      </section>
+
+      <!-- ===================== 01 PROBLEM ===================== -->
+      <section class="act" id="problem" aria-labelledby="problem-title" data-chapter="01 Problem">
+        <div class="w">
+          <header class="act__head">
+            <div data-reveal>
+              <span class="act__num">01</span>
+              <h2 class="act__word" id="problem-title">Problem</h2>
+            </div>
+            <p class="statement" data-reveal data-wm="lines">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do eiusmod.</p>
+          </header>
+          <div class="act__body">
+            <p class="eyebrow" data-reveal>The situation</p>
+            <div class="body" data-reveal>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Sed do eiusmod tempor incididunt</strong> ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+            </div>
+          </div>
+
+          <!-- CONTENT BLOCK: three numbered points -->
+          <ol class="points" data-stagger>
+            <li><h3>Lorem ipsum dolor sit amet.</h3><p>Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore.</p></li>
+            <li><h3>Ut enim ad minim veniam.</h3><p>Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></li>
+            <li><h3>Duis aute irure dolor.</h3><p>In reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p></li>
+          </ol>
+
+          <!-- PAIR: two images, never more -->
+          <div class="media-pair media-pair--portrait media-pair--offset" data-stagger>
+            <figure class="media"><img src="../assets/img/work/_template/problem-a.webp" alt="Describe the image" width="1200" height="1500" loading="lazy"><figcaption>Lorem ipsum dolor sit amet, consectetur.</figcaption></figure>
+            <figure class="media"><img src="../assets/img/work/_template/problem-b.webp" alt="Describe the image" width="1200" height="1500" loading="lazy"><figcaption>Sed do eiusmod tempor incididunt.</figcaption></figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== 02 PROCESS ===================== -->
+      <section class="act" id="process" aria-labelledby="process-title" data-chapter="02 Process">
+        <div class="w">
+          <header class="act__head">
+            <div data-reveal>
+              <span class="act__num">02</span>
+              <h2 class="act__word" id="process-title">Process</h2>
+            </div>
+            <p class="statement" data-reveal data-wm="lines">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+          </header>
+          <div class="act__body">
+            <p class="eyebrow" data-reveal>How we approached it</p>
+            <div class="body" data-reveal>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <strong>Ut enim ad minim veniam</strong>, quis nostrud exercitation ullamco laboris.</p>
+            </div>
+          </div>
+
+          <!-- CONTENT BLOCK: process steps -->
+          <ol class="steps" data-stagger>
+            <li><span class="steps__n">01</span><h3>Discover</h3><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.</p></li>
+            <li><span class="steps__n">02</span><h3>Define</h3><p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip.</p></li>
+            <li><span class="steps__n">03</span><h3>Design</h3><p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat.</p></li>
+            <li><span class="steps__n">04</span><h3>Deliver</h3><p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt.</p></li>
+          </ol>
+        </div>
+
+        <!-- KEY VISUAL: always on its own -->
+        <figure class="media media--key" data-reveal>
+          <img src="../assets/img/work/_template/process-key.webp" alt="Key visual: describe the image" width="2400" height="1350" loading="lazy">
+          <figcaption>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</figcaption>
+        </figure>
+
+        <div class="w">
+          <!-- CONTENT BLOCK: one image beside the words -->
+          <div class="split">
+            <figure class="media" data-reveal><img src="../assets/img/work/_template/process-split.webp" alt="Describe the image" width="1200" height="1500" loading="lazy"></figure>
+            <div data-reveal>
+              <p class="eyebrow muted">The big idea</p>
+              <h3>Lorem ipsum dolor sit amet consectetur.</h3>
+              <div class="body">
+                <p>Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco.</p>
+              </div>
+              <ul class="ticks">
+                <li>Lorem ipsum dolor sit amet</li>
+                <li>Consectetur adipiscing elit sed do</li>
+                <li>Eiusmod tempor incididunt ut labore</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- PAIR: two images, never more -->
+          <div class="media-pair media-pair--landscape" data-stagger>
+            <figure class="media"><img src="../assets/img/work/_template/process-a.webp" alt="Describe the image" width="1800" height="1200" loading="lazy"><figcaption>Lorem ipsum dolor sit amet.</figcaption></figure>
+            <figure class="media"><img src="../assets/img/work/_template/process-b.webp" alt="Describe the image" width="1800" height="1200" loading="lazy"><figcaption>Consectetur adipiscing elit.</figcaption></figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== 03 OUTCOME ===================== -->
+      <section class="act" id="outcome" aria-labelledby="outcome-title" data-chapter="03 Outcome">
+        <div class="w">
+          <header class="act__head">
+            <div data-reveal>
+              <span class="act__num">03</span>
+              <h2 class="act__word" id="outcome-title">Outcome</h2>
+            </div>
+            <p class="statement" data-reveal data-wm="lines">Duis aute irure dolor in reprehenderit in voluptate velit esse.</p>
+          </header>
+          <div class="act__body">
+            <p class="eyebrow" data-reveal>What changed</p>
+            <div class="body" data-reveal>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. <strong>Excepteur sint occaecat cupidatat</strong> non proident, sunt in culpa qui officia.</p>
+            </div>
+          </div>
+
+          <!-- KEY STATS: three at most, each with its source or timeframe -->
+          <ul class="stats" aria-label="Key results" data-stagger>
+            <li><b data-count="48">48<small>%</small></b><span>Lorem ipsum dolor</span><em>Sit amet, 2025 to 2026</em></li>
+            <li><b data-count="120">120<small>k</small></b><span>Consectetur adipiscing</span><em>Elit sed do, first 12 months</em></li>
+            <li><b data-count="3">3<small>x</small></b><span>Eiusmod tempor</span><em>Incididunt ut labore, year on year</em></li>
+          </ul>
+        </div>
+
+        <!-- KEY VISUAL: always on its own -->
+        <figure class="media media--key media--cinema" data-reveal>
+          <img src="../assets/img/work/_template/outcome-key.webp" alt="Key visual: describe the image" width="2400" height="1029" loading="lazy">
+          <figcaption>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</figcaption>
+        </figure>
+
+        <div class="w">
+          <!-- TESTIMONIAL: the client in their own words -->
+          <figure class="quote" data-reveal data-wm="fade">
+            <svg class="quote__mark" viewBox="0 0 64 48" aria-hidden="true"><path d="M0 48V28C0 12.5 8.2 2.9 24.6 0l2.6 6.3C18.9 8.6 14.7 13.4 14.4 21H26v27H0Zm37 0V28C37 12.5 45.2 2.9 61.6 0l2.4 6.3C55.9 8.6 51.7 13.4 51.4 21H63v27H37Z"/></svg>
+            <blockquote><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore.</p></blockquote>
+            <figcaption>
+              <img src="../assets/img/work/_template/portrait.webp" alt="" width="600" height="600" loading="lazy">
+              <span><b>Firstname Surname</b><span>Job title, Client name</span></span>
+            </figcaption>
+          </figure>
+
+          <!-- REVIEW: a short public review, with its source -->
+          <div class="review" data-reveal>
+            <div>
+              <div class="review__stars" role="img" aria-label="Rated 5 out of 5">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></svg>
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/></svg>
+              </div>
+              <p class="review__src">Google review</p>
+            </div>
+            <div>
+              <p class="review__text">&ldquo;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.&rdquo;</p>
+              <cite>Firstname S., Month 2026</cite>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================== PROJECT SERVICES: each opens the work page, filtered ===================== -->
+      <section class="services" aria-labelledby="services-title">
+        <div class="w">
+          <div class="services__head">
+            <h2 class="statement" id="services-title" data-reveal>Services on this project</h2>
+            <p class="eyebrow muted" data-reveal>See more work like this</p>
+          </div>
+          <ul class="services__list" data-stagger>
+            <li><a href="./?filter=strategy"><span class="services__name">Strategy</span><span class="services__what">Lorem ipsum dolor sit amet, consectetur adipiscing elit sed do.</span><span class="services__go"><span>All strategy work</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+            <li><a href="./?filter=brand"><span class="services__name">Brand</span><span class="services__what">Eiusmod tempor incididunt ut labore et dolore magna aliqua.</span><span class="services__go"><span>All brand work</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+            <li><a href="./?filter=web"><span class="services__name">Web</span><span class="services__what">Ut enim ad minim veniam, quis nostrud exercitation ullamco.</span><span class="services__go"><span>All web work</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a></li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ===================== CLOSE ===================== -->
+      <section class="cst-cta" aria-labelledby="cta-title">
+        <div class="w">
+          <h2 class="display" id="cta-title" data-reveal>Lorem ipsum dolor? <span>Let's talk.</span></h2>
+          <div class="cst-cta__row" data-stagger>
+            <a class="btn-ink" href="../contact.html">Get in touch <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="btn-ink btn-ink--line" href="./">View all work</a>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <div class="chapter-pill" aria-hidden="true"><i><span></span><span></span><span></span></i><b></b></div>
+
+    <button class="to-top" type="button" aria-label="Back to top">
+      <svg viewBox="0 0 48 48" aria-hidden="true"><circle class="to-top__track" cx="24" cy="24" r="21"/><circle class="to-top__ring" cx="24" cy="24" r="21"/><path class="to-top__arrow" d="M24 31V17M17.5 23.5 24 17l6.5 6.5"/></svg>
+    </button>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-base">
+          <svg class="footer-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192.84 45.34">
+            <path d="M22.2,12.6v12.76s-8.21.72-8.21.72l8.21-13.48ZM7.46,26.71l-5.35.49,1.13,4.63,1.18-.13-4.42,7.15,4.75,2.48,6.21-10.2,11.23-1.05v7.96s8.36,2.4,8.36,2.4l-.21-32.99-9.63-2.31L7.46,26.71Z"/>
+            <path d="M46.61,17.57c-1.2.04-2.2.31-3.01.81-.8.5-1.2,1.05-1.17,1.67.02.47.36.84,1.03,1.11.67.27,1.53.51,2.58.73,1.05.21,2.16.47,3.33.77,1.17.3,2.28.71,3.34,1.25,1.06.54,1.93,1.25,2.63,2.13.69.89,1.06,2.05,1.11,3.48.05,1.44-.29,2.78-1.03,4.02-.74,1.24-1.77,2.34-3.1,3.3-1.33.96-2.9,1.71-4.7,2.27-1.8.56-3.74.88-5.82.95-2.87.1-5.21-.34-7.02-1.3-1.81-.96-2.74-2.31-2.8-4.04-.04-1.17.33-2.23,1.12-3.18.79-.95,1.91-1.69,3.36-2.21l5.39,2.01c-1.3.6-1.93,1.34-1.9,2.22.02.47.29.86.81,1.18.52.32,1.34.46,2.46.42,1.67-.06,2.98-.46,3.92-1.21.94-.75,1.4-1.49,1.38-2.23-.02-.62-.36-1.08-1.02-1.4-.66-.31-1.49-.56-2.49-.75-1-.19-2.07-.4-3.21-.64-1.14-.24-2.22-.58-3.25-1.03-1.03-.45-1.87-1.09-2.53-1.94-.66-.84-1.01-1.95-1.06-3.33-.06-1.79.46-3.42,1.57-4.89,1.11-1.47,2.62-2.66,4.54-3.54,1.92-.89,4.07-1.37,6.44-1.45,1.79-.06,3.43.12,4.93.56,1.5.43,2.71,1.08,3.63,1.94.92.86,1.41,1.9,1.45,3.1.03.79-.15,1.56-.54,2.31-.39.75-.95,1.4-1.69,1.95l-6.24-2.25c.57-.4.85-.84.83-1.3-.01-.41-.3-.77-.85-1.07-.55-.3-1.36-.44-2.41-.4"/>
+            <path d="M58.61,12.81l6.5-.36,2.35-7.21,7.52,2.38-1.39,4.32,6.89-.32-1.49,4.8-6.98.37-3.98,12.32c.93-1.03,1.89-2.04,2.87-3.02.98-.99,1.98-1.94,3-2.85l3.16,3.59c-2.19,1.92-4.32,3.93-6.37,6.01-2.06,2.08-4.04,4.23-5.96,6.43l-7.52-2.38,6.37-19.58-3.64.21-1.31-4.71Z"/>
+            <path d="M105.54,13.35l-7.99,24.78-7.52-2.38,3.78-11.53c-1.85,2.53-3.74,5-5.66,7.41-1.93,2.41-3.89,4.75-5.9,7.02l-7.39-2.39,7.99-24.78,7.52,2.38-4.58,14.02c2.28-2.72,4.48-5.48,6.58-8.3,2.1-2.81,4.03-5.69,5.78-8.63l7.39,2.39Z"/>
+            <path d="M107.6,11.11l3.67-.26,2.35-7.21,7.52,2.38-1.39,4.32,7.05-.26-1.67,4.74-6.98.37-3.98,12.32c.93-1.03,1.89-2.04,2.87-3.02.98-.99,1.98-1.94,3-2.85l3.16,3.59c-2.19,1.92-4.32,3.93-6.37,6.01-2.06,2.08-4.04,4.22-5.96,6.43l-7.52-2.38,6.37-19.58-3.64.21,1.52-4.8Z"/>
+            <path d="M138.37,14.38c-1.03.04-2.02.66-2.99,1.86-.97,1.21-1.83,2.95-2.57,5.24,1.78-.24,3.22-.66,4.31-1.27,1.09-.61,1.89-1.3,2.39-2.06.5-.77.74-1.47.72-2.11-.04-1.14-.66-1.69-1.86-1.65M145.43,30.07c-1.02,1.94-2.53,3.54-4.52,4.8s-4.21,1.93-6.64,2.01c-2.29.08-4.2-.31-5.74-1.17-1.54-.86-2.71-2.04-3.51-3.55-.8-1.51-1.23-3.22-1.3-5.13-.04-1.08.02-2.12.16-3.11.14-.99.37-1.98.69-2.99.71-2.25,1.79-4.21,3.23-5.88,1.44-1.66,3.1-2.97,4.99-3.91,1.89-.95,3.87-1.45,5.95-1.52,2.7-.09,4.86.46,6.5,1.67,1.64,1.21,2.5,2.88,2.57,5.02.09,2.67-1.09,4.86-3.54,6.57-2.45,1.71-5.98,2.84-10.6,3.38l-1.46-2.9c-.41,1.72-.59,3.23-.55,4.55.04,1.29.32,2.29.83,3.01.51.72,1.25,1.06,2.21,1.02.91-.03,1.76-.43,2.55-1.21.79-.78,1.46-1.94,1.99-3.48l6.17,2.82Z"/>
+            <polygon points="156 0 144.97 33.86 152.49 36.25 163.52 2.38 156 0"/>
+            <path d="M186.96,10.59l-11.35,34.76-7.52-2.38,6.89-21.14c-3.53,4.81-7.29,9.49-11.27,14.03l-7.52-2.38,7.99-24.74,7.52,2.38-4.49,13.93c2.22-2.69,4.37-5.44,6.43-8.25,2.06-2.81,3.96-5.67,5.71-8.58l7.61,2.38Z"/>
+            <polygon points="182.88 32.99 190.29 34.94 192.84 27.15 185.43 25.21 182.88 32.99"/>
+          </svg>
+          <span class="text-uppercase text__pink">STRATEGY. BRAND. DIGITAL. COMMS.</span>
+          <span class="byline">A Creative Marketing Agency</span>
+          <p class="footer-legal">Astutely &amp; AY Studio are trading names of Annett Young Limited, a company registered in Northern Ireland. Company No: NI684765. Registered office: Top Floor, 144 High Street, Holywood, BT18 9HS. VAT No: GB424848086.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/lenis@1.3.25/dist/lenis.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.15/dist/SplitText.min.js"></script>
+    <script>
+      (function () {
+        var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var hasGsap = typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined';
+
+        // Smooth scroll, kept in step with ScrollTrigger.
+        var lenis = null;
+        if (!reduced && typeof Lenis !== 'undefined') {
+          lenis = new Lenis({ duration: 1.05, easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); }, smoothWheel: true, anchors: true });
+          if (hasGsap) {
+            lenis.on('scroll', ScrollTrigger.update);
+            gsap.ticker.add(function (time) { lenis.raf(time * 1000); });
+            gsap.ticker.lagSmoothing(0);
+          } else {
+            var raf = function (time) { lenis.raf(time); requestAnimationFrame(raf); };
+            requestAnimationFrame(raf);
+          }
+        }
+
+        // Chapter marker: shows which act of the story you're in.
+        (function () {
+          var pill = document.querySelector('.chapter-pill');
+          var acts = [].slice.call(document.querySelectorAll('[data-chapter]'));
+          if (!pill || !acts.length) return;
+          var bars = pill.querySelectorAll('i span'), label = pill.querySelector('b'), ticking = false;
+          function update() {
+            var line = window.innerHeight * 0.5, current = -1;
+            acts.forEach(function (a, i) { if (a.getBoundingClientRect().top < line) current = i; });
+            var end = acts[acts.length - 1].getBoundingClientRect().bottom < line;
+            pill.classList.toggle('is-on', current > -1 && !end);
+            if (current > -1) label.textContent = acts[current].getAttribute('data-chapter');
+            [].forEach.call(bars, function (b, i) { b.classList.toggle('is-done', i <= current); });
+            ticking = false;
+          }
+          window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+          update();
+        })();
+
+        // Back to top.
+        (function () {
+          var btn = document.querySelector('.to-top');
+          if (!btn) return;
+          var ring = btn.querySelector('.to-top__ring'), C = 131.95, lastY = window.scrollY, ticking = false;
+          function update() {
+            var y = window.scrollY, max = document.documentElement.scrollHeight - window.innerHeight;
+            var p = max > 0 ? Math.min(1, y / max) : 0;
+            ring.style.strokeDashoffset = C * (1 - p);
+            if (y < window.innerHeight * 1.2) btn.classList.remove('is-on');
+            else if (y < lastY - 2 || p > 0.97) btn.classList.add('is-on');
+            else if (y > lastY + 2) btn.classList.remove('is-on');
+            lastY = y; ticking = false;
+          }
+          window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+          btn.addEventListener('click', function () {
+            if (lenis) lenis.scrollTo(0, { duration: 1.4 });
+            else window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
+            var home = document.querySelector('.home-nav__brand');
+            if (home) home.focus({ preventScroll: true });
+            btn.classList.remove('is-on');
+          });
+          update();
+        })();
+
+        if (!hasGsap || reduced) return;
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Key stats count up the first time they're seen (the unit stays put).
+        gsap.utils.toArray('[data-count]').forEach(function (el) {
+          var end = parseFloat(el.getAttribute('data-count')), unit = el.querySelector('small'), o = { v: 0 };
+          var num = document.createTextNode('0');
+          el.textContent = ''; el.appendChild(num); if (unit) el.appendChild(unit);
+          gsap.to(o, { v: end, duration: 1.8, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%', once: true }, onUpdate: function () { num.nodeValue = Math.round(o.v); } });
+        });
+
+      })();
+    </script>
+    <script src="../assets/js/work-motion.js?v=20261012" defer></script>
+  </body>
+</html>
