@@ -24,6 +24,7 @@ Thumbs.db
 # Local backups / archive (not deployed) #
 ##########################################
 _archive/
+_data/
 _old/
 backup/
 backup-2/
