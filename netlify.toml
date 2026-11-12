@@ -20,21 +20,20 @@
   status = 301
   force = true
 
-# --- Work section: in draft, hidden from the live site -----------------------
-# Every /work URL returns the 404 page. The files stay in the repo (and work in
-# a local preview, which ignores these rules). To bring the section back, delete
-# these two rules. This sits above the other /work redirects so it wins.
-[[redirects]]
-  from = "/work"
-  to = "/404.html"
-  status = 404
-  force = true
-
-[[redirects]]
-  from = "/work/*"
-  to = "/404.html"
-  status = 404
-  force = true
+# --- Work section: temporarily live for review (noindex) ---------------------
+# To hide it again, put these two rules back (above the other /work redirects
+# so they win). Every /work URL then returns the 404 page.
+# [[redirects]]
+#   from = "/work"
+#   to = "/404.html"
+#   status = 404
+#   force = true
+#
+# [[redirects]]
+#   from = "/work/*"
+#   to = "/404.html"
+#   status = 404
+#   force = true
 
 # The branded SuperCupNI case study was reviewed as /work/supercupni2 before it
 # became the main page; keep that shared link working.
@@ -58,9 +57,13 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
     X-Frame-Options = "SAMEORIGIN"
 
-# --- Case studies: hidden while in draft (see the 404 rule above) -------------
-# Belt and braces: if the 404 rule is removed before launch, these pages still
-# tell search engines not to index them. Each page also has a noindex meta tag.
+# --- Case studies: in draft, keep out of search engines -----------------------
+# Each page also has a noindex meta tag. Remove both blocks at launch.
+[[headers]]
+  for = "/work"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
 [[headers]]
   for = "/work/*"
   [headers.values]
